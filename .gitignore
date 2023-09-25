@@ -1,0 +1,14 @@
+
+# Unity generated files
+[Ll]ibrary
+[Ll]ogs
+[Tt]emp
+[Oo]bj
+[Uu]ser[Ss]ettings
+
+
+# Visual Studio [Code] Project Files
+*.sln
+*.csproj
+*.vscode
+
