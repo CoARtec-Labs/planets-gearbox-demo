@@ -41,6 +41,19 @@ namespace Instructions
             }
         }
 
+        public void SetMaterial(Material mat)
+        {
+            // find and hide model
+            model = findModel(modelName);
+
+            MeshRenderer[] renderers = model.GetComponentsInChildren<MeshRenderer>();
+            
+            foreach (MeshRenderer renderer in renderers)
+            {
+                renderer.material = mat;
+            }
+        }
+
         GameObject findModel(string name)
         {
             model = GameObject.Find(name);
@@ -61,6 +74,9 @@ namespace Instructions
 // TODO Implement as Singelton
 public class InstructionManager : MonoBehaviour
 {
+
+    public Material materialActiveStep;
+    public Material materialInactiveStep;
 
     private List<Instructions.InstructionStep> steps;
     private int currentStepID, maxStepID; 
@@ -137,13 +153,20 @@ public class InstructionManager : MonoBehaviour
     {
         for (int i = minStepID; i <= maxStepID; i++)
         {   
-            if (i <= stepID)
+            if (i < stepID)
             {
                 steps[i].activate();
+                steps[i].SetMaterial(materialInactiveStep);
+            }
+            else if (i == stepID)
+            {
+                steps[i].activate();
+                steps[i].SetMaterial(materialActiveStep);
             }
             else
             {
                 steps[i].deactivate();
+                steps[i].SetMaterial(materialInactiveStep);
             }
         }
     }
