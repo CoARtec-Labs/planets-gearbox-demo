@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Instructions
@@ -10,17 +11,20 @@ namespace Instructions
     // It holds reference to the model, which is handled at this step.
     public class InstructionStep
     {
-        public string stepName {get; set;}
-        public string modelName {get; set;} // use to find model reference
+        public string StepName {get; set;}
+        public string ModelName {get; set;} // use to find model reference
 
-        private GameObject model; // model reference
-
-        public void activate()
+        private readonly GameObject _model; // mesh model reference
+        
+        public InstructionStep(string modelName, GameObject model)
         {
-            // find and bring up model
-            model = findModel(modelName);
-            
-            MeshRenderer[] renderers = model.GetComponentsInChildren<MeshRenderer>();
+            this._model = model;
+            this.ModelName = modelName;
+        }
+        
+        public void Activate()
+        {
+            MeshRenderer[] renderers = _model.GetComponentsInChildren<MeshRenderer>();
             
             foreach (MeshRenderer renderer in renderers)
             {
@@ -28,12 +32,9 @@ namespace Instructions
             }
         }
 
-        public void deactivate()
+        public void Deactivate()
         {
-            // find and hide model
-            model = findModel(modelName);
-
-            MeshRenderer[] renderers = model.GetComponentsInChildren<MeshRenderer>();
+            MeshRenderer[] renderers = _model.GetComponentsInChildren<MeshRenderer>();
             
             foreach (MeshRenderer renderer in renderers)
             {
@@ -43,28 +44,11 @@ namespace Instructions
 
         public void SetMaterial(Material mat)
         {
-            // find and hide model
-            model = findModel(modelName);
-
-            MeshRenderer[] renderers = model.GetComponentsInChildren<MeshRenderer>();
+            MeshRenderer[] renderers = _model.GetComponentsInChildren<MeshRenderer>();
             
             foreach (MeshRenderer renderer in renderers)
             {
                 renderer.material = mat;
-            }
-        }
-
-        GameObject findModel(string name)
-        {
-            model = GameObject.Find(name);
-
-            if (model == null)
-            {
-                throw new Exception($"Could not find model {name}");
-            }
-            else
-            {
-                return model;
             }
         }
     }
@@ -78,54 +62,62 @@ public class InstructionManager : MonoBehaviour
     public Material materialActiveStep;
     public Material materialInactiveStep;
 
-    private List<Instructions.InstructionStep> steps;
-    private int currentStepID, maxStepID; 
-    private const int minStepID = 0;
+    private List<Instructions.InstructionStep> _steps;
+    private int _currentStepID, _maxStepID; 
+    private const int MinStepID = 0;
 
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        steps = new List<Instructions.InstructionStep>();
+        _steps = new List<Instructions.InstructionStep>();
 
-        initializeSteps();
+        InitializeSteps();
 
-        setCurrentStep(currentStepID);
+        SetCurrentStep(_currentStepID);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         
     }
 
-    private void initializeSteps()
+    private void InitializeSteps()
     {
-        steps.Clear();
-
+        _steps.Clear();
+        
         // Insert instruction steps here
-        steps.Add(new Instructions.InstructionStep() { stepName = "Start", modelName = "ring" });
-        steps.Add(new Instructions.InstructionStep() { stepName = "Step-sun", modelName = "sun" });
-        steps.Add(new Instructions.InstructionStep() { stepName = "Step-planet1", modelName = "planet1" });
-        steps.Add(new Instructions.InstructionStep() { stepName = "Step-planet2", modelName = "planet2" });
-        steps.Add(new Instructions.InstructionStep() { stepName = "Step-planet3", modelName = "planet3" });
-        steps.Add(new Instructions.InstructionStep() { stepName = "Step-lid", modelName = "carrier" });
-        steps.Add(new Instructions.InstructionStep() { stepName = "Step-lid", modelName = "gasket" });
-        steps.Add(new Instructions.InstructionStep() { stepName = "Step-lid", modelName = "lid" });
+        AddStep("Start", "ring");
+        AddStep("Step-sun", "sun");
+        AddStep("Step-planet1", "planet1");
+        AddStep("Step-planet2", "planet2");
+        AddStep("Step-planet3", "planet3");
+        AddStep("Step-carrier", "carrier");
+        AddStep("Step-gasket", "gasket");
+        AddStep("Step-lid", "lid");
+        
+        _maxStepID = _steps.Count-1;
 
-        maxStepID = steps.Count-1;
-
-        currentStepID = 0;
+        _currentStepID = 0;
     }
 
-    public void stepNext()
+    private void AddStep(string stepName, string modelName)
     {
-        System.Diagnostics.Debug.Assert(currentStepID >= minStepID && currentStepID <= maxStepID);
+        // Find mesh model. Assume that we are on the same level as Origin (root of GameObject Assembly)
+        var model = transform.parent.Find("Origin/" + modelName).gameObject;
+        
+        _steps.Add(new Instructions.InstructionStep(modelName, model) { StepName = stepName });
+    }
 
-        if (currentStepID < maxStepID)
+    public void StepNext()
+    {
+        System.Diagnostics.Debug.Assert(_currentStepID >= MinStepID && _currentStepID <= _maxStepID);
+
+        if (_currentStepID < _maxStepID)
         {
-            currentStepID ++;
-            setCurrentStep(currentStepID);
+            _currentStepID ++;
+            SetCurrentStep(_currentStepID);
         }
         else
         {
@@ -133,14 +125,14 @@ public class InstructionManager : MonoBehaviour
         }
     }
 
-    public void stepBack()
+    public void StepBack()
     {
-        System.Diagnostics.Debug.Assert(currentStepID >= minStepID && currentStepID <= maxStepID);
+        System.Diagnostics.Debug.Assert(_currentStepID >= MinStepID && _currentStepID <= _maxStepID);
 
-        if (currentStepID > minStepID)
+        if (_currentStepID > MinStepID)
         {
-            currentStepID --;
-            setCurrentStep(currentStepID);
+            _currentStepID --;
+            SetCurrentStep(_currentStepID);
         }
         else
         {
@@ -149,24 +141,24 @@ public class InstructionManager : MonoBehaviour
     }
 
     // Coordinates states of each step for given step ID
-    private void setCurrentStep(int stepID)
+    private void SetCurrentStep(int stepID)
     {
-        for (int i = minStepID; i <= maxStepID; i++)
+        for (int i = MinStepID; i <= _maxStepID; i++)
         {   
             if (i < stepID)
             {
-                steps[i].activate();
-                steps[i].SetMaterial(materialInactiveStep);
+                _steps[i].Activate();
+                _steps[i].SetMaterial(materialInactiveStep);
             }
             else if (i == stepID)
             {
-                steps[i].activate();
-                steps[i].SetMaterial(materialActiveStep);
+                _steps[i].Activate();
+                _steps[i].SetMaterial(materialActiveStep);
             }
             else
             {
-                steps[i].deactivate();
-                steps[i].SetMaterial(materialInactiveStep);
+                _steps[i].Deactivate();
+                _steps[i].SetMaterial(materialInactiveStep);
             }
         }
     }
