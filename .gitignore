@@ -1,3 +1,5 @@
+# git ignore file
+# Description
 
 # Unity generated files
 [Ll]ibrary
@@ -12,3 +14,5 @@
 *.csproj
 *.vscode
 
+# System files
+.DS_Store

@@ -13,7 +13,7 @@ namespace Instructions.Data
 
         public string assemblyName;
 
-        public List<InstructionStep> instructionSteps;
+        public List<InstructionStepData> instructionSteps;
 
         public static InstructionData CreateFromJson(string json)
         {
@@ -26,7 +26,7 @@ namespace Instructions.Data
     // Represents one stage of the instruction process.
     // It holds reference to the model, which is handled at this step.
     [Serializable]
-    public class InstructionStep
+    public class InstructionStepData
     {
         public string stepName;
         public string modelName; 
@@ -34,51 +34,6 @@ namespace Instructions.Data
         public string stepDescription;
         public string gameObjectName; // use to find model reference
 
-        private GameObject model; // model reference
-
-        public void activate()
-        {
-            // find and bring up model
-            if (model == null || model.name != gameObjectName) {
-                model = findModel(gameObjectName);
-            }
-            
-            MeshRenderer[] renderers = model.GetComponentsInChildren<MeshRenderer>();
-            
-            foreach (MeshRenderer renderer in renderers)
-            {
-                renderer.enabled = true;                
-            }
-        }
-
-        public void deactivate()
-        {
-            // find and hide model
-            if (model == null || model.name != gameObjectName) {
-                model = findModel(gameObjectName);
-            }
-
-            MeshRenderer[] renderers = model.GetComponentsInChildren<MeshRenderer>();
-            
-            foreach (MeshRenderer renderer in renderers)
-            {
-                renderer.enabled = false;
-            }
-        }
-
-        private GameObject findModel(string name)
-        {
-            model = GameObject.Find(name);
-
-            if (model == null)
-            {
-                throw new Exception($"Could not find model {name}");
-            }
-            else
-            {
-                return model;
-            }
-        }
     }
 
 
