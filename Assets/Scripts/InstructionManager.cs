@@ -2,60 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-namespace Instructions
-{
-
-    // Represents one stage of the instruction process.
-    // It holds reference to the model, which is handled at this step.
-    public class InstructionStep
-    {
-        public string stepName {get; set;}
-        public string modelName {get; set;} // use to find model reference
-
-        private GameObject model; // model reference
-
-        public void activate()
-        {
-            // find and bring up model
-            model = findModel(modelName);
-            
-            MeshRenderer[] renderers = model.GetComponentsInChildren<MeshRenderer>();
-            
-            foreach (MeshRenderer renderer in renderers)
-            {
-                renderer.enabled = true;                
-            }
-        }
-
-        public void deactivate()
-        {
-            // find and hide model
-            model = findModel(modelName);
-
-            MeshRenderer[] renderers = model.GetComponentsInChildren<MeshRenderer>();
-            
-            foreach (MeshRenderer renderer in renderers)
-            {
-                renderer.enabled = false;
-            }
-        }
-
-        GameObject findModel(string name)
-        {
-            model = GameObject.Find(name);
-
-            if (model == null)
-            {
-                throw new Exception($"Could not find model {name}");
-            }
-            else
-            {
-                return model;
-            }
-        }
-    }
-}
+using Instructions.AndroidPlatform;
+using Instructions.Data;
 
 // Defines ordered list of steps and coordinates transitions between them.
 // TODO Implement as Singelton
@@ -66,21 +14,49 @@ public class InstructionManager : MonoBehaviour
     private int currentStepID, maxStepID; 
     private const int minStepID = 0;
 
+    private AndroidDataManager androidDataManager;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        steps = new List<Instructions.InstructionStep>();
+        steps = new List<InstructionStep>();
 
-        initializeSteps();
+        // initialize instructionSteps For Android: 
+        #if UNITY_ANDROID && !UNITY_EDITOR
+        Debug.Log("Android");
+        androidDataManager = new AndroidDataManager();
+        androidDataManager.receiveInstruction(instruction =>
+        {
+            Debug.Log($"InstructionManager: instruction received: {instruction}");
+            initializeSteps(instruction.instructionSteps);
+            setCurrentStep(currentStepID);
 
+        });
+        #endif
+
+        #if UNITY_EDITOR
+       // InstructionData instruction = JsonUtility.FromJson<InstructionData>("{\"assemblyId\":1,\"assemblyName\":\"Planetengetriebe\",\"instructionSteps\":[{\"id\":1,\"stepName\":\"Start\",\"modelName\":\"ring\"},{\"id\":2,\"stepName\":\"Step-sun\",\"modelName\":\"sun\"},{\"id\":3,\"stepName\":\"Step-planet1\",\"modelName\":\"planet1\"},{\"id\":4,\"stepName\":\"Step-planet2\",\"modelName\":\"planet2\"},{\"id\":5,\"stepName\":\"Step-planet3\",\"modelName\":\"planet3\"},{\"id\":6,\"stepName\":\"Step-carrier\",\"modelName\":\"carrier\"},{\"id\":7,\"stepName\":\"Step-gasket\",\"modelName\":\"gasket\"},{\"id\":8,\"stepName\":\"Step-lid\",\"modelName\":\"lid\"}]}");
+       // initializeSteps(instruction.instructionSteps);
+       initializeSteps();
         setCurrentStep(currentStepID);
+
+        #endif
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void initializeSteps(List<InstructionStep> newSteps)
+    {
+        steps = newSteps;
+        maxStepID = steps.Count-1;
+        currentStepID = 0;
     }
 
     private void initializeSteps()
@@ -97,9 +73,7 @@ public class InstructionManager : MonoBehaviour
         steps.Add(new Instructions.InstructionStep() { stepName = "Step-lid", modelName = "gasket" });
         steps.Add(new Instructions.InstructionStep() { stepName = "Step-lid", modelName = "lid" });
 
-        maxStepID = steps.Count-1;
-
-        currentStepID = 0;
+        initializeSteps(steps);
     }
 
     public void stepNext()
