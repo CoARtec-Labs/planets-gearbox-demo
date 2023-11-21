@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using Instructions.AndroidPlatform;
 using Instructions.Data;
+using Instructions;
 
 namespace Instructions
 {
@@ -64,8 +66,29 @@ namespace Instructions
                 renderer.material = mat;
             }
         }
+
+        public static InstructionStep From(InstructionStepData data, Transform transform)
+        {
+            // Find mesh model. Assume that we are on the same level as Origin (root of GameObject Assembly)
+            var gameObject = transform.parent.Find("TagRelative/Origin/" + data.gameObjectName).gameObject;
+            return new InstructionStep(data.gameObjectName, gameObject) 
+            {
+                StepName = data.stepName, StepDescription = data.stepDescription
+            };
+
+        }
+
+        public static List<InstructionStep> From(List<InstructionStepData> dataList, Transform transform)
+        {
+            return (List<InstructionStep>)dataList.Select(data =>
+            {
+
+                return InstructionStep.From(data, transform);
+            });
+        }
     }
 }
+
 
 // Defines ordered list of steps and coordinates transitions between them.
 // TODO Implement as Singelton
@@ -86,35 +109,33 @@ public class InstructionManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        
-        _steps = new List<Instructions.InstructionStep>();
+        _steps = new List<InstructionStep>();
+
         // initialize instructionSteps For Android: 
         #if UNITY_ANDROID && !UNITY_EDITOR
-        DestroyUnityButtons();
         UpdateCurrentStepIndex();
         Debug.Log("Android");
         AndroidPlatformManager.ReceiveInstruction(instruction =>
         {
-            _currentAssemblyName = instruction.assemblyName;
             Debug.Log($"InstructionManager: instruction received: {instruction}");
-            InitializeSteps(instruction.instructionSteps);
+
+            InitializeSteps(InstructionStep.From(instruction.instructionSteps, transform));
             SetCurrentStep(_currentStepID);
-            AndroidPlatformManager.BindButtonHandlers(OnStepNextClicked, OnStepBackClicked);
+            AndroidPlatformManager.BindButtonHandlers(StepNext, StepBack);
+            UpdateCurrentStepIndex();
+
 
         });
         #endif
 
-        #if UNITY_EDITOR
+        #if !UNITY_ANDROID
        // InstructionData instruction = JsonUtility.FromJson<InstructionData>("{\"assemblyId\":1,\"assemblyName\":\"Planetengetriebe\",\"instructionSteps\":[{\"id\":1,\"stepName\":\"Start\",\"modelName\":\"ring\"},{\"id\":2,\"stepName\":\"Step-sun\",\"modelName\":\"sun\"},{\"id\":3,\"stepName\":\"Step-planet1\",\"modelName\":\"planet1\"},{\"id\":4,\"stepName\":\"Step-planet2\",\"modelName\":\"planet2\"},{\"id\":5,\"stepName\":\"Step-planet3\",\"modelName\":\"planet3\"},{\"id\":6,\"stepName\":\"Step-carrier\",\"modelName\":\"carrier\"},{\"id\":7,\"stepName\":\"Step-gasket\",\"modelName\":\"gasket\"},{\"id\":8,\"stepName\":\"Step-lid\",\"modelName\":\"lid\"}]}");
        // initializeSteps(instruction.instructionSteps);
+       InitializeSteps();
+        SetCurrentStep(currentStepID);
 
-        InitializeSteps();
-
-        SetCurrentStep(_currentStepID);
-       
         #endif
 
-        
     }
 
 
@@ -154,13 +175,9 @@ public class InstructionManager : MonoBehaviour
         
     }
 
-    private void InitializeSteps(List<InstructionStepData> stepDataList)
+    private void InitializeSteps(List<InstructionStep> newSteps)
     {
-        _steps.Clear();
-        foreach (InstructionStepData stepData in stepDataList)
-        {
-            AddStep(stepData.stepName, stepData.gameObjectName, stepData.stepDescription, stepData.modelName, stepData.modelDescription);
-        }
+        _steps = newSteps;
         _maxStepID = _steps.Count-1;
         _currentStepID = 0;
     }
@@ -179,9 +196,8 @@ public class InstructionManager : MonoBehaviour
         AddStep("Gasket", "gasket", "Align the gasket with the gearbox flange.");
         AddStep("Lid", "lid", "Close the gearbox with the lid.");
         
-        _maxStepID = _steps.Count-1;
-        _currentStepID = 0;
 
+        InitializeSteps(_steps);
     }
 
     private void AddStep(string stepName, string gameObjectName, string stepDescription = null, string modelName = null, string modelDescription = null)
@@ -303,5 +319,4 @@ public class InstructionManager : MonoBehaviour
         AndroidPlatformManager.UpdateCurrentStepIndex(_currentStepID);
     }
     #endif
-
 }

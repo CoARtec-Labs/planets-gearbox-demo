@@ -28,13 +28,16 @@ namespace Instructions.Data
     [Serializable]
     public class InstructionStepData
     {
+        public long id;
         public string stepName;
+        public string stepDescription;
+
         public string modelName; 
         public string modelDescription;
-        public string stepDescription;
         public string gameObjectName; // use to find model reference
 
     }
+    
 
 
 }
