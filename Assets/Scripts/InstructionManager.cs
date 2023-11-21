@@ -170,15 +170,15 @@ public class InstructionManager : MonoBehaviour
         _steps.Clear();
         
         // Insert instruction steps here
-        AddStep("Start", "ring");
-        AddStep("Step-sun", "sun");
-        AddStep("Step-planet1", "planet1");
-        AddStep("Step-planet2", "planet2");
-        AddStep("Step-planet3", "planet3");
-        AddStep("Step-carrier", "carrier");
-        AddStep("Step-gasket", "gasket");
-        AddStep("Step-lid", "lid");
-
+        AddStep("Start", "ring", "Add ring");
+        AddStep("Step-sun", "sun", "Add sun");
+        AddStep("Step-planet1", "planet1", "Add planet1");
+        AddStep("Step-planet2", "planet2", "Add planet2");
+        AddStep("Step-planet3", "planet3", "Add planet3");
+        AddStep("Step-carrier", "carrier", "Add carrier");
+        AddStep("Step-gasket", "gasket", "Add gasket");
+        AddStep("Step-lid", "lid", "Add lid");
+    
         _maxStepID = _steps.Count-1;
         _currentStepID = 0;
 
@@ -280,6 +280,9 @@ public class InstructionManager : MonoBehaviour
                 _steps[i].Activate();
                 _steps[i].SetMaterial(materialActiveStep);
                 
+                // Overwrite current text UI elements
+                titleTextRef.SetText(_steps[i].StepName);
+                descriptionTextRef.SetText(_steps[i].ModelDescription);
             }
             else
             {
