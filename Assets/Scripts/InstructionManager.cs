@@ -72,9 +72,6 @@ public class InstructionManager : MonoBehaviour
     private List<Instructions.InstructionStep> _steps;
     private int _currentStepID, _maxStepID; 
     private const int MinStepID = 0;
-
-    private AndroidDataManager _androidDataManager;
-
     private string _currentAssemblyName;
 
 
@@ -85,14 +82,15 @@ public class InstructionManager : MonoBehaviour
         _steps = new List<Instructions.InstructionStep>();
         // initialize instructionSteps For Android: 
         #if UNITY_ANDROID && !UNITY_EDITOR
+        DestroyUnityButtons();
         Debug.Log("Android");
-        androidDataManager = new AndroidDataManager();
-        androidDataManager.receiveInstruction(InstructionData instruction =>
+        AndroidDataManager.ReceiveInstruction(instruction =>
         {
             _currentAssemblyName = instruction.assemblyName;
             Debug.Log($"InstructionManager: instruction received: {instruction}");
             InitializeSteps(instruction.instructionSteps);
             SetCurrentStep(_currentStepID);
+            AndroidDataManager.BindButtonHandlers(OnStepNextClicked, OnStepBackClicked);
 
         });
         #endif
@@ -109,6 +107,37 @@ public class InstructionManager : MonoBehaviour
 
         
     }
+
+
+    #if UNITY_ANDROID && !UNITY_EDITOR
+    /**
+    * Destroys Unity buttons because Android App provides its own buttons
+    */
+    private void DestroyUnityButtons()
+    {
+        DestroyNextButton();
+        DestroyBackButton();
+
+    }
+
+    private void DestroyButton(string buttonName)
+    {
+        Destroy(transform.parent.Find(buttonName));
+
+    }
+
+    private void DestroyNextButton()
+    {
+        DestroyButton("Button_next");
+    }
+
+    private DestroyBackButton()
+    {
+        DestroyButton("Button_back");
+    }
+    #endif
+
+
 
     // Update is called once per frame
     private void Update()
@@ -153,14 +182,26 @@ public class InstructionManager : MonoBehaviour
         
         _steps.Add(new Instructions.InstructionStep(gameObjectName, model) 
         { 
-            StepName = stepName
-            StepDescription = stepDescription
+            StepName = stepName,
+            StepDescription = stepDescription,
             ModelName = modelName
             
             });
     }
 
+    /**
+    * Function to bind to Unity StepNext button.
+    */
     public void StepNext()
+    {
+        #if UNITY_ANDROID && !UNITY_EDITOR
+        DestroyNextButton();
+        return;
+        #endif
+        OnStepNextClicked();
+    }
+
+    private void OnStepNextClicked()
     {
         System.Diagnostics.Debug.Assert(_currentStepID >= MinStepID && _currentStepID <= _maxStepID);
 
@@ -173,9 +214,20 @@ public class InstructionManager : MonoBehaviour
         {
             Debug.Log("Last step was already reached");
         }
+
     }
 
     public void StepBack()
+    {
+        #if UNITY_ANDROID && !UNITY_EDITOR
+        DestroyBackButton();
+        return;
+        #endif
+        OnStepBackClicked();
+        
+    }
+
+    private void OnStepBackClicked()
     {
         System.Diagnostics.Debug.Assert(_currentStepID >= MinStepID && _currentStepID <= _maxStepID);
 
