@@ -79,18 +79,20 @@ public class InstructionManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        
         _steps = new List<Instructions.InstructionStep>();
         // initialize instructionSteps For Android: 
         #if UNITY_ANDROID && !UNITY_EDITOR
         DestroyUnityButtons();
+        UpdateCurrentStepIndex();
         Debug.Log("Android");
-        AndroidDataManager.ReceiveInstruction(instruction =>
+        AndroidPlatformManager.ReceiveInstruction(instruction =>
         {
             _currentAssemblyName = instruction.assemblyName;
             Debug.Log($"InstructionManager: instruction received: {instruction}");
             InitializeSteps(instruction.instructionSteps);
             SetCurrentStep(_currentStepID);
-            AndroidDataManager.BindButtonHandlers(OnStepNextClicked, OnStepBackClicked);
+            AndroidPlatformManager.BindButtonHandlers(OnStepNextClicked, OnStepBackClicked);
 
         });
         #endif
@@ -131,7 +133,7 @@ public class InstructionManager : MonoBehaviour
         DestroyButton("Button_next");
     }
 
-    private DestroyBackButton()
+    private void DestroyBackButton()
     {
         DestroyButton("Button_back");
     }
@@ -191,6 +193,7 @@ public class InstructionManager : MonoBehaviour
 
     /**
     * Function to bind to Unity StepNext button.
+    * Sets the next instructionstep.
     */
     public void StepNext()
     {
@@ -198,17 +201,23 @@ public class InstructionManager : MonoBehaviour
         DestroyNextButton();
         return;
         #endif
+
+        #if !UNITY_ANDROID
         OnStepNextClicked();
+        #endif
     }
 
     private void OnStepNextClicked()
     {
+        Debug.Log("InstructionManager: OnStepNextClicked");
+
         System.Diagnostics.Debug.Assert(_currentStepID >= MinStepID && _currentStepID <= _maxStepID);
 
         if (_currentStepID < _maxStepID)
         {
             _currentStepID ++;
             SetCurrentStep(_currentStepID);
+
         }
         else
         {
@@ -223,12 +232,16 @@ public class InstructionManager : MonoBehaviour
         DestroyBackButton();
         return;
         #endif
+
+        #if !UNITY_ANDROID
         OnStepBackClicked();
+        #endif
         
     }
 
     private void OnStepBackClicked()
     {
+        Debug.Log("InstructionManager: OnStepBackClicked");
         System.Diagnostics.Debug.Assert(_currentStepID >= MinStepID && _currentStepID <= _maxStepID);
 
         if (_currentStepID > MinStepID)
@@ -245,6 +258,9 @@ public class InstructionManager : MonoBehaviour
     // Coordinates states of each step for given step ID
     private void SetCurrentStep(int stepID)
     {
+        var currentStep = stepID;
+        Debug.Log($"InstructionManager: SetCurrentStep={currentStep}");
+
         for (int i = MinStepID; i <= _maxStepID; i++)
         {   
             if (i < stepID)
@@ -256,6 +272,7 @@ public class InstructionManager : MonoBehaviour
             {
                 _steps[i].Activate();
                 _steps[i].SetMaterial(materialActiveStep);
+                
             }
             else
             {
@@ -263,5 +280,18 @@ public class InstructionManager : MonoBehaviour
                 _steps[i].SetMaterial(materialInactiveStep);
             }
         }
+        #if UNITY_ANDROID && !UNITY_EDITOR
+        UpdateCurrentStepIndex();
+        #endif
     }
+
+    #if UNITY_ANDROID && !UNITY_EDITOR
+    private void UpdateCurrentStepIndex()
+    {
+        Debug.Log($"InstructionManager: UpdateCurrentStepIndex={_currentStepID}");
+
+        AndroidPlatformManager.UpdateCurrentStepIndex(_currentStepID);
+    }
+    #endif
+
 }

@@ -10,6 +10,7 @@ namespace Instructions.AndroidPlatform
     public static class AndroidPlatformManager
     {
         private const string ANDROID_UNITY_BRIDGE_FIELD = "androidUnityBridge";
+        private const string CURRENT_STEP_INDEX_ANDROID_JAVA_FIELD_SETTER = "setCurrentStepIndex";
 
         private static AndroidJavaObject _androidUnityBridge;
 
@@ -30,7 +31,7 @@ namespace Instructions.AndroidPlatform
             Debug.Log("AndroidDataBridge");
             ReceiveInstruction(  instruction =>
             {
-                Debug.Log($"AndroidDataManager: Received instruction={instruction.ToString()}");
+                Debug.Log($"AndroidPlatformManager: Received instruction={instruction.ToString()}");
                 CurrentInstruction = instruction;
             }
             );
@@ -53,7 +54,7 @@ namespace Instructions.AndroidPlatform
     
             AndroidUnityBridge = currentActivity.Get<AndroidJavaObject>(ANDROID_UNITY_BRIDGE_FIELD);
 
-            Debug.Log("AndroidUnityBridge initialized!");
+            Debug.Log("AndroidPlatformManager: AndroidUnityBridge initialized!");
 
 
         }
@@ -61,12 +62,15 @@ namespace Instructions.AndroidPlatform
         private static void InitializeGetInstruction()
         {
             _getInstruction = new GetInstruction();
+            Debug.Log("AndroidPlatformManager: GetInstruction initialized!");
+
         }
 
         private static void InitializeButtonCallbacks()
         {
 
             _buttonCallbacks = new ButtonCallbacks();
+            Debug.Log("AndroidPlatformManager: ButtonCallbacks initialized!");
         }
 
         public static void ReceiveInstruction(Action<InstructionData> callback)
@@ -88,13 +92,26 @@ namespace Instructions.AndroidPlatform
 
         public static void BindButtonHandlers(Action handleStepNext, Action handleStepBack)
         {
+            Debug.Log($"AndroidPlatformManager: BindButtonHandlers: handleStepNext={handleStepNext}, handleStepBack={handleStepBack}!");
+
+            
             _buttonCallbacks.BindButtonHandlers(handleStepNext, handleStepBack);
+        }
+
+        public static void UpdateCurrentStepIndex(int index)
+        {
+            Debug.Log($"AndroidPlatformManager: UpdateCurrentStepIndex: index={index}!");
+
+
+            _androidUnityBridge.Call(CURRENT_STEP_INDEX_ANDROID_JAVA_FIELD_SETTER, index);
         }
 
 
 
         public static void Destroy()
         {
+            Debug.Log($"AndroidPlatformManager: Destroy: Called!");
+
             _getInstruction.cancel();
 
         }
@@ -183,32 +200,45 @@ namespace Instructions.AndroidPlatform
         {
             AndroidPlatformManager.AndroidUnityBridge.Call(INITIALIZE_BUTTON_CALLBACKS_ANDROID_JAVA_METHOD, this);
 
-            Debug.Log("AndroidUnityBridge initialized!");
+            Debug.Log("ButtonCallbacks initialized!");
 
         }
 
         public void BindButtonHandlers(Action handleStepNext, Action handleStepBack)
         {
+            Debug.Log($"ButtonCallbacks: BindButtonHandlers: handleStepNext={handleStepNext}, handleStepBack={handleStepBack}!");
+
+
             _handleStepNext = handleStepNext;
             _handleStepBack = handleStepBack;
         }
 
         void OnStepNext() 
         {
+            Debug.Log("ButtonCallbacks: OnStepNext");
             if (_handleStepNext != null)
             {
                 _handleStepNext.Invoke();
+            }
+            else
+            {
+                Debug.Log("ButtonCallbacks: _handleStepNext: null");
             }
 
         }
         void OnStepBack()
         {
+            Debug.Log("ButtonCallbacks: OnStepBack");
+
             if (_handleStepBack != null)
             {
                 _handleStepBack.Invoke();
+            } 
+            else
+            {
+                Debug.Log("ButtonCallbacks: _handleStepBack: null");
             }
         }
-
 
     }
 
