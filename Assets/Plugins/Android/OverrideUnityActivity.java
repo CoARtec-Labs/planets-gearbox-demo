@@ -1,8 +1,6 @@
 package com.coartec.AR_Planetengetriebe_v1;
 import android.os.Bundle;
 
-import com.unity3d.player.UnityPlayerActivity;
-
 public abstract class OverrideUnityActivity extends UnityPlayerActivity
 {
     public static OverrideUnityActivity instance = null;
