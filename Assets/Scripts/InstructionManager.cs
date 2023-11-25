@@ -187,7 +187,7 @@ public class InstructionManager : MonoBehaviour
     private void AddStep(string stepName, string gameObjectName, string stepDescription = null, string modelName = null, string modelDescription = null)
     {
         // Find mesh model. Assume that we are on the same level as Origin (root of GameObject Assembly)
-        var model = transform.parent.Find("Origin/" + gameObjectName).gameObject;
+        var model = transform.parent.Find("TagRelative/Origin/" + gameObjectName).gameObject;
         
         _steps.Add(new Instructions.InstructionStep(gameObjectName, model) 
         { 
