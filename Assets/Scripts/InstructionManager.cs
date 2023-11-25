@@ -113,7 +113,7 @@ public class InstructionManager : MonoBehaviour
     private void AddStep(string stepName, string modelName, string description)
     {
         // Find mesh model. Assume that we are on the same level as Origin (root of GameObject Assembly)
-        var model = transform.parent.Find("Origin/" + modelName).gameObject;
+        var model = transform.parent.Find("TagRelative/Origin/" + modelName).gameObject;
         
         _steps.Add(new Instructions.InstructionStep(modelName, model) 
             { StepName = stepName, Description = description});
@@ -156,7 +156,7 @@ public class InstructionManager : MonoBehaviour
         {   
             if (i < stepID)
             {
-                _steps[i].Activate();
+                _steps[i].Deactivate();
                 _steps[i].SetMaterial(materialInactiveStep);
             }
             else if (i == stepID)

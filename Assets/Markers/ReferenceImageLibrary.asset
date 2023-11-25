@@ -27,3 +27,13 @@ MonoBehaviour:
     m_SpecifySize: 1
     m_Name: MarkerIcons01
     m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5418462608956654193
+      m_GuidHigh: 12068793964733080228
+    m_SerializedTextureGuid:
+      m_GuidLow: 11832973932387735077
+      m_GuidHigh: 7018089671298724584
+    m_Size: {x: 0.03, y: 0.03}
+    m_SpecifySize: 1
+    m_Name: apriltag_crop
+    m_Texture: {fileID: 0}
