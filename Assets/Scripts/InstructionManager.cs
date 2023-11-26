@@ -71,6 +71,7 @@ namespace Instructions
         {
             // Find mesh model. Assume that we are on the same level as Origin (root of GameObject Assembly)
             var gameObject = transform.parent.Find("TagRelative/Origin/" + data.gameObjectName).gameObject;
+
             return new InstructionStep(data.gameObjectName, gameObject) 
             {
                 StepName = data.stepName, StepDescription = data.stepDescription
@@ -80,11 +81,13 @@ namespace Instructions
 
         public static List<InstructionStep> From(List<InstructionStepData> dataList, Transform transform)
         {
-            return (List<InstructionStep>)dataList.Select(data =>
+            var result = new List<InstructionStep>();
+            foreach (var data in dataList)
             {
-
-                return InstructionStep.From(data, transform);
-            });
+                result.Add(InstructionStep.From(data, transform));
+            }
+            return result;
+            
         }
     }
 }
@@ -122,9 +125,6 @@ public class InstructionManager : MonoBehaviour
             InitializeSteps(InstructionStep.From(instruction.instructionSteps, transform));
             SetCurrentStep(_currentStepID);
             AndroidPlatformManager.BindButtonHandlers(StepNext, StepBack);
-            UpdateCurrentStepIndex();
-
-
         });
         #endif
 
@@ -132,40 +132,11 @@ public class InstructionManager : MonoBehaviour
        // InstructionData instruction = JsonUtility.FromJson<InstructionData>("{\"assemblyId\":1,\"assemblyName\":\"Planetengetriebe\",\"instructionSteps\":[{\"id\":1,\"stepName\":\"Start\",\"modelName\":\"ring\"},{\"id\":2,\"stepName\":\"Step-sun\",\"modelName\":\"sun\"},{\"id\":3,\"stepName\":\"Step-planet1\",\"modelName\":\"planet1\"},{\"id\":4,\"stepName\":\"Step-planet2\",\"modelName\":\"planet2\"},{\"id\":5,\"stepName\":\"Step-planet3\",\"modelName\":\"planet3\"},{\"id\":6,\"stepName\":\"Step-carrier\",\"modelName\":\"carrier\"},{\"id\":7,\"stepName\":\"Step-gasket\",\"modelName\":\"gasket\"},{\"id\":8,\"stepName\":\"Step-lid\",\"modelName\":\"lid\"}]}");
        // initializeSteps(instruction.instructionSteps);
        InitializeSteps();
-        SetCurrentStep(currentStepID);
+        SetCurrentStep(_currentStepID);
 
         #endif
 
     }
-
-
-    #if UNITY_ANDROID && !UNITY_EDITOR
-    /**
-    * Destroys Unity buttons because Android App provides its own buttons
-    */
-    private void DestroyUnityButtons()
-    {
-        DestroyNextButton();
-        DestroyBackButton();
-
-    }
-
-    private void DestroyButton(string buttonName)
-    {
-        Destroy(transform.parent.Find(buttonName));
-
-    }
-
-    private void DestroyNextButton()
-    {
-        DestroyButton("Button_next");
-    }
-
-    private void DestroyBackButton()
-    {
-        DestroyButton("Button_back");
-    }
-    #endif
 
 
 
@@ -180,6 +151,7 @@ public class InstructionManager : MonoBehaviour
         _steps = newSteps;
         _maxStepID = _steps.Count-1;
         _currentStepID = 0;
+        Debug.Log("Initialized Steps");
     }
 
     private void InitializeSteps()
@@ -220,18 +192,6 @@ public class InstructionManager : MonoBehaviour
     */
     public void StepNext()
     {
-        #if UNITY_ANDROID && !UNITY_EDITOR
-        DestroyNextButton();
-        return;
-        #endif
-
-        #if !UNITY_ANDROID
-        OnStepNextClicked();
-        #endif
-    }
-
-    private void OnStepNextClicked()
-    {
         Debug.Log("InstructionManager: OnStepNextClicked");
 
         System.Diagnostics.Debug.Assert(_currentStepID >= MinStepID && _currentStepID <= _maxStepID);
@@ -246,23 +206,9 @@ public class InstructionManager : MonoBehaviour
         {
             Debug.Log("Last step was already reached");
         }
-
     }
 
     public void StepBack()
-    {
-        #if UNITY_ANDROID && !UNITY_EDITOR
-        DestroyBackButton();
-        return;
-        #endif
-
-        #if !UNITY_ANDROID
-        OnStepBackClicked();
-        #endif
-        
-    }
-
-    private void OnStepBackClicked()
     {
         Debug.Log("InstructionManager: OnStepBackClicked");
         System.Diagnostics.Debug.Assert(_currentStepID >= MinStepID && _currentStepID <= _maxStepID);
@@ -276,6 +222,7 @@ public class InstructionManager : MonoBehaviour
         {
             Debug.Log("First step was already reached");
         }
+        
     }
 
     // Coordinates states of each step for given step ID
@@ -297,8 +244,15 @@ public class InstructionManager : MonoBehaviour
                 _steps[i].SetMaterial(materialActiveStep);
                 
                 // Overwrite current text UI elements
-                titleTextRef.SetText(_steps[i].StepName);
-                descriptionTextRef.SetText(_steps[i].ModelDescription);
+                try
+                {
+                    titleTextRef.SetText(_steps[i].StepName);
+                    descriptionTextRef.SetText(_steps[i].StepDescription);
+                }
+                catch(Exception exception)
+                {
+                    Debug.Log($"InstructionManager: SetCurrentStep: exception={exception.Message}");
+                }
             }
             else
             {
@@ -306,9 +260,11 @@ public class InstructionManager : MonoBehaviour
                 _steps[i].SetMaterial(materialInactiveStep);
             }
         }
-        #if UNITY_ANDROID && !UNITY_EDITOR
-        UpdateCurrentStepIndex();
-        #endif
+            #if UNITY_ANDROID && !UNITY_EDITOR
+            UpdateCurrentStepIndex();
+            #endif
+
+
     }
 
     #if UNITY_ANDROID && !UNITY_EDITOR
