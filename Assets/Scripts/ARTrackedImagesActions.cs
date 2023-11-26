@@ -9,8 +9,13 @@ namespace Instructions
 {
     public class ARTrackedImagesActions:MonoBehaviour
     {
+        [SerializeField]
         public ARTrackedImageManager arTrackedImageManagerRef;
         public GameObject assemblyRef;
+
+        void OnEnable() => arTrackedImageManagerRef.trackedImagesChanged += OnChanged;
+            
+        void OnDisable() => arTrackedImageManagerRef.trackedImagesChanged -= OnChanged;
 
         private void Start()
         {
@@ -29,22 +34,23 @@ namespace Instructions
             }
             */
             
-            // void OnEnable() => arTrackedImageManagerRef.trackedImagesChanged += OnChanged;
-            //
-            // void OnDisable() => arTrackedImageManagerRef.trackedImagesChanged -= OnChanged;
+            
 
             // Enable handling of on-change events of tracked images
-            arTrackedImageManagerRef.trackedImagesChanged += OnChanged;
+           // arTrackedImageManagerRef.trackedImagesChanged += OnChanged;
             
         }
 
         void OnChanged(ARTrackedImagesChangedEventArgs eventArgs)
         {
+            Debug.Log($"ARTrackedImagesActions: OnChanged: assemblyRef={assemblyRef}");
+
             foreach (var newImage in eventArgs.added)
             {
                 // Handle added event
                 Debug.Log("Added new image");
-                
+                Debug.Log($"ARTrackedImagesActions: newImage: newImage={newImage}");
+
                 foreach (var trackedImage in arTrackedImageManagerRef.trackables)
                 {
                     Debug.Log($"Image: {trackedImage.referenceImage.name} is at " +
@@ -64,11 +70,15 @@ namespace Instructions
 
             foreach (var updatedImage in eventArgs.updated)
             {
+                Debug.Log($"ARTrackedImagesActions: updatedImage: updatedImage={updatedImage}");
+
                 // Handle updated event
             }
 
             foreach (var removedImage in eventArgs.removed)
             {
+                Debug.Log($"ARTrackedImagesActions: removedImage: removedImage={removedImage}");
+
                 // Handle removed event
             }
         }            
