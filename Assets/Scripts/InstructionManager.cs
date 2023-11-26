@@ -71,6 +71,7 @@ namespace Instructions
         {
             // Find mesh model. Assume that we are on the same level as Origin (root of GameObject Assembly)
             var gameObject = transform.parent.Find("TagRelative/Origin/" + data.gameObjectName).gameObject;
+            Debug.Log($"InstructionStep: From: gameObject={gameObject}");
 
             return new InstructionStep(data.gameObjectName, gameObject) 
             {
@@ -128,7 +129,7 @@ public class InstructionManager : MonoBehaviour
         });
         #endif
 
-        #if !UNITY_ANDROID
+        #if !UNITY_ANDROID || UNITY_EDITOR
        // InstructionData instruction = JsonUtility.FromJson<InstructionData>("{\"assemblyId\":1,\"assemblyName\":\"Planetengetriebe\",\"instructionSteps\":[{\"id\":1,\"stepName\":\"Start\",\"modelName\":\"ring\"},{\"id\":2,\"stepName\":\"Step-sun\",\"modelName\":\"sun\"},{\"id\":3,\"stepName\":\"Step-planet1\",\"modelName\":\"planet1\"},{\"id\":4,\"stepName\":\"Step-planet2\",\"modelName\":\"planet2\"},{\"id\":5,\"stepName\":\"Step-planet3\",\"modelName\":\"planet3\"},{\"id\":6,\"stepName\":\"Step-carrier\",\"modelName\":\"carrier\"},{\"id\":7,\"stepName\":\"Step-gasket\",\"modelName\":\"gasket\"},{\"id\":8,\"stepName\":\"Step-lid\",\"modelName\":\"lid\"}]}");
        // initializeSteps(instruction.instructionSteps);
        InitializeSteps();
@@ -246,8 +247,12 @@ public class InstructionManager : MonoBehaviour
                 // Overwrite current text UI elements
                 try
                 {
+                    Debug.Log("InstructionManager: SetCurrentStep: titleTextRef.SetText");
                     titleTextRef.SetText(_steps[i].StepName);
+                    Debug.Log("InstructionManager: SetCurrentStep: descriptionTextRef.SetText");
                     descriptionTextRef.SetText(_steps[i].StepDescription);
+                    Debug.Log("InstructionManager: SetCurrentStep: settext successfull!");
+
                 }
                 catch(Exception exception)
                 {
