@@ -96,14 +96,14 @@ public class InstructionManager : MonoBehaviour
         _steps.Clear();
         
         // Insert instruction steps here
-        AddStep("Start", "ring", "Add ring");
-        AddStep("Step-sun", "sun", "Add sun");
-        AddStep("Step-planet1", "planet1", "Add planet1");
-        AddStep("Step-planet2", "planet2", "Add planet2");
-        AddStep("Step-planet3", "planet3", "Add planet3");
-        AddStep("Step-carrier", "carrier", "Add carrier");
-        AddStep("Step-gasket", "gasket", "Add gasket");
-        AddStep("Step-lid", "lid", "Add lid");
+        AddStep("Start", "ring", "Place the gearbox ring onto the base.");
+        AddStep("Wheel-sun", "sun", "Place the wheel \"sun\" at the center of the gearbox ring.");
+        AddStep("Wheel-planet 1", "planet1", "Clip the first planet between sun and ring at the top right.");
+        AddStep("Wheel-planet 2", "planet2", "Clip the second planet between sun and ring at the top left.");
+        AddStep("Wheel-planet 3", "planet3", "Clip the third planet between sun and ring at the bottom center.");
+        AddStep("Carrier", "carrier", "Place the carrier on top. Make sure that its pins lock at the planets center points.");
+        AddStep("Gasket", "gasket", "Align the gasket with the gearbox flange.");
+        AddStep("Lid", "lid", "Close the gearbox with the lid.");
         
         _maxStepID = _steps.Count-1;
 
