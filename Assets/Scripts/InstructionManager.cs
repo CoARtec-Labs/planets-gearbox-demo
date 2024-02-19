@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using Instructions.AndroidPlatform;
@@ -38,6 +39,10 @@ namespace Instructions
             {
                 renderer.enabled = true;                
             }
+            
+            // Fill in text title and descriptions
+            
+            
         }
 
         public void Deactivate()
@@ -68,6 +73,8 @@ public class InstructionManager : MonoBehaviour
 {
     public Material materialActiveStep;
     public Material materialInactiveStep;
+    public TMP_Text titleTextRef;
+    public TMP_Text descriptionTextRef;
 
     private List<Instructions.InstructionStep> _steps;
     private int _currentStepID, _maxStepID; 
@@ -265,7 +272,7 @@ public class InstructionManager : MonoBehaviour
         {   
             if (i < stepID)
             {
-                _steps[i].Activate();
+                _steps[i].Deactivate();
                 _steps[i].SetMaterial(materialInactiveStep);
             }
             else if (i == stepID)
