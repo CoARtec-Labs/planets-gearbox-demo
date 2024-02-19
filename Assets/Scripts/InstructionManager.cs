@@ -100,11 +100,26 @@ public class InstructionManager : MonoBehaviour
 {
     public Material materialActiveStep;
     public Material materialInactiveStep;
+
+    [SerializeField]
     public TMP_Text titleTextRef;
+
+    [SerializeField]
     public TMP_Text descriptionTextRef;
 
     private List<Instructions.InstructionStep> _steps;
+
     private int _currentStepID, _maxStepID; 
+    private int CurrentStepID {
+        get
+        {
+            return _currentStepID;
+        }
+        set
+        {
+
+        }
+    }
     private const int MinStepID = 0;
     private string _currentAssemblyName;
 
@@ -117,7 +132,7 @@ public class InstructionManager : MonoBehaviour
 
         // initialize instructionSteps For Android: 
         #if UNITY_ANDROID && !UNITY_EDITOR
-        UpdateCurrentStepIndex();
+        //UpdateCurrentStepIndex();
         Debug.Log("Android");
         AndroidPlatformManager.ReceiveInstruction(instruction =>
         {
@@ -132,7 +147,7 @@ public class InstructionManager : MonoBehaviour
         #if !UNITY_ANDROID || UNITY_EDITOR
        // InstructionData instruction = JsonUtility.FromJson<InstructionData>("{\"assemblyId\":1,\"assemblyName\":\"Planetengetriebe\",\"instructionSteps\":[{\"id\":1,\"stepName\":\"Start\",\"modelName\":\"ring\"},{\"id\":2,\"stepName\":\"Step-sun\",\"modelName\":\"sun\"},{\"id\":3,\"stepName\":\"Step-planet1\",\"modelName\":\"planet1\"},{\"id\":4,\"stepName\":\"Step-planet2\",\"modelName\":\"planet2\"},{\"id\":5,\"stepName\":\"Step-planet3\",\"modelName\":\"planet3\"},{\"id\":6,\"stepName\":\"Step-carrier\",\"modelName\":\"carrier\"},{\"id\":7,\"stepName\":\"Step-gasket\",\"modelName\":\"gasket\"},{\"id\":8,\"stepName\":\"Step-lid\",\"modelName\":\"lid\"}]}");
        // initializeSteps(instruction.instructionSteps);
-       InitializeSteps();
+        InitializeSteps();
         SetCurrentStep(_currentStepID);
 
         #endif
@@ -247,10 +262,31 @@ public class InstructionManager : MonoBehaviour
                 // Overwrite current text UI elements
                 try
                 {
-                    Debug.Log("InstructionManager: SetCurrentStep: titleTextRef.SetText");
-                    titleTextRef.SetText(_steps[i].StepName);
-                    Debug.Log("InstructionManager: SetCurrentStep: descriptionTextRef.SetText");
-                    descriptionTextRef.SetText(_steps[i].StepDescription);
+                    if (titleTextRef != null)
+                    {
+                        var titleText = _steps[i].StepName;
+                        Debug.Log($"InstructionManager: SetCurrentStep: titleTextRef.SetText: text={titleText}");
+                        titleTextRef.SetText(titleText);
+                    } 
+                    else
+                    {
+                        Debug.Log("InstructionManager: SetCurrentStep: Can't set title. titleTextRef=null");
+                    }
+                    
+
+                    if (descriptionTextRef != null)
+                    {
+                        var descriptionText = _steps[i].StepDescription;
+                        Debug.Log($"InstructionManager: SetCurrentStep: descriptionTextRef.SetText: text={descriptionText}");
+                        descriptionTextRef.SetText(descriptionText);
+                    }
+                    else
+                    {
+                        Debug.Log("InstructionManager: SetCurrentStep: Can't set description. descriptionTextRef=null");
+
+                    }
+                    
+
                     Debug.Log("InstructionManager: SetCurrentStep: settext successfull!");
 
                 }
