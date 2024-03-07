@@ -13,6 +13,7 @@
 *.sln
 *.csproj
 *.vscode
+.idea
 
 # System files
 .DS_Store
