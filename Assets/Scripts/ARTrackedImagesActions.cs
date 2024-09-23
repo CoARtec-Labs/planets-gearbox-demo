@@ -54,17 +54,37 @@ namespace Instructions
                 
                 // // Spawn new GameObject
                 // GameObject newSpawn = Instantiate(spawnObject);
-
+                
+                
                 // Stick assembly to tracked image
-                assemblyRef.transform.parent = newImage.transform;
-                assemblyRef.transform.localPosition = new Vector3(0, 0, 0);
-                assemblyRef.transform.localRotation = Quaternion.identity;
-
+                // assemblyRef.transform.parent = newImage.transform;
+                // assemblyRef.transform.localPosition = new Vector3(0, 0, 0);
+                // assemblyRef.transform.localRotation = Quaternion.identity;
+                
+                // Copy image global position
+                // assemblyRef.transform.position = newImage.transform.position;
+                // assemblyRef.transform.rotation = newImage.transform.rotation;
+                
+                Instantiate(assemblyRef, newImage.transform);
+                
             }
 
             foreach (var updatedImage in eventArgs.updated)
             {
-                // Handle updated event
+                // // Handle updated event
+                // Debug.Log("Updated image");
+                //
+                // foreach (var trackedImage in arTrackedImageManagerRef.trackables)
+                // {
+                //     Debug.Log($"Image: {trackedImage.referenceImage.name} is at " +
+                //               $"{trackedImage.transform.position} with ID " +
+                //               $"{trackedImage.trackableId}");
+                // }
+                
+                // Copy image global position
+                assemblyRef.transform.position = updatedImage.transform.position;
+                assemblyRef.transform.rotation = updatedImage.transform.rotation;
+                
             }
 
             foreach (var removedImage in eventArgs.removed)

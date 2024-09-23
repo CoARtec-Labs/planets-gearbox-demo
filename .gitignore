@@ -1,5 +1,4 @@
-# git ignore file
-# Description
+# git ignore file for the Unity app of the planets-gearbox demo
 
 # Unity generated files
 [Ll]ibrary
@@ -13,6 +12,9 @@
 *.sln
 *.csproj
 *.vscode
+
+# JetBrains Rider files
+*.DotSettings.user
 
 # System files
 .DS_Store
