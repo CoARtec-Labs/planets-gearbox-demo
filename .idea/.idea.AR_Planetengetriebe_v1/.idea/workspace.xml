@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a67179c5-36fd-46c7-b36b-d6b4e0088603" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AR_Planetengetriebe_v1/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AR_Planetengetriebe_v1/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AR_Planetengetriebe_v1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AR_Planetengetriebe_v1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/AssemblySteps.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/AssemblySteps.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ARTrackedImagesActions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ARTrackedImagesActions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SourceFiles/Models/BeachsideTown/Environment/Flag.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SourceFiles/Models/BeachsideTown/Environment/Flag.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SourceFiles/VFX/Fire.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SourceFiles/VFX/Fire.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/InstructionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/InstructionManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,6 +111,7 @@
       <workItem from="1725977107685" duration="6120000" />
       <workItem from="1726145963819" duration="5679000" />
       <workItem from="1726215228950" duration="6008000" />
+      <workItem from="1727165246704" duration="38000" />
     </task>
     <servers />
   </component>
