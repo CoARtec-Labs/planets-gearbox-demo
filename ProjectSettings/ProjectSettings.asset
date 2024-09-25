@@ -863,7 +863,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    iPhone: UNITY_XR_ARKIT_LOADER_ENABLED
+    iPhone: UNITY_XR_ARKIT_LOADER_ENABLED;CJM_YOLOX_UTILS;CJM_BARRACUDA_INFERENCE;CJM_BBOX_2D_TOOLKIT;CJM_UNITY_MEDIA_DISPLAY
   additionalCompilerArguments: {}
   platformArchitecture:
     iPhone: 1

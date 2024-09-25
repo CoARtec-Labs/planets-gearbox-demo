@@ -1,0 +1,15 @@
+{
+    "name": "CJM.CVImageGallery",
+    "references": [
+        "CJM.UnityMediaDisplay"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
