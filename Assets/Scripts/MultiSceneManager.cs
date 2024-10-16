@@ -23,9 +23,15 @@ public class MultiSceneManager : MonoBehaviour
         SceneManager.LoadScene(sceneName:"BlankARScene");
     }
     
-    public void LoadSceneAssemblyInstructions()
+    public void LoadSceneAssemblySteps()
     {
-        Debug.Log("Loading scene AssemblyInstructions");
-        SceneManager.LoadScene(sceneName:"BlankARScene");
+        Debug.Log("Loading scene AssemblySteps");
+        SceneManager.LoadScene(sceneName:"AssemblySteps");
+    }
+
+    public void LoadScenePartsDetection()
+    {
+        Debug.Log("Loading scene PartsDetection");
+        SceneManager.LoadScene(sceneName:"PartsDetection");
     }
 }
