@@ -17,7 +17,7 @@ namespace CJM.MediaDisplay
         [SerializeField] protected Texture testTexture;
         [Tooltip("A framerate cap to reduce lag")]
         [SerializeField] protected int maxFrameRate = 500;
-
+        
         // Webcam settings
         [Header("Webcam")]
         [Tooltip("Option to use webcam as input")]
@@ -72,7 +72,6 @@ namespace CJM.MediaDisplay
             UpdateCurrentTexture();
             // Start a coroutine to asynchronously update the screen texture.
             StartCoroutine(UpdateScreenTextureAsync());
-
         }
 
         // Sets up the webcam if the useWebcam option is enabled.
@@ -117,7 +116,6 @@ namespace CJM.MediaDisplay
             // Update the screen texture with the current texture (image or webcam feed).
             // MediaDisplayManager.UpdateScreenTexture(screenObject, currentTexture, cameraObject, useWebcam);
             MediaDisplayManager.UpdateScreenTexture(screenObject, currentTexture, cameraObject, useDisplayMirror);
-
         }
 
         // Handle the texture change event.

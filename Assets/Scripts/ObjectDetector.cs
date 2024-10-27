@@ -85,18 +85,27 @@ public class ObjectDetector : MonoBehaviour
 
         _onnxInterface = new OnnxInterface(modelAsset, width, height, n_channels, batch_size);
 
-        bboxInfoArray = new BBox2DInfo[2];
-
-        bboxInfoArray[0] = new BBox2DInfo(new BBox2D(0, 0, 40, 20, 0, 0.9F), "box1");
-        bboxInfoArray[1] = new BBox2DInfo(new BBox2D(100, 100, 20, 40, 0, 0.9F), "box2");
-
-        boundingBoxVisualizer.UpdateBoundingBoxVisualizations(bboxInfoArray);
-
         LoadColorMapList(); 
     }
 
     void Update()
     {
+
+    }
+
+    public void BBoxArrayTest()
+    {
+
+        bboxInfoArray = new BBox2DInfo[2];
+
+        bboxInfoArray[0] = new BBox2DInfo(new BBox2D(0, 0, 40, 20, 1, 0.9F), "box1");
+        bboxInfoArray[1] = new BBox2DInfo(new BBox2D(100, 100, 20, 40, 2, 0.9F), "box2");
+
+        Vector2Int imageDims = new Vector2Int(width, height);
+        
+        UpdateBoundingBoxes(imageDims);
+        
+        boundingBoxVisualizer.UpdateBoundingBoxVisualizations(bboxInfoArray);
 
     }
 
@@ -296,7 +305,9 @@ public class ObjectDetector : MonoBehaviour
 
         print($"Bboxes out: {bboxInfoArray.Length}");
 
-        UpdateBoundingBoxes(imageDims);
+        // Swap x, y since display is in portrait
+        offset = new Vector2Int(offset.y, offset.x);
+        // UpdateBoundingBoxes(new Vector2Int(inputDims.y, inputDims.x)); 
 
         boundingBoxVisualizer.UpdateBoundingBoxVisualizations(bboxInfoArray);
         
@@ -446,8 +457,21 @@ public class ObjectDetector : MonoBehaviour
         // Scale and position the bounding boxes based on the input and screen dimensions
         for (int i = 0; i < bboxInfoArray.Length; i++)
         {
+            bboxInfoArray[i].bbox = RotateBBoxPlus90Deg(bboxInfoArray[i].bbox);
             bboxInfoArray[i].bbox = BBox2DUtility.ScaleBoundingBox(bboxInfoArray[i].bbox, inputDims, screenDims, offset, mirrorScreen);
         }
+    }
+
+    private BBox2D RotateBBoxPlus90Deg(BBox2D bboxIn)
+    {
+        BBox2D bboxOut = new BBox2D();
+
+        bboxOut.x0 = targetDim - bboxIn.y0; // target dim is the square size of the cropped detection image
+        bboxOut.y0 = bboxIn.width + bboxIn.x0;
+        bboxOut.width = bboxIn.height;
+        bboxOut.height = bboxIn.width;
+
+        return bboxOut;
     }
 
     public Texture2D WebCamTextureToTexture2d(WebCamTexture webCamTexture)

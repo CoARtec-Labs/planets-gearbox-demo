@@ -117,8 +117,9 @@ namespace BBox2DToolkit
         private Vector2 ScreenToCanvasPoint(RectTransform canvas, Vector2 screenPoint)
         {
             // Get the Canvas component from the provided RectTransform
-            Canvas canvasComponent = canvas.parent.GetComponent<Canvas>();
-
+            // Canvas canvasComponent = canvas.parent.GetComponent<Canvas>();
+            Canvas canvasComponent = canvas.parent.GetComponent<Canvas>(); // bbox container lies two level below
+            
             if (!canvasComponent)
             {
                 throw new System.Exception("Provided RectTransform does not belong to a Canvas.");
@@ -190,9 +191,9 @@ namespace BBox2DToolkit
                     Image labelBackground = labelBackgrounds[i];
                     Image dot = dots[i];
 
-                    UpdateBoundingBox(boundingBox, bboxInfo);
-                    UpdateLabelAndBackground(label, labelBackground, bboxInfo);
-                    UpdateDot(dot, bboxInfo);
+                    UpdateBoundingBoxDirect(boundingBox, bboxInfo);
+                    UpdateLabelAndBackgroundDirect(label, labelBackground, bboxInfo);
+                    UpdateDotDirect(dot, bboxInfo);
 
                     // Enable bounding box, label, and label background UI elements
                     boundingBox.gameObject.SetActive(true);
@@ -233,6 +234,29 @@ namespace BBox2DToolkit
         }
 
         /// <summary>
+        /// The update bounding box function that hands over BB coordinates directly.
+        /// We use the coordinate system of a new RectTranform, which can directly take the coordinates 
+        /// that come out of the object detection engine. This rect transform takes care of rotation and 
+        //  scaling.
+        /// </summary>
+        /// <param name="boundingBox"></param>
+        /// <param name="bboxInfo"></param>
+        private void UpdateBoundingBoxDirect(RectTransform boundingBox, BBox2DInfo bboxInfo)
+        {
+
+            boundingBox.localPosition = new Vector2(bboxInfo.bbox.x0, bboxInfo.bbox.y0);
+            boundingBox.sizeDelta = new Vector2(bboxInfo.bbox.width, bboxInfo.bbox.height);
+
+            // Set the color of the bounding box with the specified transparency
+            Color color = GetColorWithTransparency(bboxInfo.color);
+            Image[] sides = boundingBox.GetComponentsInChildren<Image>();
+            foreach (Image side in sides)
+            {
+                side.color = color;
+            }
+        }
+
+        /// <summary>
         /// Update the label and label background UI elements with the information from the given BBox2DInfo object.
         /// </summary>
         /// <param name="label">The TMP_Text object representing the label UI element</param>
@@ -260,6 +284,35 @@ namespace BBox2DToolkit
         }
 
         /// <summary>
+        /// The update label and background function that hands over BB coordinates directly.
+        /// See UpdateBoundingBoxDirect.
+        /// </summary>
+        /// <param name="label"></param>
+        /// <param name="labelBackground"></param>
+        /// <param name="bboxInfo"></param>
+        private void UpdateLabelAndBackgroundDirect(TMP_Text label, Image labelBackground, BBox2DInfo bboxInfo)
+        {
+            // Set the label text and position
+            label.text = $"{bboxInfo.label}: {(bboxInfo.bbox.prob * 100).ToString("0.##")}%";
+            // label.rectTransform.localPosition = new Vector2(bboxInfo.bbox.x0, bboxInfo.bbox.y0 - label.preferredHeight);
+            label.rectTransform.localPosition = new Vector2(bboxInfo.bbox.x0, bboxInfo.bbox.y0);
+            label.rectTransform.localRotation = Quaternion.Euler(0, 180, -90);
+
+            // Set the label color based on the grayscale value of the bounding box color
+            Color color = GetColorWithTransparency(bboxInfo.color);
+            label.color = color.grayscale > 0.5 ? Color.black : Color.white;
+
+            // Set the label background position and size
+            // labelBackground.rectTransform.localPosition = new Vector2(bboxInfo.bbox.x0, bboxInfo.bbox.y0 - label.preferredHeight);
+            labelBackground.rectTransform.localPosition = new Vector2(bboxInfo.bbox.x0, bboxInfo.bbox.y0);
+            labelBackground.rectTransform.sizeDelta = new Vector2(Mathf.Max(label.preferredWidth, bboxInfo.bbox.width), label.preferredHeight);
+            labelBackground.rectTransform.localRotation = Quaternion.Euler(0, 180, -90);
+
+            // Set the label background color with the specified transparency
+            labelBackground.color = color;
+        }
+
+        /// <summary>
         /// Update the dot UI element with the information from the given BBox2DInfo object.
         /// </summary>
         /// <param name="dot">The Image object representing the dot UI element</param>
@@ -274,6 +327,24 @@ namespace BBox2DToolkit
 
             // Set the dot position
             dot.rectTransform.anchoredPosition = localPosition;
+
+            // Set the dot color with the specified transparency
+            Color color = GetColorWithTransparency(bboxInfo.color);
+            dot.color = color;
+        }
+
+        /// <summary>
+        /// See UpdateBoundingBoxDirect and UpdateLabelAndBackgroundDirect.
+        /// </summary>
+        /// <param name="dot"></param>
+        /// <param name="bboxInfo"></param>
+        private void UpdateDotDirect(Image dot, BBox2DInfo bboxInfo)
+        {
+            // Calculate the center of the bounding box
+            Vector2 center = new Vector2(bboxInfo.bbox.x0 + bboxInfo.bbox.width / 2, bboxInfo.bbox.y0 - bboxInfo.bbox.height / 2);
+
+            // Set the dot position
+            dot.rectTransform.localPosition = center;
 
             // Set the dot color with the specified transparency
             Color color = GetColorWithTransparency(bboxInfo.color);

@@ -12,7 +12,7 @@ public class DetectionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -22,7 +22,8 @@ public class DetectionManager : MonoBehaviour
         if( timer % updateRateMultiplier == 0)
         {
             objectDetector.RunPrediction_trigger();
-            
+            //objectDetector.BBoxArrayTest();
+
             timer = 0;
         }
 

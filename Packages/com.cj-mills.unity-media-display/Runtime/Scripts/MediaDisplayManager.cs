@@ -42,16 +42,20 @@ namespace CJM.MediaDisplay
             float width = displayTexture.width;
             float height = displayTexture.height;
             
+            Debug.Log($"Image display pixel size: {displayTexture.width}x{displayTexture.height}");
+            
             Quaternion rotDesktop = mirrorScreen ? Quaternion.Euler(0, 180f, 180f) : Quaternion.Euler(0, 0, 180f);
             Quaternion rotPhone = Quaternion.Euler(0, 0, 90); // set for display on phone in vertical orientation
-            // Quaternion rotTotal = rotPhone * rotDesktop;
-            Quaternion rotTotal = rotDesktop;    
+            Quaternion rotTotal = rotPhone * rotDesktop;
+            // Quaternion rotTotal = rotDesktop;    
 
             // Set the rotation, scale, and position of the screen object
             // screenObject.transform.rotation = mirrorScreen ? Quaternion.Euler(0, 180f, 180f) : Quaternion.Euler(0, 0, 180f);
             screenObject.transform.rotation = rotTotal;
             screenObject.transform.localScale = new Vector3(width, height, mirrorScreen ? -1f : 1f);
             screenObject.transform.position = new Vector3(width / 2, height / 2, 1);
+            
+            Debug.Log($"Screen size (scale): {screenObject.transform.localScale}");
             
             //screenObject.transform.rotation = Quaternion.Euler(0f, 0f, mirrorScreen ? 180f : 0f);
 
@@ -62,13 +66,16 @@ namespace CJM.MediaDisplay
         /// </summary>
         /// <param name="cameraObject">The GameObject with a Camera component to be used for displaying the screen.</param>
         /// <param name="screenDimensions">The dimensions of the screen.</param>
-        public static void InitializeCamera(GameObject cameraObject, Vector2Int screenDimensions)
+        public static void InitializeCamera(GameObject cameraObject, GameObject screenObject)
         {
+            // Swap x and y here because screenOBject is rotated 90 deg
+            Vector2 screenDimensions = new Vector2(screenObject.transform.localScale.y, screenObject.transform.localScale.x);
+            
             // Attempt to get the Camera component from the camera object
             if (cameraObject.TryGetComponent<Camera>(out Camera camera))
             {
                 // Set the position of the camera object
-                Vector3 position = new Vector3(screenDimensions.x / 2, screenDimensions.y / 2, -10f);
+                Vector3 position = new Vector3(screenObject.transform.position.x, screenObject.transform.position.y, -10f);
                 cameraObject.transform.position = position;
 
                 // Configure the camera for orthographic mode
@@ -112,10 +119,12 @@ namespace CJM.MediaDisplay
 
             // Create a new WebCamTexture instance with the specified settings
             webcamTexture = new WebCamTexture(deviceName, webcamDimensions.x, webcamDimensions.y, webcamFrameRate);
-
+            
             // Start playing the webcam stream
             webcamTexture.Play();
 
+            Debug.Log($"Webcam initialized, pixel width: {webcamTexture.width} height: {webcamTexture.height}.");
+            
             // Return true if the webcam stream has started playing, false otherwise
             return webcamTexture.isPlaying;
         }
@@ -136,10 +145,13 @@ namespace CJM.MediaDisplay
             UpdateScreenTransform(screenObject, displayTexture, mirrorScreen);
 
             // Get the screen dimensions from the updated screen object
-            Vector2Int screenDimensions = new Vector2Int(displayTexture.width, displayTexture.height);
+            // Vector2Int screenDimensions = new Vector2Int(displayTexture.width, displayTexture.height);
+            
+            // Exchange x and y here since scrrenObject is rotated 90 deg.
+            Vector2 screenDimensions = new Vector2(screenObject.transform.localScale.y, screenObject.transform.localScale.x);
 
             // Initialize the camera for displaying the screen
-            InitializeCamera(cameraObject, screenDimensions);
+            InitializeCamera(cameraObject, screenObject);
         }
 
     }
