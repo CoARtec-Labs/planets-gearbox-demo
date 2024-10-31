@@ -20,6 +20,8 @@ public class UIRootAssembly : MonoBehaviour
         AssemblyView.gameObject.SetActive(true);
 
         AssemblyView.Instance.HideView();
+
+        //DontDestroyOnLoad(this.gameObject);
     }
 
 }

@@ -28,6 +28,7 @@ public class StateMachine : MonoBehaviour
     private UIRootStaging uiStaging;
     public UIRootStaging UIStaging => uiStaging;    
     
+    public static int currentStepID=0;
 
     /// <summary>
     /// Unity method called on first frame

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+using UnityEngine.SceneManagement;
+
 namespace Instructions
 {
 
@@ -68,20 +70,47 @@ public class InstructionManager : MonoBehaviour
     public Material materialInactiveStep;
     public TMP_Text titleTextRef;
     public TMP_Text descriptionTextRef;
+    public GameObject assemblyRef;
+
 
     private List<Instructions.InstructionStep> _steps;
-    private int _currentStepID, _maxStepID; 
+    private int _currentStepID = 0;
+    private int _maxStepID; 
     private const int MinStepID = 0;
 
-
-    // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         _steps = new List<Instructions.InstructionStep>();
 
         InitializeSteps();
 
+        _currentStepID = StateMachine.currentStepID;
+
         SetCurrentStep(_currentStepID);
+
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+
+        //DontDestroyOnLoad(this.gameObject);
+    }
+
+    private void OnSceneUnloaded(Scene current)
+    {
+        Debug.Log("OnSceneUnloaded: " + current);
+
+        StateMachine.currentStepID = _currentStepID;
+    }
+
+
+    // private void onDisable()
+    // {
+    //     StateMachine.currentStepID = _currentStepID;
+    // }
+
+
+    // Start is called before the first frame update
+    private void Start()
+    {
+
     }
 
     // Update is called once per frame
@@ -106,13 +135,12 @@ public class InstructionManager : MonoBehaviour
         
         _maxStepID = _steps.Count-1;
 
-        _currentStepID = 0;
     }
 
     private void AddStep(string stepName, string modelName, string description)
     {
         // Find mesh model. Assume that we are on the same level as TagRelative (root of GameObject Assembly)
-        var model = transform.parent.Find("TagRelative/Origin/" + modelName).gameObject;
+        var model = assemblyRef.transform.Find("TagRelative/Origin/" + modelName).gameObject;
         
         _steps.Add(new Instructions.InstructionStep(modelName, model) 
             { StepName = stepName, Description = description});
