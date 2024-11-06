@@ -84,28 +84,26 @@ public class InstructionManager : MonoBehaviour
 
         InitializeSteps();
 
-        _currentStepID = StateMachine.currentStepID;
-
-        SetCurrentStep(_currentStepID);
-
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
-
         //DontDestroyOnLoad(this.gameObject);
     }
 
-    private void OnSceneUnloaded(Scene current)
-    {
-        Debug.Log("OnSceneUnloaded: " + current);
-
-        StateMachine.currentStepID = _currentStepID;
-    }
-
-
-    // private void onDisable()
+    // private void OnSceneUnloaded(Scene current)
     // {
+    //     Debug.Log("OnSceneUnloaded: " + current);
+
     //     StateMachine.currentStepID = _currentStepID;
     // }
 
+    private void OnEnable()
+    {
+        _currentStepID = StateMachine.currentStepID;
+        SetCurrentStep(_currentStepID);
+    }
+
+    private void OnDisable()
+    {
+        StateMachine.currentStepID = _currentStepID;
+    }
 
     // Start is called before the first frame update
     private void Start()
@@ -134,7 +132,6 @@ public class InstructionManager : MonoBehaviour
         AddStep("Lid", "lid", "Close the gearbox with the lid.");
         
         _maxStepID = _steps.Count-1;
-
     }
 
     private void AddStep(string stepName, string modelName, string description)
