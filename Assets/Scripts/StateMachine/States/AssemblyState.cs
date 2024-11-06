@@ -73,8 +73,6 @@ public class AssemblyState : BaseState
     {
         Debug.Log("[AssemblyState.cs] staging clicked.");
 
-        destroyGameContent = false;
-
         owner.ChangeState(new StagingState());
     }
 

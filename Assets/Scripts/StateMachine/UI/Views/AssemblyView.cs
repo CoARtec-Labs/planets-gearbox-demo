@@ -11,6 +11,8 @@ public class AssemblyView : BaseViewSingleton<AssemblyView>
     public static UnityAction OnStagingClicked;
     //public static UnityAction OnFinishClicked;
 
+    // public GameObject InstructionsCanvas;
+
     /// <summary>
     /// Method for staging button.
     /// </summary>

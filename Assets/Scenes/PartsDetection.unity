@@ -224,6 +224,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cd6d6b5d438b411884f891b107d90ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ActiveGameObjects:
+  - {fileID: 1836905657}
+  - {fileID: 964836935}
+  - {fileID: 1926432459}
+  - {fileID: 1381660401}
+  - {fileID: 1873576644}
+  - {fileID: 413293175}
+  - {fileID: 510136977}
 --- !u!4 &215243136
 Transform:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class StagingState : BaseState
 {
 
-    const string sceneName = "PartsDetection";
+    public const string sceneName = "PartsDetection";
 
     public override void PrepareState()
     {
@@ -30,7 +30,7 @@ public class StagingState : BaseState
         // Detach functions from view events
         StagingView.OnAssemblyClicked -= AssemblyClicked;
 
-        SceneManager.UnloadSceneAsync(sceneName);
+        // SceneManager.UnloadSceneAsync(sceneName);
 
         // Turn off light and editing for this scene.
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main"));

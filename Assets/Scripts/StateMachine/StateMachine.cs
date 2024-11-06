@@ -28,14 +28,17 @@ public class StateMachine : MonoBehaviour
     private UIRootStaging uiStaging;
     public UIRootStaging UIStaging => uiStaging;    
     
-    public static int currentStepID=0;
+    public static int currentStepID=-1;
 
     /// <summary>
-    /// Unity method called on first frame
+    /// Unity method called at start.
+    /// This is the entry point to the StateMachine's states.
     /// </summary>
     private void Start()
     {
-        // Start game in menu state
+        SceneManager.LoadScene(StagingState.sceneName, LoadSceneMode.Additive);
+
+        // Start with the assembly instructions
         ChangeState(new AssemblyState());
     }
 
@@ -93,7 +96,7 @@ public class StateMachine : MonoBehaviour
         }
         else
         {
-            Debug.Log($"[StagingState.cs] Loading scene {sceneName}.");
+            Debug.Log($"[StateMachine.cs] Loading scene {sceneName}.");
 
             SceneManager.sceneLoaded += callback;
             SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);

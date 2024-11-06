@@ -24,7 +24,7 @@ public class BaseViewSingleton<T> : MonoBehaviour where T : Component
     }
 
     /// <summary>
-    /// Method called to show view
+    /// Base method called to show view
     /// </summary>
     public virtual void ShowView()
     {
@@ -32,7 +32,7 @@ public class BaseViewSingleton<T> : MonoBehaviour where T : Component
     }
 
     /// <summary>
-    /// Method called to hide view
+    /// Base method called to hide view
     /// </summary>
     public virtual void HideView()
     {
