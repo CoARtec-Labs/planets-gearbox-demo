@@ -1,46 +1,13 @@
 {
   "dependencies": {
-    "com.cj-mills.barracuda-inference-base": {
-      "version": "file:com.cj-mills.barracuda-inference-base",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "com.unity.barracuda": "3.0.0"
-      }
-    },
-    "com.cj-mills.barracuda-inference-yolox": {
-      "version": "file:com.cj-mills.barracuda-inference-yolox",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "com.unity.barracuda": "3.0.0"
-      }
-    },
     "com.cj-mills.bounding-box-2d-toolkit": {
-      "version": "file:com.cj-mills.bounding-box-2d-toolkit",
+      "version": "https://github.com/cj-mills/bounding-box-2d-toolkit.git",
       "depth": 0,
-      "source": "embedded",
+      "source": "git",
       "dependencies": {
         "com.unity.textmeshpro": "3.0.6"
-      }
-    },
-    "com.cj-mills.cv-image-gallery": {
-      "version": "file:com.cj-mills.cv-image-gallery",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
-    "com.cj-mills.deep-learning-image-preprocessor": {
-      "version": "file:com.cj-mills.deep-learning-image-preprocessor",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
-    "com.cj-mills.unity-media-display": {
-      "version": "file:com.cj-mills.unity-media-display",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
+      },
+      "hash": "439b7d86b068eabbae2a8de3d535f44593c789db"
     },
     "com.cj-mills.yolox-utils": {
       "version": "file:com.cj-mills.yolox-utils",
@@ -50,7 +17,7 @@
     },
     "com.unity.barracuda": {
       "version": "3.0.0",
-      "depth": 1,
+      "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.burst": "1.6.0",
@@ -61,7 +28,7 @@
     },
     "com.unity.burst": {
       "version": "1.8.8",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.mathematics": "1.2.1"
