@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DetectionUpdater : MonoBehaviour
 {
-    public ObjectDetector objectDetector;
+    [FormerlySerializedAs("objectDetector")] public ScriptDetector scriptDetector;
     public int updateRateMultiplier = 0;
 
     private int timer = 0;
@@ -21,7 +22,7 @@ public class DetectionUpdater : MonoBehaviour
         
         if( timer % updateRateMultiplier == 0)
         {
-            objectDetector.RunPrediction_trigger();
+            scriptDetector.RunPrediction_trigger();
             //objectDetector.BBoxArrayTest();
 
             timer = 0;

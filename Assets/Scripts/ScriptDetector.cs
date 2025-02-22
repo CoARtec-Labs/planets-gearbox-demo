@@ -14,7 +14,7 @@ using CJM.DeepLearningImageProcessor;
 using BBox2DToolkit;
 using UnityEngine.Serialization;
 
-public class ObjectDetector : MonoBehaviour
+public class ScriptDetector : MonoBehaviour
 {
 
     public NNModel modelAsset;

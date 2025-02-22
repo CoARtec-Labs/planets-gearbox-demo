@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    ;#"coartec.barracuda-yolo-testbed": "file:/Users/johannes/unity-ws/barracuda-yolo-testbed",
+    "coartec.barracuda-yolo-testbed": "git@github.com:jonni-max/barracuda-yolo-testbed.git",
+    "com.cj-mills.bounding-box-2d-toolkit": "https://github.com/cj-mills/bounding-box-2d-toolkit.git",
     
     "com.unity.feature.ar": "1.0.1",
     "com.unity.feature.development": "1.0.1",
