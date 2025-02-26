@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace BBox2DToolkit
+namespace coartec.BBox2DToolkit
 {
     /// <summary>
     /// BoundingBox2DVisualizer is a MonoBehaviour class responsible for displaying 2D bounding boxes, labels, and label backgrounds
@@ -11,7 +11,7 @@ namespace BBox2DToolkit
     /// BBox2DInfo array. This class supports customizable settings such as bounding box transparency and the ability to toggle
     /// the display of bounding boxes.
     /// </summary>
-    public class BoundingBox2DVisualizer : MonoBehaviour
+    public class BoundingBox2DVisualizerMod : MonoBehaviour
     {
         // UI components
         [Header("Components")]
@@ -118,7 +118,7 @@ namespace BBox2DToolkit
         {
             // Get the Canvas component from the provided RectTransform
             // Canvas canvasComponent = canvas.parent.GetComponent<Canvas>();
-            Canvas canvasComponent = canvas.parent.GetComponent<Canvas>(); // bbox container lies two level below
+            Canvas canvasComponent = canvas.parent.parent.GetComponent<Canvas>(); // bbox container lies two level below
             
             if (!canvasComponent)
             {

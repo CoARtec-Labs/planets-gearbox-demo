@@ -36,7 +36,7 @@ public class StateMachine : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        SceneManager.LoadScene(StagingState.sceneName, LoadSceneMode.Additive);
+        // SceneManager.LoadScene(StagingState.sceneName, LoadSceneMode.Additive);
 
         // Start with the assembly instructions
         ChangeState(new AssemblyState());

@@ -1,13 +1,18 @@
 {
   "dependencies": {
-    "coartec.barracuda-yolo-testbed": {
-      "version": "git@github.com:jonni-max/barracuda-yolo-testbed.git",
+    "coartec.deep-learning-image-preprocessor": {
+      "version": "file:/Users/johannes/unity-ws/barracuda-yolo-testbed/Packages/coartec.deep-learning-image-preprocessor",
       "depth": 0,
-      "source": "git",
+      "source": "local",
+      "dependencies": {}
+    },
+    "coartec.yolo-interface": {
+      "version": "file:/Users/johannes/unity-ws/barracuda-yolo-testbed/Packages/coartec.yolo-interface",
+      "depth": 0,
+      "source": "local",
       "dependencies": {
         "com.unity.barracuda": "3.0.0"
-      },
-      "hash": "4c4070a22f412f3fe624d906f181eeddc129bc14"
+      }
     },
     "com.cj-mills.bounding-box-2d-toolkit": {
       "version": "https://github.com/cj-mills/bounding-box-2d-toolkit.git",

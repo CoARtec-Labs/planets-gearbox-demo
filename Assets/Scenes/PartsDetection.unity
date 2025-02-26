@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -227,11 +227,10 @@ MonoBehaviour:
   ActiveGameObjects:
   - {fileID: 1836905657}
   - {fileID: 964836935}
-  - {fileID: 1926432459}
-  - {fileID: 1381660401}
-  - {fileID: 1873576644}
-  - {fileID: 413293175}
   - {fileID: 510136977}
+  - {fileID: 1926432459}
+  - {fileID: 1873576644}
+  - {fileID: 1045813173}
 --- !u!4 &215243136
 Transform:
   m_ObjectHideFlags: 0
@@ -253,87 +252,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1278649816}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &413293175
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 413293178}
-  - component: {fileID: 413293177}
-  - component: {fileID: 413293179}
-  m_Layer: 0
-  m_Name: ObjectDetectorOLD
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &413293177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 413293175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 763ee1314754a4249ac88840c1f72379, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: 8302ec9aad76b4e24b9587eafd5dd0ad,
-    type: 3}
-  batch_size: 1
-  n_channels: 3
-  width: 320
-  height: 320
-  testTexture2D: {fileID: 2800000, guid: 8ab1048724661465187c65f4c2319d5d, type: 3}
-  testRenderTexture: {fileID: 0}
-  columnZero: []
-  filteredScores: []
-  filteredClasses: []
-  boundingBoxVisualizer: {fileID: 1926432460}
-  imageProcessor: {fileID: 413293179}
-  screenRenderer: {fileID: 1381660403}
-  rawImage: {fileID: 162154216}
-  updateRateMultiplier: 20
-  confidenceThreshold: 0.2
-  nmsThreshold: 0.2
-  colormapFile: {fileID: 4900000, guid: 808a11c0b48664077b48e62e2e5f8674, type: 3}
---- !u!4 &413293178
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 413293175}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &413293179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 413293175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1d41b81a7ca4960a209887c984e375b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  processingComputeShader: {fileID: 7200000, guid: 2c418cec15ae44419d94328d0e8dcea8,
-    type: 3}
-  normalizeShader: {fileID: 4800000, guid: 45d8405a4cc64ecfa477b712e0465c05, type: 3}
-  cropShader: {fileID: 4800000, guid: 0685d34a035b4cefa942d94390282c12, type: 3}
-  normStatsJson: {fileID: 4900000, guid: 9c8f1a57cb884c9b8a4439cae327a2f8, type: 3}
 --- !u!1 &427028059
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +613,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1045813174}
+  - component: {fileID: 1045813176}
+  - component: {fileID: 1045813175}
   m_Layer: 0
   m_Name: ObjectDetector
   m_TagString: Untagged
@@ -717,6 +637,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1045813175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045813173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b557a88111f3e46b58cb4514d48f023f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  processingComputeShader: {fileID: 7200000, guid: c6e9c22e41a8a4e76950ca4ecbc318c0,
+    type: 3}
+  normalizeShader: {fileID: 4800000, guid: 45d8405a4cc64ecfa477b712e0465c05, type: 3}
+  cropShader: {fileID: 4800000, guid: 0685d34a035b4cefa942d94390282c12, type: 3}
+  normStatsJson: {fileID: 4900000, guid: 9c8f1a57cb884c9b8a4439cae327a2f8, type: 3}
+--- !u!114 &1045813176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045813173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 263dd6da6112b4987b2e4e8951aab2ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neuralNetModel: {fileID: 5022602860645237092, guid: 8302ec9aad76b4e24b9587eafd5dd0ad,
+    type: 3}
+  imageWidth: 320
+  imageHeight: 320
+  inferenceBatchSize: 1
+  confidenceThreshold: 0.5
+  nonMaxSuppressionThreshold: 0.5
 --- !u!1 &1110775525
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,7 +683,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1110775526}
   m_Layer: 5
-  m_Name: BoundingBoxContainer
+  m_Name: BBoxContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1252,8 +1208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ebb764d4a4a4ff6ae884a7d182de96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptDetector: {fileID: 413293177}
   updateRateMultiplier: 30
+  detector: {fileID: 1926432462}
 --- !u!4 &1873576646
 Transform:
   m_ObjectHideFlags: 0
@@ -1426,7 +1382,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1926432461}
-  - component: {fileID: 1926432460}
+  - component: {fileID: 1926432462}
+  - component: {fileID: 1926432463}
   m_Layer: 0
   m_Name: PartsDetection
   m_TagString: Untagged
@@ -1434,7 +1391,39 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1926432460
+--- !u!4 &1926432461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926432459}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1937529762}
+  - {fileID: 1381660405}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1926432462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926432459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2ceaeb3ac30451e8c58c758107be7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImageDisplay: {fileID: 1381660403}
+  ObjectDetector: {fileID: 1045813176}
+  jsonColormapFile: {fileID: 4900000, guid: 808a11c0b48664077b48e62e2e5f8674, type: 3}
+--- !u!114 &1926432463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1458,23 +1447,6 @@ MonoBehaviour:
     type: 3}
   displayBoundingBoxes: 1
   bboxTransparency: 1
---- !u!4 &1926432461
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1926432459}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1937529762}
-  - {fileID: 1381660405}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1937529761
 GameObject:
   m_ObjectHideFlags: 0
@@ -1626,6 +1598,5 @@ SceneRoots:
   - {fileID: 510136980}
   - {fileID: 1926432461}
   - {fileID: 1873576646}
-  - {fileID: 413293178}
-  - {fileID: 1920721547}
   - {fileID: 1045813174}
+  - {fileID: 1920721547}

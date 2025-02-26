@@ -240,6 +240,10 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 11400000, guid: 1eb95d77acb39444e8cf44313496a874, type: 2}
+  - {fileID: 11400000, guid: eb8a78c639be545d6b3ff3e4b1246c53, type: 2}
+  - {fileID: 11400000, guid: 6230bd1853712455e83ee708c589f389, type: 2}
+  - {fileID: 4747288724914788103, guid: 6bb381a8ba31f114d9724357633b4625, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -864,6 +868,7 @@ PlayerSettings:
   webGLPowerPreference: 2
   scriptingDefineSymbols:
     Standalone: CJM_YOLOX_UTILS;CJM_UNITY_MEDIA_DISPLAY;CJM_BBOX_2D_TOOLKIT
+    VisionOS: CJM_YOLOX_UTILS;CJM_BBOX_2D_TOOLKIT;CJM_UNITY_MEDIA_DISPLAY
     iPhone: UNITY_XR_ARKIT_LOADER_ENABLED;CJM_YOLOX_UTILS;CJM_BARRACUDA_INFERENCE;CJM_BBOX_2D_TOOLKIT;CJM_UNITY_MEDIA_DISPLAY
   additionalCompilerArguments: {}
   platformArchitecture:
