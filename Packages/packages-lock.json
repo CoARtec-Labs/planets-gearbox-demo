@@ -23,20 +23,8 @@
       },
       "hash": "439b7d86b068eabbae2a8de3d535f44593c789db"
     },
-    "com.cj-mills.deep-learning-image-preprocessor": {
-      "version": "file:com.cj-mills.deep-learning-image-preprocessor",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
     "com.cj-mills.unity-media-display": {
       "version": "file:com.cj-mills.unity-media-display",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
-    "com.cj-mills.yolox-utils": {
-      "version": "file:com.cj-mills.yolox-utils",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}

@@ -1852,8 +1852,6 @@ GameObject:
   - component: {fileID: 2049149378}
   - component: {fileID: 2049149377}
   - component: {fileID: 2049149379}
-  - component: {fileID: 2049149380}
-  - component: {fileID: 2049149381}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1932,38 +1930,6 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
---- !u!114 &2049149380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2049149375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c4e7289e179f4879a4db8be59c2b86e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetButton: {fileID: 5921161920632218527}
-  action:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2049149381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2049149375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c4e7289e179f4879a4db8be59c2b86e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetButton: {fileID: 5921161920632218498}
-  action:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1001 &2067743696
 PrefabInstance:
   m_ObjectHideFlags: 0
