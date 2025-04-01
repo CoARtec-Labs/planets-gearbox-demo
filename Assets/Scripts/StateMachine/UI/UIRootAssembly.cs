@@ -5,10 +5,9 @@
 /// </summary>
 public class UIRootAssembly : MonoBehaviour
 {
-    [SerializeField]
-    private AssemblyView assemblyView;
-    public AssemblyView AssemblyView => assemblyView;
-
+    public AssemblyView AssemblyView;
+    public AssemblyViewStepBase AssemblyViewStepBase;
+    public AssemblyViewStepRing AssemblyViewStepRing;
 
     public void Awake()
     {
@@ -18,8 +17,15 @@ public class UIRootAssembly : MonoBehaviour
         // of their activation state before play mode.
         AssemblyView.gameObject.SetActive(false);
         AssemblyView.gameObject.SetActive(true);
-
         AssemblyView.Instance.HideView();
+
+        AssemblyViewStepBase.gameObject.SetActive(false);
+        AssemblyViewStepBase.gameObject.SetActive(true);
+        AssemblyViewStepBase.Instance.HideView();
+
+        AssemblyViewStepRing.gameObject.SetActive(false);
+        AssemblyViewStepRing.gameObject.SetActive(true);
+        AssemblyViewStepRing.HideView();
 
         //DontDestroyOnLoad(this.gameObject);
     }

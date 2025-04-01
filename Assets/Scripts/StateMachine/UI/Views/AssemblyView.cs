@@ -9,7 +9,7 @@ public class AssemblyView : BaseViewSingleton<AssemblyView>
 {
     // Events to attach to.
     public static UnityAction OnStagingClicked;
-    //public static UnityAction OnFinishClicked;
+    public static UnityAction OnStepBaseClicked;
 
     // public GameObject InstructionsCanvas;
 
@@ -21,5 +21,9 @@ public class AssemblyView : BaseViewSingleton<AssemblyView>
         OnStagingClicked?.Invoke();
     }
 
+    public void StepBaseClick()
+    {
+        OnStepBaseClicked?.Invoke();
+    }
 
 }

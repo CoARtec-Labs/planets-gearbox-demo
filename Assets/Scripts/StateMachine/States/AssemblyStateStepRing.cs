@@ -5,32 +5,28 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// This is the assembly state.
 /// </summary>
-public class AssemblyState : BaseState
+public class AssemblyStateStepRing : BaseState
 {
     private const String sceneName = "AssemblySteps";
 
-    // Variables used for loading and destroying game content
-    public bool loadGameContent = true;
-    public bool destroyGameContent = true;
-
+    // Used to set scene loading on or off
     private bool keepSceneLoaded = false;
 
     public override void PrepareState()
     {
         base.PrepareState();
 
-        AssemblyView.OnStagingClicked += StagingClicked;
-        AssemblyView.OnStepBaseClicked += StepBaseClicked;
+        AssemblyViewStepRing.OnNextClicked += NextClicked;
+        AssemblyViewStepRing.OnBackClicked += BackClicked;
 
         StateMachine.LoadScene(sceneName, SceneLoadedCallback);
     }
 
     public override void DestroyState()
     {
-        AssemblyView.Instance.HideView();
-        
-        AssemblyView.OnStagingClicked -= StagingClicked;
-        AssemblyView.OnStepBaseClicked -= StepBaseClicked;
+        AssemblyViewStepRing.Instance.HideView();
+        AssemblyViewStepRing.OnNextClicked -= NextClicked;
+        AssemblyViewStepRing.OnBackClicked -= BackClicked;
 
         if (!keepSceneLoaded)
         {
@@ -39,7 +35,7 @@ public class AssemblyState : BaseState
             // Shift lighting and editing defaults to main scene.
             SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main"));
         }
-
+        
         base.DestroyState();
     }
 
@@ -52,12 +48,10 @@ public class AssemblyState : BaseState
     /// <param name="mode"></param>
     private void SceneLoadedCallback(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log($"[AssemblyState.cs] Activating scene {scene.name}.");
-
         SceneManager.SetActiveScene(scene);
 
         // Show menu view
-        AssemblyView.Instance.ShowView();
+        AssemblyViewStepRing.Instance.ShowView();
 
         // Clear this callback
         SceneManager.sceneLoaded -= SceneLoadedCallback;
@@ -66,21 +60,15 @@ public class AssemblyState : BaseState
     /// <summary>
     /// Function called when staging button was clicked.
     /// </summary>
-    private void StagingClicked()
+    private void NextClicked()
     {
-        Debug.Log("[AssemblyState.cs] staging clicked.");
 
-        keepSceneLoaded = false;
-        owner.ChangeState(new StagingState());
     }
-    
-    private void StepBaseClicked()
-    {
-        Debug.Log("[AssemblyState.cs] step base clicked.");
 
-        keepSceneLoaded = true;
+    private void BackClicked()
+    {
+        keepSceneLoaded = true; 
         owner.ChangeState(new AssemblyStateStepBase());
     }
-
 
 }
