@@ -8,6 +8,13 @@ public class UIRootAssembly : MonoBehaviour
     public AssemblyView AssemblyView;
     public AssemblyViewStepBase AssemblyViewStepBase;
     public AssemblyViewStepRing AssemblyViewStepRing;
+    public AssemblyViewStepWheelSun AssemblyViewStepWheelSun;
+    public AssemblyViewStepWheelPlanet1 AssemblyViewStepWheelPlanet1;
+    public AssemblyViewStepWheelPlanet2 AssemblyViewStepWheelPlanet2;
+    public AssemblyViewStepWheelPlanet3 AssemblyViewStepWheelPlanet3;
+    public AssemblyViewStepCarrier AssemblyViewStepCarrier;
+    public AssemblyViewStepGasket AssemblyViewStepGasket;
+    public AssemblyViewStepLid AssemblyViewStepLid;
 
     public void Awake()
     {
@@ -26,6 +33,35 @@ public class UIRootAssembly : MonoBehaviour
         AssemblyViewStepRing.gameObject.SetActive(false);
         AssemblyViewStepRing.gameObject.SetActive(true);
         AssemblyViewStepRing.HideView();
+        
+        AssemblyViewStepWheelSun.gameObject.SetActive(false);
+        AssemblyViewStepWheelSun.gameObject.SetActive(true);
+        AssemblyViewStepWheelSun.HideView();
+        
+        AssemblyViewStepWheelPlanet1.gameObject.SetActive(false);
+        AssemblyViewStepWheelPlanet1.gameObject.SetActive(true);
+        AssemblyViewStepWheelPlanet1.HideView();
+        
+        AssemblyViewStepWheelPlanet2.gameObject.SetActive(false);
+        AssemblyViewStepWheelPlanet2.gameObject.SetActive(true);
+        AssemblyViewStepWheelPlanet2.HideView();
+        
+        AssemblyViewStepWheelPlanet3.gameObject.SetActive(false);
+        AssemblyViewStepWheelPlanet3.gameObject.SetActive(true);
+        AssemblyViewStepWheelPlanet3.HideView();
+        
+        AssemblyViewStepCarrier.gameObject.SetActive(false);
+        AssemblyViewStepCarrier.gameObject.SetActive(true);
+        AssemblyViewStepCarrier.HideView();
+        
+        AssemblyViewStepGasket.gameObject.SetActive(false);
+        AssemblyViewStepGasket.gameObject.SetActive(true);
+        AssemblyViewStepGasket.HideView();
+        
+        AssemblyViewStepLid.gameObject.SetActive(false);
+        AssemblyViewStepLid.gameObject.SetActive(true);
+        AssemblyViewStepLid.HideView();
+        
 
         //DontDestroyOnLoad(this.gameObject);
     }

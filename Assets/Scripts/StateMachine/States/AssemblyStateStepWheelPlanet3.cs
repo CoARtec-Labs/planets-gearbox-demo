@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
 /// This is the assembly state.
 /// </summary>
-public class AssemblyStateStepRing : BaseState
+public class AssemblyStateStepWheelPlanet3 : BaseState
 {
     private const String sceneName = "AssemblySteps";
 
@@ -16,17 +16,17 @@ public class AssemblyStateStepRing : BaseState
     {
         base.PrepareState();
 
-        AssemblyViewStepRing.OnNextClicked += NextClicked;
-        AssemblyViewStepRing.OnBackClicked += BackClicked;
+        AssemblyViewStepWheelPlanet3.OnNextClicked += NextClicked;
+        AssemblyViewStepWheelPlanet3.OnBackClicked += BackClicked;
 
         StateMachine.LoadScene(sceneName, SceneLoadedCallback);
     }
 
     public override void DestroyState()
     {
-        AssemblyViewStepRing.Instance.HideView();
-        AssemblyViewStepRing.OnNextClicked -= NextClicked;
-        AssemblyViewStepRing.OnBackClicked -= BackClicked;
+        AssemblyViewStepWheelPlanet3.Instance.HideView();
+        AssemblyViewStepWheelPlanet3.OnNextClicked -= NextClicked;
+        AssemblyViewStepWheelPlanet3.OnBackClicked -= BackClicked;
 
         if (!keepSceneLoaded)
         {
@@ -51,7 +51,7 @@ public class AssemblyStateStepRing : BaseState
         SceneManager.SetActiveScene(scene);
 
         // Show menu view
-        AssemblyViewStepRing.Instance.ShowView();
+        AssemblyViewStepWheelPlanet3.Instance.ShowView();
 
         // Clear this callback
         SceneManager.sceneLoaded -= SceneLoadedCallback;
@@ -63,14 +63,14 @@ public class AssemblyStateStepRing : BaseState
     private void NextClicked()
     {
         keepSceneLoaded = true;
-        owner.ChangeState(new AssemblyStateStepWheelSun());
+        owner.ChangeState(new AssemblyStateStepCarrier());
 
     }
 
     private void BackClicked()
     {
         keepSceneLoaded = true; 
-        owner.ChangeState(new AssemblyStateStepBase());
+        owner.ChangeState(new AssemblyStateStepWheelPlanet2());
     }
 
 }

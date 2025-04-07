@@ -1,13 +1,13 @@
 {
   "dependencies": {
     "coartec.deep-learning-image-preprocessor": {
-      "version": "file:/Users/johannes/unity-ws/barracuda-yolo-testbed/Packages/coartec.deep-learning-image-preprocessor",
+      "version": "file:/Users/tusharisamaliya/Desktop/CoARtec/barracuda-yolo-testbed/Packages/coartec.deep-learning-image-preprocessor",
       "depth": 0,
       "source": "local",
       "dependencies": {}
     },
     "coartec.yolo-interface": {
-      "version": "file:/Users/johannes/unity-ws/barracuda-yolo-testbed/Packages/coartec.yolo-interface",
+      "version": "file:/Users/tusharisamaliya/Desktop/CoARtec/barracuda-yolo-testbed/Packages/coartec.yolo-interface",
       "depth": 0,
       "source": "local",
       "dependencies": {

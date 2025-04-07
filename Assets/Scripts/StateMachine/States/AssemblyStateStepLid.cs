@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
 /// This is the assembly state.
 /// </summary>
-public class AssemblyStateStepRing : BaseState
+public class AssemblyStateStepLid : BaseState
 {
     private const String sceneName = "AssemblySteps";
 
@@ -15,18 +15,16 @@ public class AssemblyStateStepRing : BaseState
     public override void PrepareState()
     {
         base.PrepareState();
-
-        AssemblyViewStepRing.OnNextClicked += NextClicked;
-        AssemblyViewStepRing.OnBackClicked += BackClicked;
+        
+        AssemblyViewStepLid.OnBackClicked += BackClicked;
 
         StateMachine.LoadScene(sceneName, SceneLoadedCallback);
     }
 
     public override void DestroyState()
     {
-        AssemblyViewStepRing.Instance.HideView();
-        AssemblyViewStepRing.OnNextClicked -= NextClicked;
-        AssemblyViewStepRing.OnBackClicked -= BackClicked;
+        AssemblyViewStepLid.Instance.HideView();
+        AssemblyViewStepLid.OnBackClicked -= BackClicked;
 
         if (!keepSceneLoaded)
         {
@@ -51,7 +49,7 @@ public class AssemblyStateStepRing : BaseState
         SceneManager.SetActiveScene(scene);
 
         // Show menu view
-        AssemblyViewStepRing.Instance.ShowView();
+        AssemblyViewStepLid.Instance.ShowView();
 
         // Clear this callback
         SceneManager.sceneLoaded -= SceneLoadedCallback;
@@ -60,17 +58,11 @@ public class AssemblyStateStepRing : BaseState
     /// <summary>
     /// Function called when staging button was clicked.
     /// </summary>
-    private void NextClicked()
-    {
-        keepSceneLoaded = true;
-        owner.ChangeState(new AssemblyStateStepWheelSun());
-
-    }
 
     private void BackClicked()
     {
         keepSceneLoaded = true; 
-        owner.ChangeState(new AssemblyStateStepBase());
+        owner.ChangeState(new AssemblyStateStepGasket());
     }
 
 }
