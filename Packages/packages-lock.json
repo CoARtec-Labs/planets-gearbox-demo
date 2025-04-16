@@ -1,13 +1,19 @@
 {
   "dependencies": {
     "coartec.deep-learning-image-preprocessor": {
-      "version": "file:/Users/tusharisamaliya/Desktop/CoARtec/barracuda-yolo-testbed/Packages/coartec.deep-learning-image-preprocessor",
+      "version": "file:../../barracuda-yolo-testbed/Packages/coartec.deep-learning-image-preprocessor",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "coartec.unity-media-display": {
+      "version": "file:/Users/johannes/unity-ws/barracuda-yolo-testbed/Packages/coartec.unity-media-display",
       "depth": 0,
       "source": "local",
       "dependencies": {}
     },
     "coartec.yolo-interface": {
-      "version": "file:/Users/tusharisamaliya/Desktop/CoARtec/barracuda-yolo-testbed/Packages/coartec.yolo-interface",
+      "version": "file:../../barracuda-yolo-testbed/Packages/coartec.yolo-interface",
       "depth": 0,
       "source": "local",
       "dependencies": {
@@ -22,12 +28,6 @@
         "com.unity.textmeshpro": "3.0.6"
       },
       "hash": "439b7d86b068eabbae2a8de3d535f44593c789db"
-    },
-    "com.cj-mills.unity-media-display": {
-      "version": "file:com.cj-mills.unity-media-display",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
     },
     "com.unity.barracuda": {
       "version": "3.0.0",

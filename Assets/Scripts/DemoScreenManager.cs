@@ -1,9 +1,11 @@
 using System.Collections;
-using UnityEngine;
-using CJM.MediaDisplay;
-using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
+
+using UnityEngine;
+using UnityEngine.UI;
+
+using coartec.MediaDisplay;
 
 public class DemoScreenManager : BaseScreenManager
 {
