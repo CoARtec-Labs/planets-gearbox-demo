@@ -7,7 +7,7 @@
       "dependencies": {}
     },
     "coartec.unity-media-display": {
-      "version": "file:/Users/johannes/unity-ws/barracuda-yolo-testbed/Packages/coartec.unity-media-display",
+      "version": "file:../../barracuda-yolo-testbed/Packages/coartec.unity-media-display",
       "depth": 0,
       "source": "local",
       "dependencies": {}
