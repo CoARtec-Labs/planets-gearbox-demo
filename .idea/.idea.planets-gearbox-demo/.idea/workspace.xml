@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f0d79549-ec14-4bcf-a30c-1c1e91102b80" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../barracuda-yolo-testbed/Assets/Scenes/Gallery.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../barracuda-yolo-testbed/Assets/Scenes/Gallery.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../barracuda-yolo-testbed/UserSettings/Layouts/default-2022.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/../barracuda-yolo-testbed/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../barracuda-yolo-testbed" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6a9007df24904c27bc0d5500898fff63172a00/ea/c98678c1/Material.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/824e5c2831c04f28b19643bd85f4b77b7000/10/b8b1e6f3/RectTransformUtility.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../barracuda-yolo-testbed/Packages/coartec.cv-image-gallery/Runtime/Scripts/ImageGallery.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/BoundingBox2DVisualizerMod.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.arfoundation@5.0.7/Runtime/ARFoundation/ARInputManager.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2mZDQQYwygJN1fj4aoatLQhHLIU" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "XThreadsFramesViewSplitterKey": "0.5005767",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.10f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="PROGRAM_PARAMETERS" value="-projectPath $PROJECT_DIR$ -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.10f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath $PROJECT_DIR$ -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f0d79549-ec14-4bcf-a30c-1c1e91102b80" name="Changes" comment="" />
+      <created>1727275187640</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1727275187640</updated>
+      <workItem from="1727275188737" duration="1661000" />
+      <workItem from="1727357354744" duration="2654000" />
+      <workItem from="1727423006778" duration="2819000" />
+      <workItem from="1727784964013" duration="5301000" />
+      <workItem from="1729172441673" duration="4107000" />
+      <workItem from="1729260512022" duration="1901000" />
+      <workItem from="1729584402993" duration="483000" />
+      <workItem from="1729586010098" duration="8745000" />
+      <workItem from="1729675385222" duration="7179000" />
+      <workItem from="1729751568328" duration="7057000" />
+      <workItem from="1729760342305" duration="11098000" />
+      <workItem from="1729844532553" duration="17016000" />
+      <workItem from="1729926896943" duration="12770000" />
+      <workItem from="1729943503634" duration="433000" />
+      <workItem from="1729948616980" duration="79000" />
+      <workItem from="1739804173937" duration="1309000" />
+      <workItem from="1740055684476" duration="6149000" />
+      <workItem from="1740076566018" duration="14136000" />
+      <workItem from="1740243396726" duration="1313000" />
+      <workItem from="1740343809991" duration="3263000" />
+      <workItem from="1740486011493" duration="8476000" />
+      <workItem from="1740573007780" duration="9133000" />
+      <workItem from="1740658162922" duration="3003000" />
+      <workItem from="1743425207169" duration="13226000" />
+      <workItem from="1743487829415" duration="8839000" />
+      <workItem from="1744812923412" duration="3662000" />
+      <workItem from="1744882991904" duration="328000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityProjectDiscoverer">
+    <option name="hasUnityReference" value="true" />
+    <option name="unityProject" value="true" />
+    <option name="unityProjectFolder" value="true" />
+  </component>
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="VcsManagerConfiguration">
+    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Packages/com.cj-mills.bounding-box-2d-toolkit/Runtime/Scripts/BBox2DUtils.cs</url>
+          <line>176</line>
+          <properties documentPath="$PROJECT_DIR$/Packages/com.cj-mills.bounding-box-2d-toolkit/Runtime/Scripts/BBox2DUtils.cs" containingFunctionPresentation="Method 'ScaleBoundingBox'" />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Packages/com.cj-mills.unity-media-display/Runtime/Scripts/BaseScreenManager.cs</url>
+          <line>103</line>
+          <properties documentPath="$PROJECT_DIR$/Packages/com.cj-mills.unity-media-display/Runtime/Scripts/BaseScreenManager.cs" containingFunctionPresentation="Method 'UpdateCurrentTexture'" />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
