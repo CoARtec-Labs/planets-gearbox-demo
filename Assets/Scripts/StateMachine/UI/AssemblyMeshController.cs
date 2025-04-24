@@ -36,7 +36,12 @@ public class AssemblyMeshController : MonoBehaviour
     // Show only one mesh (call this from states)
     public void ShowOnly(GameObject targetMesh)
     {
+        Debug.Log($"Showing mesh: {targetMesh?.name}");
         HideAll();
-        if (targetMesh != null) targetMesh.SetActive(true);
+        if (targetMesh != null) 
+        {
+            targetMesh.SetActive(true);
+            Debug.Log($"Mesh active state: {targetMesh.activeSelf}");
+        }
     }
 }

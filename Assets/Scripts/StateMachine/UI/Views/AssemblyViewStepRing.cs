@@ -23,8 +23,12 @@ public class AssemblyViewStepRing : BaseViewSingleton<AssemblyViewStepRing>
     public void ShowViewWithMesh() 
     {
         ShowView();
+        Debug.Log($"Mesh Controller Assigned: {meshController != null}");
         if (meshController != null) 
+        {
+            Debug.Log($"Attempting to show ring mesh: {meshController.ring != null}");
             meshController.ShowOnly(meshController.ring);
+        }
     }
     
     public void NextClick()
