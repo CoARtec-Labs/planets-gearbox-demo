@@ -8,8 +8,6 @@ using UnityEngine.SceneManagement;
 public class AssemblyStateStepRing : BaseState
 {
     private const String sceneName = "AssemblySteps";
-
-    // Used to set scene loading on or off
     private bool keepSceneLoaded = false;
 
     public override void PrepareState()
@@ -31,51 +29,30 @@ public class AssemblyStateStepRing : BaseState
         if (!keepSceneLoaded)
         {
             SceneManager.UnloadSceneAsync(sceneName);
-            
-            // Shift lighting and editing defaults to main scene.
             SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main"));
         }
-        
+
         base.DestroyState();
     }
 
-    /// <summary>
-    /// Callback for object initialization after scene is loaded.
-    /// This is required, since scene loading is happening in the backgound 
-    /// over multiple frame updates. Parameters are handled internally.
-    /// </summary>
-    /// <param name="scene"></param>
-    /// <param name="mode"></param>
     private void SceneLoadedCallback(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log($"Scene loaded: {scene.name}");
+        Debug.Log("Scene Loaded Callback Triggered");
         SceneManager.SetActiveScene(scene);
 
-        // Show menu view
         AssemblyViewStepRing.Instance.ShowView();
-        Debug.Log($"View instance exists: {AssemblyViewStepRing.Instance != null}");
-        AssemblyViewStepRing.Instance.ShowViewWithMesh();
-        
-        
-
-        // Clear this callback
         SceneManager.sceneLoaded -= SceneLoadedCallback;
     }
 
-    /// <summary>
-    /// Function called when staging button was clicked.
-    /// </summary>
     private void NextClicked()
     {
         keepSceneLoaded = true;
         owner.ChangeState(new AssemblyStateStepWheelSun());
-
     }
 
     private void BackClicked()
     {
-        keepSceneLoaded = true; 
+        keepSceneLoaded = true;
         owner.ChangeState(new AssemblyStateStepBase());
     }
-
 }
