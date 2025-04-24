@@ -52,6 +52,10 @@ public class AssemblyStateStepRing : BaseState
 
         // Show menu view
         AssemblyViewStepRing.Instance.ShowView();
+        
+        AssemblyViewStepRing.Instance.ShowViewWithMesh();
+        
+        
 
         // Clear this callback
         SceneManager.sceneLoaded -= SceneLoadedCallback;

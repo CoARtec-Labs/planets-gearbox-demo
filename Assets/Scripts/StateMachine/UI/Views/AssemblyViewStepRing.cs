@@ -16,6 +16,17 @@ public class AssemblyViewStepRing : BaseViewSingleton<AssemblyViewStepRing>
     /// <summary>
     /// Method for staging button.
     /// </summary>
+    
+    [Header("Mesh Controller")]
+    public AssemblyMeshController meshController;  // Add this
+
+    public void ShowViewWithMesh() 
+    {
+        ShowView();
+        if (meshController != null) 
+            meshController.ShowOnly(meshController.ring);
+    }
+    
     public void NextClick()
     {
         OnNextClicked?.Invoke();
