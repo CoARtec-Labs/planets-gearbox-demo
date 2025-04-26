@@ -12,10 +12,18 @@ public class AssemblyViewStepWheelSun : BaseViewSingleton<AssemblyViewStepWheelS
     public static UnityAction OnBackClicked;
 
     // public GameObject InstructionsCanvas;
+    
+    public GameObject sun;
 
-    /// <summary>
-    /// Method for staging button.
-    /// </summary>
+    public void OnEnable()
+    {
+        sun.SetActive(true);
+    }
+    public void OnDisable()
+    {
+        sun.SetActive(false);
+    }
+    
     public void NextClick()
     {
         OnNextClicked?.Invoke();

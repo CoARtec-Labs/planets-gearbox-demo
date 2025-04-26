@@ -32,7 +32,7 @@ public class UIRootAssembly : MonoBehaviour
 
         AssemblyViewStepRing.gameObject.SetActive(false);
         AssemblyViewStepRing.gameObject.SetActive(true);
-        AssemblyViewStepRing.HideView();
+        AssemblyViewStepRing.Instance.HideView();
         
         AssemblyViewStepWheelSun.gameObject.SetActive(false);
         AssemblyViewStepWheelSun.gameObject.SetActive(true);

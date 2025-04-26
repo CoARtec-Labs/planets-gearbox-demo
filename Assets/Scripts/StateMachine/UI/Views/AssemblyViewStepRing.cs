@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 /// <summary>
@@ -12,25 +13,38 @@ public class AssemblyViewStepRing : BaseViewSingleton<AssemblyViewStepRing>
     public static UnityAction OnBackClicked;
 
     // public GameObject InstructionsCanvas;
+    
+    public GameObject ring;
 
     /// <summary>
     /// Method for staging button.
     /// </summary>
     
-    [Header("Mesh Controller")]
-    public AssemblyMeshController meshController;  // Add this
+    // [Header("Mesh Controller")]
+    // public AssemblyMeshController meshController;  // Add this
 
     public void ShowViewWithMesh() 
     {
-        ShowView();
-        Debug.Log($"Mesh Controller Assigned: {meshController != null}");
-        if (meshController != null) 
-        {
-            Debug.Log($"Attempting to show ring mesh: {meshController.ring != null}");
-            meshController.ShowOnly(meshController.ring);
-        }
+        // ShowView();
+        // Debug.Log($"Mesh Controller Assigned: {meshController != null}");
+        // if (meshController != null) 
+        // {
+        //     Debug.Log($"Attempting to show ring mesh: {meshController.ring != null}");
+        //     meshController.ShowOnly(meshController.ring);
+        // }
     }
-    
+
+    public void OnEnable()
+    {
+        Debug.Log($"View step ring: OnEnable()");
+        ring.SetActive(true);
+    }
+    public void OnDisable()
+    {
+        Debug.Log($"View step ring: OnDisable()");
+        ring.SetActive(false);
+    }
+
     public void NextClick()
     {
         OnNextClicked?.Invoke();

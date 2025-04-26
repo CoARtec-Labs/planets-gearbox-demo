@@ -63,9 +63,9 @@ public class StagingState : BaseState
     /// </summary>
     private void AssemblyClicked()
     {
-        Debug.Log("[StagingState.cs] assembly clicked.");
+        Debug.Log("[StagingState.cs] assembly step base clicked.");
 
-        owner.ChangeState(new AssemblyState());
+        owner.ChangeState(new AssemblyStateStepBase());
     }
 
 }

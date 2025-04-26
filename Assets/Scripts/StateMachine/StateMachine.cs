@@ -38,8 +38,10 @@ public class StateMachine : MonoBehaviour
     {
         // SceneManager.LoadScene(StagingState.sceneName, LoadSceneMode.Additive);
 
+        // Here we enter the state machine once play mode has started.
         // Start with the assembly instructions
-        ChangeState(new AssemblyState());
+        // ChangeState(new AssemblyState());
+        ChangeState(new AssemblyStateStepBase());
     }
 
     /// <summary>

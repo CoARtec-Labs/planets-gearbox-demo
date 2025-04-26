@@ -64,10 +64,10 @@ public class AssemblyStateStepBase : BaseState
     /// </summary>
     private void AssemblyClicked()
     {
-        Debug.Log("[AssemblyStateStepBase.cs] Assembly clicked.");
+        Debug.Log("[AssemblyStateStepBase.cs] Staging clicked.");
 
         keepSceneLoaded = true;
-        owner.ChangeState(new AssemblyState());
+        owner.ChangeState(new StagingState());
     }
     
     private void NextClicked()
