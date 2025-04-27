@@ -16,6 +16,22 @@ public class AssemblyViewStepWheelPlanet2 : BaseViewSingleton<AssemblyViewStepWh
     /// <summary>
     /// Method for staging button.
     /// </summary>
+    
+    public GameObject planet2;
+
+    public void ShowViewWithMesh() 
+    {
+    }
+
+    public void OnEnable()
+    {
+        planet2.SetActive(true);
+    }
+
+    public void OnDisable()
+    {
+        planet2.SetActive(false);
+    }
     public void NextClick()
     {
         OnNextClicked?.Invoke();

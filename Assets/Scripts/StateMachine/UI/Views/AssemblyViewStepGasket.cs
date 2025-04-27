@@ -16,6 +16,22 @@ public class AssemblyViewStepGasket : BaseViewSingleton<AssemblyViewStepGasket>
     /// <summary>
     /// Method for staging button.
     /// </summary>
+    
+    public GameObject gasket;
+
+    public void ShowViewWithMesh() 
+    {
+    }
+
+    public void OnEnable()
+    {
+        gasket.SetActive(true);
+    }
+
+    public void OnDisable()
+    {
+        gasket.SetActive(false);
+    }
     public void NextClick()
     {
         OnNextClicked?.Invoke();

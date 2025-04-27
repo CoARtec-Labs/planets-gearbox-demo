@@ -48,12 +48,13 @@ public class AssemblyStateStepWheelPlanet3 : BaseState
     /// <param name="mode"></param>
     private void SceneLoadedCallback(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log($"Scene loaded: {scene.name}");
         SceneManager.SetActiveScene(scene);
 
-        // Show menu view
+        Debug.Log($"View instance exists: {AssemblyViewStepWheelPlanet3.Instance != null}");
         AssemblyViewStepWheelPlanet3.Instance.ShowView();
+        AssemblyViewStepWheelPlanet3.Instance.ShowViewWithMesh();
 
-        // Clear this callback
         SceneManager.sceneLoaded -= SceneLoadedCallback;
     }
 

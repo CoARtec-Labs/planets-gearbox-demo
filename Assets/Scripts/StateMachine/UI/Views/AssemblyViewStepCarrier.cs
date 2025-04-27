@@ -16,6 +16,23 @@ public class AssemblyViewStepCarrier : BaseViewSingleton<AssemblyViewStepCarrier
     /// <summary>
     /// Method for staging button.
     /// </summary>
+    
+    public GameObject carrier;
+
+    public void ShowViewWithMesh() 
+    {
+    }
+
+    public void OnEnable()
+    {
+        carrier.SetActive(true);
+    }
+
+    public void OnDisable()
+    {
+        carrier.SetActive(false);
+    }
+    
     public void NextClick()
     {
         OnNextClicked?.Invoke();

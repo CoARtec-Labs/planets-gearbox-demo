@@ -14,6 +14,10 @@ public class AssemblyViewStepWheelSun : BaseViewSingleton<AssemblyViewStepWheelS
     // public GameObject InstructionsCanvas;
     
     public GameObject sun;
+    
+    public void ShowViewWithMesh() 
+    {
+    }
 
     public void OnEnable()
     {

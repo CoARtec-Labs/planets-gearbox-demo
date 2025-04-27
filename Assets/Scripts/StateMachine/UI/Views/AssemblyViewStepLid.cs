@@ -15,6 +15,22 @@ public class AssemblyViewStepLid : BaseViewSingleton<AssemblyViewStepLid>
     /// <summary>
     /// Method for staging button.
     /// </summary>
+    
+    public GameObject lid;
+
+    public void ShowViewWithMesh() 
+    {
+    }
+
+    public void OnEnable()
+    {
+        lid.SetActive(true);
+    }
+
+    public void OnDisable()
+    {
+        lid.SetActive(false);
+    }
     public void BackClick()
     {
         OnBackClicked?.Invoke();
