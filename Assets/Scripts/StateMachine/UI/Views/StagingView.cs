@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// The StagingView class.
@@ -11,8 +12,12 @@ public class StagingView : BaseViewSingleton<StagingView>
     // Events to attach to.
     public static UnityAction OnAssemblyClicked;
 
-    public List<GameObject> ActiveGameObjects;
+    public List<GameObject> activeGameObjects;
+    
+    public int searchObjectClassId = -1;
+    public string searchObjectLabel = null;
 
+    
     /// <summary>
     /// Method for assembly button.
     /// </summary>
@@ -31,7 +36,7 @@ public class StagingView : BaseViewSingleton<StagingView>
         // Show all objects
         //GameObject[] allObjects = FindObjectsOfType<GameObject>();
 
-        foreach (GameObject obj in ActiveGameObjects)
+        foreach (GameObject obj in activeGameObjects)
         {
             // Debug.Log($"Activate {obj.name}");
             obj.SetActive(true);
@@ -46,7 +51,7 @@ public class StagingView : BaseViewSingleton<StagingView>
         // Hide all objects
         // GameObject[] allObjects = FindObjectsOfType<GameObject>();
 
-        foreach (GameObject obj in ActiveGameObjects)
+        foreach (GameObject obj in activeGameObjects)
         {
             // Debug.Log($"Deactivate {obj.name}");
             obj.SetActive(false);

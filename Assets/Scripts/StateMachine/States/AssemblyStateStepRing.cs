@@ -56,8 +56,6 @@ public class AssemblyStateStepRing : BaseState
         Debug.Log($"View instance exists: {AssemblyViewStepRing.Instance != null}");
         AssemblyViewStepRing.Instance.ShowViewWithMesh();
         
-        
-
         // Clear this callback
         SceneManager.sceneLoaded -= SceneLoadedCallback;
     }
@@ -69,7 +67,6 @@ public class AssemblyStateStepRing : BaseState
     {
         keepSceneLoaded = true;
         owner.ChangeState(new AssemblyStateStepWheelSun());
-
     }
 
     private void BackClicked()

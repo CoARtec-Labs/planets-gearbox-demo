@@ -8,9 +8,16 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class StagingState : BaseState
 {
+    public const string SceneName = "PartsDetection";
 
-    public const string sceneName = "PartsDetection";
+    // Label of the assembly object to be searched for
+    private string searchObjectLabel = null;
 
+    public void StatgingState(string objectLabel)
+    {
+        this.searchObjectLabel = objectLabel;
+    }
+    
     public override void PrepareState()
     {
         base.PrepareState();
@@ -19,7 +26,7 @@ public class StagingState : BaseState
         StagingView.OnAssemblyClicked += AssemblyClicked;
 
         // Do everything else after scene is loaded.
-        StateMachine.LoadScene(sceneName, SceneLoadedCallback);
+        StateMachine.LoadScene(SceneName, SceneLoadedCallback);
     }
 
     public override void DestroyState()
@@ -53,6 +60,9 @@ public class StagingState : BaseState
 
         // Show menu view
         StagingView.Instance.ShowView();
+        
+        // Hand over object label to view
+        StagingView.Instance.searchObjectLabel= searchObjectLabel;
 
         // Clear this callback
         SceneManager.sceneLoaded -= SceneLoadedCallback;
