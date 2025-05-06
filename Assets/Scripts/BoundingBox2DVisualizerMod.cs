@@ -238,7 +238,7 @@ namespace coartec.BBox2DToolkit
         /// The update bounding box function that hands over BB coordinates directly.
         /// We use the coordinate system of a new RectTranform, which can directly take the coordinates 
         /// that come out of the object detection engine. This rect transform takes care of rotation and 
-        //  scaling.
+        ///  scaling.
         /// </summary>
         /// <param name="boundingBox"></param>
         /// <param name="bboxInfo"></param>

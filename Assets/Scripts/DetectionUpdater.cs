@@ -10,28 +10,24 @@ public class DetectionUpdater : MonoBehaviour
 
     public DetectionManager detector;
 
-    private int timer = 0;
+    private int _timer;
     
     // Start is called before the first frame update
     void Start()
     {
-        timer = 1;
+        _timer = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        _timer++;
         
-        if( timer % updateRateMultiplier == 0)
+        if( _timer % updateRateMultiplier == 0)
         {
-            //scriptDetector.RunPrediction_trigger();
-            //objectDetector.BBoxArrayTest();
             detector.TriggerDetection();
 
-            timer = 0;
+            _timer = 0;
         }
-
-        timer++;
-        
     }
 }

@@ -12,7 +12,7 @@ public class UIRootStaging : MonoBehaviour
 
     public void Awake()
     {
-        Debug.Log("[UIRootStaging.cs] Awaking.");
+        //Debug.Log("[UIRootStaging.cs] Awaking.");
 
         // StagingView.gameObject.SetActive(true);
         // StagingView.Instance.HideView();
