@@ -7,30 +7,35 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class AssemblyStateStepBase : BaseState
 {
-    private const String sceneName = "AssemblySteps";
+    private const int PartClassID = 0;
+
+    public AssemblyStateStepBase()
+    {
+        base.SceneName = "AssemblySteps";
+    }
 
     // Used to set scene loading on or off
-    private bool keepSceneLoaded = false;
+    private bool _keepSceneLoaded = false;
 
     public override void PrepareState()
     {
         base.PrepareState();
 
-        AssemblyViewStepBase.OnAssemblyClicked += AssemblyClicked;
+        AssemblyViewStepBase.OnAssemblyClicked += StagingClicked;
         AssemblyViewStepBase.OnNextClicked += NextClicked;
 
-        StateMachine.LoadScene(sceneName, SceneLoadedCallback);
+        StateMachine.LoadScene(SceneName, SceneLoadedCallback);
     }
 
     public override void DestroyState()
     {
         AssemblyViewStepBase.Instance.HideView();
-        AssemblyViewStepBase.OnAssemblyClicked -= AssemblyClicked;
+        AssemblyViewStepBase.OnAssemblyClicked -= StagingClicked;
         AssemblyViewStepBase.OnNextClicked -= NextClicked;
 
-        if (!keepSceneLoaded)
+        if (!_keepSceneLoaded)
         {
-            SceneManager.UnloadSceneAsync(sceneName);
+            SceneManager.UnloadSceneAsync(SceneName);
             
             // Shift lighting and editing defaults to main scene.
             SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main"));
@@ -62,20 +67,20 @@ public class AssemblyStateStepBase : BaseState
     /// <summary>
     /// Function called when staging button was clicked.
     /// </summary>
-    private void AssemblyClicked()
+    private void StagingClicked()
     {
         Debug.Log("[AssemblyStateStepBase.cs] Staging clicked.");
 
-        keepSceneLoaded = true;
-        owner.ChangeState(new StagingState());
+        _keepSceneLoaded = true;
+        Owner.ChangeState(new StagingState(PartClassID));
     }
     
     private void NextClicked()
     {
         Debug.Log("[AssemblyStateStepBase.cs] Next clicked.");
 
-        keepSceneLoaded = true;
-        owner.ChangeState(new AssemblyStateStepRing());
+        _keepSceneLoaded = true;
+        Owner.ChangeState(new AssemblyStateStepRing());
     }
 
 

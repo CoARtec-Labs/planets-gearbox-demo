@@ -8,14 +8,13 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class StagingState : BaseState
 {
-    public const string SceneName = "PartsDetection";
-
     // Label of the assembly object to be searched for
-    private string searchObjectLabel = null;
+    private int _searchObjectId = -1;
 
-    public void StatgingState(string objectLabel)
+    public StagingState(int objectId)
     {
-        this.searchObjectLabel = objectLabel;
+        base.SceneName = "PartsDetection";
+        this._searchObjectId = objectId;
     }
     
     public override void PrepareState()
@@ -62,7 +61,7 @@ public class StagingState : BaseState
         StagingView.Instance.ShowView();
         
         // Hand over object label to view
-        StagingView.Instance.searchObjectLabel= searchObjectLabel;
+        StagingView.Instance.searchObjectClassId= _searchObjectId;
 
         // Clear this callback
         SceneManager.sceneLoaded -= SceneLoadedCallback;
@@ -75,7 +74,7 @@ public class StagingState : BaseState
     {
         Debug.Log("[StagingState.cs] assembly step base clicked.");
 
-        owner.ChangeState(new AssemblyStateStepBase());
+        Owner.ChangeState(new AssemblyStateStepBase());
     }
 
 }

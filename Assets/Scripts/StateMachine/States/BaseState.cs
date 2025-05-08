@@ -1,11 +1,17 @@
-﻿/// <summary>
+﻿using System;
+
+/// <summary>
 /// This is base state script implementation.
 /// StateMachine uses these virtual methods to call state when it needs to prepare itself for operating, updating or even being destroyed.
 /// </summary>
 public abstract class BaseState
 {
+    // public String _sceneName;
+    // public String SceneName => _sceneName;
+    public String SceneName;
+    
     // Reference to our state machine.
-    public StateMachine owner;
+    public StateMachine Owner;
 
     /// <summary>
     /// Method called to prepare state to operate - same as Unity's Start()

@@ -64,14 +64,14 @@ public class AssemblyStateStepGasket : BaseState
     private void NextClicked()
     {
         keepSceneLoaded = true;
-        owner.ChangeState(new AssemblyStateStepLid());
+        Owner.ChangeState(new AssemblyStateStepLid());
 
     }
 
     private void BackClicked()
     {
         keepSceneLoaded = true; 
-        owner.ChangeState(new AssemblyStateStepCarrier());
+        Owner.ChangeState(new AssemblyStateStepCarrier());
     }
 
 }

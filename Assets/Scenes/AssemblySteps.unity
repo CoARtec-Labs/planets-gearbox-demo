@@ -1781,7 +1781,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &429128315
 Transform:
   m_ObjectHideFlags: 0
@@ -4789,16 +4789,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21837bdfbe384aefab2477827af5438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AssemblyView: {fileID: 1920721546}
-  AssemblyViewStepBase: {fileID: 1386212025}
-  AssemblyViewStepRing: {fileID: 429128316}
-  AssemblyViewStepWheelSun: {fileID: 1292863962}
-  AssemblyViewStepWheelPlanet1: {fileID: 188056405}
-  AssemblyViewStepWheelPlanet2: {fileID: 295206587}
-  AssemblyViewStepWheelPlanet3: {fileID: 84576474}
-  AssemblyViewStepCarrier: {fileID: 703825063}
-  AssemblyViewStepGasket: {fileID: 1159165791}
-  AssemblyViewStepLid: {fileID: 1321203036}
+  sceneObjects:
+  - {fileID: 705507993}
+  - {fileID: 6672308126474732643}
+  - {fileID: 339661787}
+  - {fileID: 507433313}
+  - {fileID: 2049149375}
 --- !u!114 &1134155222 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2200211080816448078, guid: ef3886a9667424aedaa5b3b3e1285dbb,

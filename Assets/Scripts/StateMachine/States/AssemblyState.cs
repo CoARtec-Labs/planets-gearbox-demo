@@ -71,7 +71,7 @@ public class AssemblyState : BaseState
         Debug.Log("[AssemblyState.cs] staging clicked.");
 
         keepSceneLoaded = false;
-        owner.ChangeState(new StagingState());
+        // owner.ChangeState(new StagingState());
     }
     
     private void StepBaseClicked()
@@ -79,7 +79,7 @@ public class AssemblyState : BaseState
         Debug.Log("[AssemblyState.cs] step base clicked.");
 
         keepSceneLoaded = true;
-        owner.ChangeState(new AssemblyStateStepBase());
+        Owner.ChangeState(new AssemblyStateStepBase());
     }
 
 

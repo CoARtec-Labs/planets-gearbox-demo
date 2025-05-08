@@ -7,10 +7,13 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class AssemblyStateStepLid : BaseState
 {
-    private const String sceneName = "AssemblySteps";
-
     // Used to set scene loading on or off
     private bool keepSceneLoaded = false;
+    
+    public AssemblyStateStepLid()
+    {
+        base.SceneName = "AssemblySteps";
+    }
 
     public override void PrepareState()
     {
@@ -18,7 +21,7 @@ public class AssemblyStateStepLid : BaseState
         
         AssemblyViewStepLid.OnBackClicked += BackClicked;
 
-        StateMachine.LoadScene(sceneName, SceneLoadedCallback);
+        StateMachine.LoadScene(SceneName, SceneLoadedCallback);
     }
 
     public override void DestroyState()
@@ -28,7 +31,7 @@ public class AssemblyStateStepLid : BaseState
 
         if (!keepSceneLoaded)
         {
-            SceneManager.UnloadSceneAsync(sceneName);
+            SceneManager.UnloadSceneAsync(SceneName);
             
             // Shift lighting and editing defaults to main scene.
             SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main"));
@@ -63,7 +66,7 @@ public class AssemblyStateStepLid : BaseState
     private void BackClicked()
     {
         keepSceneLoaded = true; 
-        owner.ChangeState(new AssemblyStateStepGasket());
+        Owner.ChangeState(new AssemblyStateStepGasket());
     }
 
 }

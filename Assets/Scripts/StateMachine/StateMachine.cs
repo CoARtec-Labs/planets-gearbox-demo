@@ -15,18 +15,19 @@ public class StateMachine : MonoBehaviour
     // Reference to currently operating state.
     private BaseState currentState;
 
-    // Reference to UI root that holds references to different views.
-    // THis access is only available for views living in the same scene.
-    // Views from other scenes must be accessed thorugh the static interfaces
+    // Reference to UI root that hold references to all views in a scene.
+    // These singletons can be used to 
+    // This access is only available for views living in the same scene.
+    // Views from other scenes must be accessed through the static interfaces
     // defined in each individual view.
     
-    [SerializeField]
-    private UIRootAssembly uiAssembly;
-    public UIRootAssembly UIAssembly => uiAssembly;
-
-    [SerializeField]
-    private UIRootStaging uiStaging;
-    public UIRootStaging UIStaging => uiStaging;    
+    // [SerializeField]
+    // private UIRootAssembly uiAssembly;
+    // public UIRootAssembly UIAssembly => uiAssembly;
+    //
+    // [SerializeField]
+    // private UIRootStaging uiStaging;
+    // public UIRootStaging UIStaging => uiStaging;    
     
     public static int currentStepID=-1;
 
@@ -36,10 +37,11 @@ public class StateMachine : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        // SceneManager.LoadScene(StagingState.sceneName, LoadSceneMode.Additive);
+        DeactivateSceneForState("AssemblySteps");
+        DeactivateSceneForState("PartsDetection");
 
         // Here we enter the state machine once play mode has started.
-        // Start with the assembly instructions
+        // We start with the assembly instructions.
         // ChangeState(new AssemblyState());
         ChangeState(new AssemblyStateStepBase());
     }
@@ -50,7 +52,7 @@ public class StateMachine : MonoBehaviour
     private void Update()
     {
         // If we have reference to state, we should update it!
-        // Requirees implementation inside the state only if needed.
+        // Requires implementation inside the state only if needed.
         if (currentState != null)
         {
             currentState.UpdateState();
@@ -58,26 +60,69 @@ public class StateMachine : MonoBehaviour
     }
 
     /// <summary>
-    /// Method used to change state
+    /// Method used to change state and to (un)load or (de)activate a scene. 
     /// </summary>
-    /// <param name="newState">New state</param>
+    /// <param name="newState">New state to be switched to. In case newState = null is passed, only
+    /// the current state gets destroyed without loading new one.</param>
     public void ChangeState(BaseState newState)
     {
         // If we currently have state, we need to destroy it!
         if (currentState != null)
         {
             currentState.DestroyState();
+            
+            // deactivate scene 
+            DeactivateSceneForState(currentState.SceneName);
+            
+            // unload scene, if desired
         }
 
         // Swap reference
         currentState = newState;
 
-        // If we passed reference to new state, we should assign owner of that state and initialize it!
-        // If we decided to pass null as new state, nothing will happened.
+        // If we decided to pass null as new state, nothing will happen.
         if (currentState != null)
         {
-            currentState.owner = this;
             currentState.PrepareState();
+            currentState.Owner = this;
+
+            // load corresponding scene if not yet loaded
+            
+            
+            // activate corresponding scene
+            ActivateSceneForState(currentState.SceneName);
+        }
+    }
+
+    private void ActivateSceneForState(String sceneName)
+    {
+        if (sceneName == "AssemblySteps")
+        {
+            UIRootAssembly.Instance.ActivateSceneObjects();
+        }
+        else if (sceneName == "PartsDetection")
+        {
+            UIRootStaging.Instance.ActivateSceneObjects();
+        }
+        else
+        {
+            throw new System.ArgumentException("Unknown Scene");
+        }
+    }
+    
+    private void DeactivateSceneForState(String sceneName)
+    {
+        if (sceneName == "AssemblySteps")
+        {
+            UIRootAssembly.Instance.DeactivateSceneObjects();
+        }
+        else if (sceneName == "PartsDetection")
+        {
+            UIRootStaging.Instance.DeactivateSceneObjects();
+        }
+        else
+        {
+            throw new System.ArgumentException("Unknown Scene");
         }
     }
 

@@ -3,7 +3,7 @@
 /// <summary>
 /// Template class providing the singleton pattern and (de)activation for UI views.
 /// </summary>
-public class BaseViewSingleton<T> : BaseView where T : Component
+public class UIRootSingleton<T> : MonoBehaviour where T : Component
 {
     public static T Instance {get; private set;}
 

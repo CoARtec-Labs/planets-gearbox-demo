@@ -14,6 +14,11 @@ public class DemoScreenManager : BaseScreenManager
     // [SerializeField] private Toggle useWebcamToggle;
     // [Tooltip("Dropdown menu with available webcam devices")]
     // [SerializeField] private Dropdown webcamDropdown;
+
+    public void UpdateDisplayManually()
+    {
+        UpdateDisplay();
+    }
     
     // Called when the script instance is being loaded.
     private void Awake()
