@@ -87,13 +87,13 @@ namespace coartec
                 throw new System.Exception("ImageDisplay.material.mainTexture must be WebCamTexture or Texture2D.");
             }
 
-            if (stagingView.searchObjectClassId < 0)
+            if (StagingView.SearchObjectClassId < 0)
             {
                 _bBoxDetections = yoloDetector.Detect(imageTexture);
             }
             else
             {
-                _bBoxDetections = yoloDetector.DetectClassId(imageTexture, stagingView.searchObjectClassId );
+                _bBoxDetections = yoloDetector.DetectClassId(imageTexture, StagingView.SearchObjectClassId );
             }
 
             if (_bBoxDetections.Length > 0)
@@ -101,7 +101,7 @@ namespace coartec
                 Debug.Log("Found " + _bBoxDetections.Length + " bBox points");
             }
 
-            // Turn bbox array into bbox info array and change from image cos to  screen cos (flip y axis).
+            // Turn bbox array into bbox info array
             _bBoxInfoDetections = _bBoxDetections.ToList()
                 .Select(bbox => new BBox2DInfo(
                     new BBox2D(bbox.x0, bbox.y0, bbox.width, bbox.height, bbox.index, bbox.prob)))

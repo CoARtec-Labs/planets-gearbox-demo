@@ -8,18 +8,26 @@ using UnityEngine.SceneManagement;
 public class AssemblyStateStepGasket : BaseState
 {
     private const String sceneName = "AssemblySteps";
+    
+    private const int PartClassID = 5;
 
     // Used to set scene loading on or off
     private bool keepSceneLoaded = false;
 
+    public AssemblyStateStepGasket()
+    {
+        SceneName = "AssemblySteps";
+    }
+    
     public override void PrepareState()
     {
         base.PrepareState();
 
         AssemblyViewStepGasket.OnNextClicked += NextClicked;
         AssemblyViewStepGasket.OnBackClicked += BackClicked;
-
-        StateMachine.LoadScene(sceneName, SceneLoadedCallback);
+        AssemblyViewStepGasket.OnStagingClicked += StagingClicked;
+        
+        AssemblyViewStepGasket.Instance.ShowView();
     }
 
     public override void DestroyState()
@@ -27,51 +35,27 @@ public class AssemblyStateStepGasket : BaseState
         AssemblyViewStepGasket.Instance.HideView();
         AssemblyViewStepGasket.OnNextClicked -= NextClicked;
         AssemblyViewStepGasket.OnBackClicked -= BackClicked;
-
-        if (!keepSceneLoaded)
-        {
-            SceneManager.UnloadSceneAsync(sceneName);
-            
-            // Shift lighting and editing defaults to main scene.
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main"));
-        }
+        AssemblyViewStepGasket.OnStagingClicked -= StagingClicked;
         
         base.DestroyState();
     }
 
-    /// <summary>
-    /// Callback for object initialization after scene is loaded.
-    /// This is required, since scene loading is happening in the backgound 
-    /// over multiple frame updates. Parameters are handled internally.
-    /// </summary>
-    /// <param name="scene"></param>
-    /// <param name="mode"></param>
-    private void SceneLoadedCallback(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log($"Scene loaded: {scene.name}");
-        SceneManager.SetActiveScene(scene);
-
-        Debug.Log($"View instance exists: {AssemblyViewStepGasket.Instance != null}");
-        AssemblyViewStepGasket.Instance.ShowView();
-        AssemblyViewStepGasket.Instance.ShowViewWithMesh();
-
-        SceneManager.sceneLoaded -= SceneLoadedCallback;
-    }
-
-    /// <summary>
-    /// Function called when staging button was clicked.
-    /// </summary>
     private void NextClicked()
     {
         keepSceneLoaded = true;
         Owner.ChangeState(new AssemblyStateStepLid());
-
     }
 
     private void BackClicked()
     {
         keepSceneLoaded = true; 
         Owner.ChangeState(new AssemblyStateStepCarrier());
+    }
+    
+    private void StagingClicked()
+    {
+        keepSceneLoaded = true;
+        Owner.ChangeState(new StagingState(PartClassID));
     }
 
 }

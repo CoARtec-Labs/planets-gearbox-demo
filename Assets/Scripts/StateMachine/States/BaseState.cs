@@ -8,7 +8,7 @@ public abstract class BaseState
 {
     // public String _sceneName;
     // public String SceneName => _sceneName;
-    public String SceneName;
+    public String SceneName { get; protected set; }
     
     // Reference to our state machine.
     public StateMachine Owner;

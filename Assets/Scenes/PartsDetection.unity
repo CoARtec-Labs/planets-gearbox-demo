@@ -211,7 +211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &215243135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,14 +219,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215243134}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cd6d6b5d438b411884f891b107d90ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeGameObjects: []
-  searchObjectClassId: 0
-  searchObjectLabel: 
+  searchObjectClassId: -1
 --- !u!4 &215243136
 Transform:
   m_ObjectHideFlags: 0
@@ -1251,7 +1249,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stagingView: {fileID: 215243135}
-  DemoScreenManager: {fileID: 1381660406}
   sceneObjects:
   - {fileID: 1836905657}
   - {fileID: 964836935}
@@ -1259,6 +1256,7 @@ MonoBehaviour:
   - {fileID: 1926432459}
   - {fileID: 1045813173}
   - {fileID: 1873576644}
+  activateScene: 0
 --- !u!4 &1920721547
 Transform:
   m_ObjectHideFlags: 0

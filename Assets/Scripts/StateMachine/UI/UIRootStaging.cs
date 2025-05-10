@@ -10,17 +10,26 @@ public class UIRootStaging : UIRootSingleton<UIRootStaging>
     private StagingView stagingView;
     public StagingView StagingView => stagingView;
     
-    public DemoScreenManager DemoScreenManager;
-
     public List<GameObject> sceneObjects = new List<GameObject>();
+
+    public bool activateScene = false;
+
+    private void Update()
+    {
+        // Trigger scene objects activation
+        if (activateScene)
+        {
+            ActivateSceneObjects();
+            StagingView.Instance.ShowView();
+            activateScene = false;
+        }
+    }
     
     public void ActivateSceneObjects()
     {
         Debug.Log("[UIRootStaging.cs] Activating relevant scene objects.");
         
         sceneObjects.ForEach(item => item.gameObject.SetActive(true));
-
-        DemoScreenManager.UpdateDisplayManually();
     }
     
     public void DeactivateSceneObjects()
@@ -30,9 +39,11 @@ public class UIRootStaging : UIRootSingleton<UIRootStaging>
         sceneObjects.ForEach(item => item.gameObject.SetActive(false));
     }
     
-    public void Awake()
+    public new void Awake()
     {
         base.Awake(); // Initialize singleton
+        
+        DeactivateSceneObjects();
         
         StagingView.gameObject.SetActive(true);
         StagingView.Instance.HideView();

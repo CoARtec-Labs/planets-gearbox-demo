@@ -36,7 +36,6 @@ public class UIRootAssembly : UIRootSingleton<UIRootAssembly>
         
         List<BaseView> views = GetAllViews().ToList();
 
-        //views.ForEach(view => Debug.Log(view.name));
         views.ForEach(view => view.gameObject.SetActive(false));
         views.ForEach(view => view.gameObject.SetActive(true));
         views.ForEach(view => view.HideView());
@@ -56,13 +55,17 @@ public class UIRootAssembly : UIRootSingleton<UIRootAssembly>
         sceneObjects.ForEach(item => item.gameObject.SetActive(false));
     }
     
-    private void Awake()
+    private new void Awake()
     {
         base.Awake();
         
+        Debug.Log("[UIRootAssembly.cs] Awaking.");
+
+        
         InitializeViews();
+        DeactivateSceneObjects();
 
-
+        
         // Required for proper creation of GameObjects independent
         // of their activation state before play mode.
         // AssemblyView.gameObject.SetActive(false);

@@ -10,18 +10,11 @@ public class AssemblyViewStepWheelPlanet2 : BaseViewSingleton<AssemblyViewStepWh
     // public static UnityAction OnStagingClicked;
     public static UnityAction OnNextClicked;
     public static UnityAction OnBackClicked;
+    public static UnityAction OnStagingClicked;
 
     // public GameObject InstructionsCanvas;
-
-    /// <summary>
-    /// Method for staging button.
-    /// </summary>
     
     public GameObject planet2;
-
-    public void ShowViewWithMesh() 
-    {
-    }
 
     public void OnEnable()
     {
@@ -41,5 +34,9 @@ public class AssemblyViewStepWheelPlanet2 : BaseViewSingleton<AssemblyViewStepWh
     {
         OnBackClicked?.Invoke();
     }
-
+    
+    public void StagingClick()
+    {
+        OnStagingClicked?.Invoke();
+    }
 }

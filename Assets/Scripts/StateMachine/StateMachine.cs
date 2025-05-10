@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Text;
+using System.Threading;
+using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -12,9 +16,6 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class StateMachine : MonoBehaviour
 {
-    // Reference to currently operating state.
-    private BaseState currentState;
-
     // Reference to UI root that hold references to all views in a scene.
     // These singletons can be used to 
     // This access is only available for views living in the same scene.
@@ -31,31 +32,29 @@ public class StateMachine : MonoBehaviour
     
     public static int currentStepID=-1;
 
+    // Reference to currently operating state.
+    private BaseState _currentState;
+    
     /// <summary>
-    /// Unity method called at start.
-    /// This is the entry point to the StateMachine's states.
+    /// Load all scenes, activate initial scene and load initial state. This is the entry point to
+    /// the StateMachine's states. Scene loading runs in background, everything else runs in callback after
+    /// scene loading has completed.
     /// </summary>
     private void Start()
     {
-        DeactivateSceneForState("AssemblySteps");
-        DeactivateSceneForState("PartsDetection");
-
-        // Here we enter the state machine once play mode has started.
-        // We start with the assembly instructions.
-        // ChangeState(new AssemblyState());
-        ChangeState(new AssemblyStateStepBase());
+        StartCoroutine(LoadScenesBlocking("AssemblySteps", "PartsDetection", StartInitialState));
     }
 
     /// <summary>
-    /// Unity method called each frame
+    /// This allows states to perform frame updates.
     /// </summary>
     private void Update()
     {
         // If we have reference to state, we should update it!
         // Requires implementation inside the state only if needed.
-        if (currentState != null)
+        if (_currentState != null)
         {
-            currentState.UpdateState();
+            _currentState.UpdateState();
         }
     }
 
@@ -66,35 +65,43 @@ public class StateMachine : MonoBehaviour
     /// the current state gets destroyed without loading new one.</param>
     public void ChangeState(BaseState newState)
     {
+        // Only do scene loading and activation if scenes are different
+        bool isSameScene = _currentState?.SceneName == newState?.SceneName;
+        
         // If we currently have state, we need to destroy it!
-        if (currentState != null)
+        if (_currentState != null)
         {
-            currentState.DestroyState();
+            _currentState.DestroyState();
             
-            // deactivate scene 
-            DeactivateSceneForState(currentState.SceneName);
+            if (!isSameScene)
+            {
+                // deactivate scene 
+                DeactivateScene(_currentState.SceneName);
             
-            // unload scene, if desired
+                // unload scene
+            }
         }
 
         // Swap reference
-        currentState = newState;
+        _currentState = newState;
 
         // If we decided to pass null as new state, nothing will happen.
-        if (currentState != null)
+        if (_currentState != null)
         {
-            currentState.PrepareState();
-            currentState.Owner = this;
-
-            // load corresponding scene if not yet loaded
+            if (!isSameScene)
+            {
+                // load corresponding scene
+                
+                // activate corresponding scene
+                ActivateScene(_currentState.SceneName);
+            }
             
-            
-            // activate corresponding scene
-            ActivateSceneForState(currentState.SceneName);
+            _currentState.PrepareState();
+            _currentState.Owner = this;
         }
     }
 
-    private void ActivateSceneForState(String sceneName)
+    private void ActivateScene(String sceneName)
     {
         if (sceneName == "AssemblySteps")
         {
@@ -108,9 +115,11 @@ public class StateMachine : MonoBehaviour
         {
             throw new System.ArgumentException("Unknown Scene");
         }
+        
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
     }
     
-    private void DeactivateSceneForState(String sceneName)
+    private void DeactivateScene(String sceneName)
     {
         if (sceneName == "AssemblySteps")
         {
@@ -124,6 +133,8 @@ public class StateMachine : MonoBehaviour
         {
             throw new System.ArgumentException("Unknown Scene");
         }
+        
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main"));
     }
 
     /// <summary>
@@ -149,6 +160,36 @@ public class StateMachine : MonoBehaviour
             SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
         }
     }
+
+    private void StartInitialState()
+    {
+        ActivateScene("AssemblySteps");
+        ChangeState(new AssemblyStateStepBase());
+    }
     
+    private delegate void LoadingScenesCompleteCallback();
+    
+    private static IEnumerator LoadScenesBlocking (string sceneA, string sceneB, 
+        LoadingScenesCompleteCallback callback)
+    {
+        // Do loading sequentially to avoid interference between game objects during loading.
+        var asyncLoadA = SceneManager.LoadSceneAsync(sceneA, LoadSceneMode.Additive);
+        
+        while (!asyncLoadA.isDone)
+        {
+            yield return null;
+        }
+        
+        var asyncLoadB = SceneManager.LoadSceneAsync(sceneB, LoadSceneMode.Additive);
+
+        while (!asyncLoadB.isDone)
+        {
+            yield return null;
+        }
+        
+        Debug.Log(($"Loading {sceneA}, {sceneB} done."));
+
+        callback();
+    }
 
 }

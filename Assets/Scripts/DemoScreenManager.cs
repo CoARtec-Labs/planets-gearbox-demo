@@ -19,13 +19,23 @@ public class DemoScreenManager : BaseScreenManager
     {
         UpdateDisplay();
     }
+
+    private void OnEnable()
+    {
+        Debug.Log("[DemoScreenManager.cs] OnEnable()");
+        
+        base.OnEnable();
+        
+        UpdateDisplay();
+    }
     
     // Called when the script instance is being loaded.
     private void Awake()
     {
         Initialize();
         UpdateDisplay();
-        InitializeDropdown();
+        // InitializeDropdown();
+        Debug.Log("[DemoScreenManager.cs] Awake()");
     }
 
     // Initialize the GUI dropdown list

@@ -9,10 +9,11 @@ public class AssemblyStateStepRing : BaseState
 {
     // Used to set scene loading on or off
     private bool keepSceneLoaded = false;
+    private const int PartClassID = 1;
     
     public AssemblyStateStepRing()
     {
-        base.SceneName = "AssemblySteps";
+        SceneName = "AssemblySteps";
     }
 
     public override void PrepareState()
@@ -21,8 +22,8 @@ public class AssemblyStateStepRing : BaseState
 
         AssemblyViewStepRing.OnNextClicked += NextClicked;
         AssemblyViewStepRing.OnBackClicked += BackClicked;
-
-        StateMachine.LoadScene(SceneName, SceneLoadedCallback);
+        AssemblyViewStepRing.OnStagingClicked += StagingClicked;
+        AssemblyViewStepRing.Instance.ShowView();
     }
 
     public override void DestroyState()
@@ -30,37 +31,9 @@ public class AssemblyStateStepRing : BaseState
         AssemblyViewStepRing.Instance.HideView();
         AssemblyViewStepRing.OnNextClicked -= NextClicked;
         AssemblyViewStepRing.OnBackClicked -= BackClicked;
-
-        if (!keepSceneLoaded)
-        {
-            SceneManager.UnloadSceneAsync(SceneName);
-            
-            // Shift lighting and editing defaults to main scene.
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main"));
-        }
+        AssemblyViewStepRing.OnStagingClicked -= StagingClicked;
         
         base.DestroyState();
-    }
-
-    /// <summary>
-    /// Callback for object initialization after scene is loaded.
-    /// This is required, since scene loading is happening in the backgound 
-    /// over multiple frame updates. Parameters are handled internally.
-    /// </summary>
-    /// <param name="scene"></param>
-    /// <param name="mode"></param>
-    private void SceneLoadedCallback(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log($"Scene loaded: {scene.name}");
-        SceneManager.SetActiveScene(scene);
-
-        // Show menu view
-        AssemblyViewStepRing.Instance.ShowView();
-        Debug.Log($"View instance exists: {AssemblyViewStepRing.Instance != null}");
-        AssemblyViewStepRing.Instance.ShowViewWithMesh();
-        
-        // Clear this callback
-        SceneManager.sceneLoaded -= SceneLoadedCallback;
     }
 
     /// <summary>
@@ -76,6 +49,12 @@ public class AssemblyStateStepRing : BaseState
     {
         keepSceneLoaded = true; 
         Owner.ChangeState(new AssemblyStateStepBase());
+    }
+    
+    private void StagingClicked()
+    {
+        keepSceneLoaded = true;
+        Owner.ChangeState(new StagingState(PartClassID));
     }
 
 }

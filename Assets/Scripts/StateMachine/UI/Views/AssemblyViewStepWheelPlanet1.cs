@@ -10,6 +10,7 @@ public class AssemblyViewStepWheelPlanet1 : BaseViewSingleton<AssemblyViewStepWh
     // public static UnityAction OnStagingClicked;
     public static UnityAction OnNextClicked;
     public static UnityAction OnBackClicked;
+    public static UnityAction OnStagingClicked;
 
     // public GameObject InstructionsCanvas;
 
@@ -41,6 +42,11 @@ public class AssemblyViewStepWheelPlanet1 : BaseViewSingleton<AssemblyViewStepWh
     public void BackClick()
     {
         OnBackClicked?.Invoke();
+    }
+    
+    public void StagingClick()
+    {
+        OnStagingClicked?.Invoke();
     }
 
 }
