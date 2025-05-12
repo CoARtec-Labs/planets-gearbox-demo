@@ -1,4 +1,5 @@
 using System;
+using statemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,7 +13,7 @@ public class AssemblyStateStepGasket : BaseState
     private const int PartClassID = 5;
 
     // Used to set scene loading on or off
-    private bool keepSceneLoaded = false;
+    // private bool keepSceneLoaded = false;
 
     public AssemblyStateStepGasket()
     {
@@ -42,20 +43,20 @@ public class AssemblyStateStepGasket : BaseState
 
     private void NextClicked()
     {
-        keepSceneLoaded = true;
+        KeepSceneLoaded = true;
         Owner.ChangeState(new AssemblyStateStepLid());
     }
 
     private void BackClicked()
     {
-        keepSceneLoaded = true; 
+        KeepSceneLoaded = true; 
         Owner.ChangeState(new AssemblyStateStepCarrier());
     }
     
     private void StagingClicked()
     {
-        keepSceneLoaded = true;
-        Owner.ChangeState(new StagingState(PartClassID));
+        KeepSceneLoaded = true;
+        Owner.ChangeState(new StagingState(PartClassID, States.AssemblyStepGasket));
     }
 
 }

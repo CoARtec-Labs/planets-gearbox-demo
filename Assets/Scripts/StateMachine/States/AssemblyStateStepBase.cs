@@ -1,4 +1,5 @@
 ﻿using System;
+using statemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +11,7 @@ public class AssemblyStateStepBase : BaseState
     private const int PartClassID = 0;
     
     // Used to set scene loading on or off
-    private bool _keepSceneLoaded = false;
+    // public bool KeepSceneLoaded = false;
     
     public AssemblyStateStepBase()
     {
@@ -34,23 +35,20 @@ public class AssemblyStateStepBase : BaseState
         
         base.DestroyState();
     }
-
-    /// <summary>
-    /// Function called when staging button was clicked.
-    /// </summary>
+    
     private void StagingClicked()
     {
         Debug.Log("[AssemblyStateStepBase.cs] Staging clicked.");
 
-        _keepSceneLoaded = true;
-        Owner.ChangeState(new StagingState(PartClassID));
+        KeepSceneLoaded = true;
+        Owner.ChangeState(new StagingState(PartClassID, States.AssemblyStepBase));
     }
     
     private void NextClicked()
     {
         Debug.Log("[AssemblyStateStepBase.cs] Next clicked.");
 
-        _keepSceneLoaded = true;
+        KeepSceneLoaded = true;
         Owner.ChangeState(new AssemblyStateStepRing());
     }
 

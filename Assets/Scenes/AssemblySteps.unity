@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44866621, g: 0.4975717, b: 0.56965154, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1497,9 +1497,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AssemblyViewStepBase, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 703825063}
+        m_TargetAssemblyTypeName: AssemblyViewStepCarrier, Assembly-CSharp
+        m_MethodName: StagingClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2320,7 +2320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &429128315
 Transform:
   m_ObjectHideFlags: 0
@@ -6001,10 +6001,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneObjects:
   - {fileID: 705507993}
-  - {fileID: 6672308126474732643}
-  - {fileID: 339661787}
-  - {fileID: 507433313}
   - {fileID: 2049149375}
+  controlSceneObjects: 1
 --- !u!114 &1134155222 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2200211080816448078, guid: ef3886a9667424aedaa5b3b3e1285dbb,
@@ -6713,9 +6711,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AssemblyViewStepBase, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 1159165791}
+        m_TargetAssemblyTypeName: AssemblyViewStepGasket, Assembly-CSharp
+        m_MethodName: StagingClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6980,9 +6978,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1386212025}
-        m_TargetAssemblyTypeName: AssemblyViewStepBase, Assembly-CSharp
-        m_MethodName: AssemblyClick
+      - m_Target: {fileID: 429128316}
+        m_TargetAssemblyTypeName: AssemblyViewStepRing, Assembly-CSharp
+        m_MethodName: StagingClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7052,7 +7050,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1386212024
 Transform:
   m_ObjectHideFlags: 0
@@ -9843,9 +9841,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1386212025}
-        m_TargetAssemblyTypeName: AssemblyViewStepBase, Assembly-CSharp
-        m_MethodName: AssemblyClick
+      - m_Target: {fileID: 1321203036}
+        m_TargetAssemblyTypeName: AssemblyViewStepLid, Assembly-CSharp
+        m_MethodName: StagingClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

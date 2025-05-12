@@ -1,4 +1,5 @@
 using System;
+using statemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class AssemblyStateStepWheelPlanet3 : BaseState
 {
     // Used to set scene loading on or off
-    private bool keepSceneLoaded = false;
+    // private bool keepSceneLoaded = false;
     
     private const int PartClassID = 4;
     
@@ -39,19 +40,19 @@ public class AssemblyStateStepWheelPlanet3 : BaseState
     
     private void NextClicked()
     {
-        keepSceneLoaded = true;
+        KeepSceneLoaded = true;
         Owner.ChangeState(new AssemblyStateStepCarrier());
     }
 
     private void BackClicked()
     {
-        keepSceneLoaded = true; 
+        KeepSceneLoaded = true; 
         Owner.ChangeState(new AssemblyStateStepWheelPlanet2());
     }
 
     private void StagingClicked()
     {
-        keepSceneLoaded = true;
-        Owner.ChangeState(new StagingState(PartClassID));
+        KeepSceneLoaded = true;
+        Owner.ChangeState(new StagingState(PartClassID, States.AssemblyStepWheelPlanet3));
     }
 }

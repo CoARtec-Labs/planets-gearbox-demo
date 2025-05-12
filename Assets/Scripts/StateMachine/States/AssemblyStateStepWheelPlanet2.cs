@@ -1,4 +1,5 @@
 using System;
+using statemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +11,7 @@ public class AssemblyStateStepWheelPlanet2 : BaseState
     private const int PartClassID = 3;
     
     // Used to set scene loading on or off
-    private bool keepSceneLoaded = false;
+    // private bool keepSceneLoaded = false;
     
     public AssemblyStateStepWheelPlanet2()
     {
@@ -23,7 +24,7 @@ public class AssemblyStateStepWheelPlanet2 : BaseState
 
         AssemblyViewStepWheelPlanet2.OnNextClicked += NextClicked;
         AssemblyViewStepWheelPlanet2.OnBackClicked += BackClicked;
-        AssemblyViewStepWheelPlanet2.OnStagingClicked += BackClicked;
+        AssemblyViewStepWheelPlanet2.OnStagingClicked += StagingClicked;
         AssemblyViewStepWheelPlanet2.Instance.ShowView();
     }
 
@@ -32,27 +33,27 @@ public class AssemblyStateStepWheelPlanet2 : BaseState
         AssemblyViewStepWheelPlanet2.Instance.HideView();
         AssemblyViewStepWheelPlanet2.OnNextClicked -= NextClicked;
         AssemblyViewStepWheelPlanet2.OnBackClicked -= BackClicked;
-        AssemblyViewStepWheelPlanet2.OnStagingClicked -= BackClicked;
+        AssemblyViewStepWheelPlanet2.OnStagingClicked -= StagingClicked;
 
         base.DestroyState();
     }
 
     private void NextClicked()
     {
-        keepSceneLoaded = true;
+        KeepSceneLoaded = true;
         Owner.ChangeState(new AssemblyStateStepWheelPlanet3());
 
     }
 
     private void BackClicked()
     {
-        keepSceneLoaded = true; 
+        KeepSceneLoaded = true; 
         Owner.ChangeState(new AssemblyStateStepWheelPlanet1());
     }
 
     private void StagingClicked()
     {
-        keepSceneLoaded = true;
-        Owner.ChangeState(new StagingState(PartClassID));
+        KeepSceneLoaded = true;
+        Owner.ChangeState(new StagingState(PartClassID, States.AssemblyStepWheelPlanet2));
     }
 }

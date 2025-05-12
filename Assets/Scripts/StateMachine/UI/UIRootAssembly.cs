@@ -20,6 +20,8 @@ public class UIRootAssembly : UIRootSingleton<UIRootAssembly>
     // public AssemblyViewStepLid AssemblyViewStepLid;
     
     public List<GameObject> sceneObjects = new List<GameObject>();
+    
+    public bool controlSceneObjects = true;
 
     /// <summary>
     /// Return array of all (including inactive) views located as children under this UI root object.
@@ -61,11 +63,17 @@ public class UIRootAssembly : UIRootSingleton<UIRootAssembly>
         
         Debug.Log("[UIRootAssembly.cs] Awaking.");
 
-        
-        InitializeViews();
-        DeactivateSceneObjects();
+        if (controlSceneObjects)
+        {
+            InitializeViews();
+            // DeactivateSceneObjects();
+        }
+        else
+        {
+            DeactivateSceneObjects();
+            ActivateSceneObjects();
+        }
 
-        
         // Required for proper creation of GameObjects independent
         // of their activation state before play mode.
         // AssemblyView.gameObject.SetActive(false);

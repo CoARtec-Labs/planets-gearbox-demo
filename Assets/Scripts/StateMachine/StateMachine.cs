@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Text;
-using System.Threading;
-using UnityEditor.Build.Content;
+
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -62,7 +60,7 @@ public class StateMachine : MonoBehaviour
     /// Method used to change state and to (un)load or (de)activate a scene. 
     /// </summary>
     /// <param name="newState">New state to be switched to. In case newState = null is passed, only
-    /// the current state gets destroyed without loading new one.</param>
+    /// the current state gets destroyed without creating and loading new one.</param>
     public void ChangeState(BaseState newState)
     {
         // Only do scene loading and activation if scenes are different
@@ -73,12 +71,16 @@ public class StateMachine : MonoBehaviour
         {
             _currentState.DestroyState();
             
-            if (!isSameScene)
+            if (!isSameScene) // && !_currentState.KeepSceneLoaded)
             {
                 // deactivate scene 
                 DeactivateScene(_currentState.SceneName);
             
                 // unload scene
+                if (_currentState.SceneName == "AssemblySteps")
+                {
+                    SceneManager.UnloadSceneAsync("AssemblySteps");
+                }
             }
         }
 
@@ -91,6 +93,12 @@ public class StateMachine : MonoBehaviour
             if (!isSameScene)
             {
                 // load corresponding scene
+                if (_currentState.SceneName == "AssemblySteps")
+                {
+                    SceneManager.sceneLoaded += SceneLoadedNoUIRootActivation;
+                    SceneManager.LoadScene("AssemblySteps", LoadSceneMode.Additive);
+                    return;
+                }
                 
                 // activate corresponding scene
                 ActivateScene(_currentState.SceneName);
@@ -137,6 +145,15 @@ public class StateMachine : MonoBehaviour
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main"));
     }
 
+    private void SceneLoadedNoUIRootActivation(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= SceneLoadedNoUIRootActivation;
+        SceneManager.SetActiveScene((Scene)SceneManager.GetSceneByName(scene.name));
+        
+        _currentState.PrepareState();
+        _currentState.Owner = this;
+    }
+    
     /// <summary>
     /// Load with callback and activate the given scene depending on loading state.
     /// </summary>
@@ -163,7 +180,7 @@ public class StateMachine : MonoBehaviour
 
     private void StartInitialState()
     {
-        ActivateScene("AssemblySteps");
+        // ActivateScene("AssemblySteps");
         ChangeState(new AssemblyStateStepBase());
     }
     
@@ -173,12 +190,12 @@ public class StateMachine : MonoBehaviour
         LoadingScenesCompleteCallback callback)
     {
         // Do loading sequentially to avoid interference between game objects during loading.
-        var asyncLoadA = SceneManager.LoadSceneAsync(sceneA, LoadSceneMode.Additive);
-        
-        while (!asyncLoadA.isDone)
-        {
-            yield return null;
-        }
+        // var asyncLoadA = SceneManager.LoadSceneAsync(sceneA, LoadSceneMode.Additive);
+        //
+        // while (!asyncLoadA.isDone)
+        // {
+        //     yield return null;
+        // }
         
         var asyncLoadB = SceneManager.LoadSceneAsync(sceneB, LoadSceneMode.Additive);
 

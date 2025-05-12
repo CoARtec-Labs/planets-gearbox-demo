@@ -1,4 +1,5 @@
 using System;
+using statemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +11,7 @@ public class AssemblyStateStepCarrier : BaseState
     private const int PartClassID = 0;
     
     // Used to set scene loading on or off
-    private bool keepSceneLoaded = false;
+    // private bool keepSceneLoaded = false;
     
     public AssemblyStateStepCarrier()
     {
@@ -23,6 +24,7 @@ public class AssemblyStateStepCarrier : BaseState
 
         AssemblyViewStepCarrier.OnNextClicked += NextClicked;
         AssemblyViewStepCarrier.OnBackClicked += BackClicked;
+        AssemblyViewStepCarrier.OnStagingClicked += StagingClicked;
         AssemblyViewStepCarrier.Instance.ShowView();
     }
 
@@ -31,6 +33,7 @@ public class AssemblyStateStepCarrier : BaseState
         AssemblyViewStepCarrier.Instance.HideView();
         AssemblyViewStepCarrier.OnNextClicked -= NextClicked;
         AssemblyViewStepCarrier.OnBackClicked -= BackClicked;
+        AssemblyViewStepCarrier.OnStagingClicked -= StagingClicked;
         
         base.DestroyState();
     }
@@ -40,20 +43,20 @@ public class AssemblyStateStepCarrier : BaseState
     /// </summary>
     private void NextClicked()
     {
-        keepSceneLoaded = true;
+        KeepSceneLoaded = true;
         Owner.ChangeState(new AssemblyStateStepGasket());
 
     }
 
     private void BackClicked()
     {
-        keepSceneLoaded = true; 
+        KeepSceneLoaded = true; 
         Owner.ChangeState(new AssemblyStateStepWheelPlanet3());
     }
 
     private void StagingClicked()
     {
-        keepSceneLoaded = true;
-        Owner.ChangeState(new StagingState(PartClassID));
+        KeepSceneLoaded = true;
+        Owner.ChangeState(new StagingState(PartClassID, States.AssemblyStepCarrier));
     }
 }

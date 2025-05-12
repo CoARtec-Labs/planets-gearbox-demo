@@ -9,6 +9,7 @@ public abstract class BaseState
     // public String _sceneName;
     // public String SceneName => _sceneName;
     public String SceneName { get; protected set; }
+    public bool KeepSceneLoaded = false;
     
     // Reference to our state machine.
     public StateMachine Owner;

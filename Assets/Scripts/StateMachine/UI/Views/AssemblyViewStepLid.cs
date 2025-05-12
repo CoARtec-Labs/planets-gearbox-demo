@@ -9,6 +9,7 @@ public class AssemblyViewStepLid : BaseViewSingleton<AssemblyViewStepLid>
     // Events to attach to.
     // public static UnityAction OnStagingClicked;
     public static UnityAction OnBackClicked;
+    public static UnityAction OnStagingClicked;
 
     // public GameObject InstructionsCanvas;
 
@@ -34,6 +35,10 @@ public class AssemblyViewStepLid : BaseViewSingleton<AssemblyViewStepLid>
     public void BackClick()
     {
         OnBackClicked?.Invoke();
+    }
+    public void StagingClick()
+    {
+        OnStagingClicked?.Invoke();
     }
 
 }
