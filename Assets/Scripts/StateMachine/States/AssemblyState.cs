@@ -22,7 +22,7 @@ public class AssemblyState : BaseState
         AssemblyView.OnStagingClicked += StagingClicked;
         AssemblyView.OnStepBaseClicked += StepBaseClicked;
 
-        StateMachine.LoadScene(sceneName, SceneLoadedCallback);
+        //StateMachine.LoadScene(sceneName, SceneLoadedCallback);
     }
 
     public override void DestroyState()

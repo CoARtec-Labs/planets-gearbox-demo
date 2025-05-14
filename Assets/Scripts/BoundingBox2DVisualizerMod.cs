@@ -297,7 +297,12 @@ namespace coartec.BBox2DToolkit
             label.text = $"{bboxInfo.label}: {(bboxInfo.bbox.prob * 100).ToString("0.##")}%";
             // label.rectTransform.localPosition = new Vector2(bboxInfo.bbox.x0, bboxInfo.bbox.y0 - label.preferredHeight);
             label.rectTransform.localPosition = new Vector2(bboxInfo.bbox.x0, bboxInfo.bbox.y0);
-            label.rectTransform.localRotation = Quaternion.Euler(0, 180, -90);
+            label.rectTransform.localRotation = Quaternion.Euler(180, 0, -90);
+            // label.rectTransform.localRotation = Quaternion.Euler(0, 0, -90);
+            
+            label.rectTransform.pivot = new Vector2(0, 1);
+            // label.GetComponent<TextMesh>().anchor = TextAnchor.UpperLeft;
+            // label.TextMesh = TextAnchor.UpperLeft;
 
             // Set the label color based on the grayscale value of the bounding box color
             Color color = GetColorWithTransparency(bboxInfo.color);
@@ -307,7 +312,12 @@ namespace coartec.BBox2DToolkit
             // labelBackground.rectTransform.localPosition = new Vector2(bboxInfo.bbox.x0, bboxInfo.bbox.y0 - label.preferredHeight);
             labelBackground.rectTransform.localPosition = new Vector2(bboxInfo.bbox.x0, bboxInfo.bbox.y0);
             labelBackground.rectTransform.sizeDelta = new Vector2(Mathf.Max(label.preferredWidth, bboxInfo.bbox.width), label.preferredHeight);
-            labelBackground.rectTransform.localRotation = Quaternion.Euler(0, 180, -90);
+            // labelBackground.rectTransform.sizeDelta = new Vector2(0.5f, 0.5f);
+
+            labelBackground.rectTransform.pivot = new Vector2(0, 1);
+
+            labelBackground.rectTransform.localRotation = Quaternion.Euler(180, 0, -90);
+            // labelBackground.rectTransform.localRotation = Quaternion.Euler(0, 0, -90);
 
             // Set the label background color with the specified transparency
             labelBackground.color = color;

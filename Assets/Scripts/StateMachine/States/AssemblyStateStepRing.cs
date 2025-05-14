@@ -10,7 +10,7 @@ public class AssemblyStateStepRing : BaseState
 {
     // Used to set scene loading on or off
     // private bool keepSceneLoaded = false;
-    private const int PartClassID = 1;
+    private const int PartClassID = -1;
     
     public AssemblyStateStepRing()
     {

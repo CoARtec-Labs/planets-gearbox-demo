@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class AssemblyStateStepWheelSun : BaseState
 {
-    private const int PartClassID = 1;
+    private const int PartClassID = 0;
 
     public AssemblyStateStepWheelSun()
     {

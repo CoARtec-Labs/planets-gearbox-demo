@@ -107,7 +107,9 @@ namespace coartec
                     new BBox2D(bbox.x0, bbox.y0, bbox.width, bbox.height, bbox.index, bbox.prob)))
                 .ToArray();
             
-            Vector2Int imageDims = new Vector2Int(imageTexture.width, imageTexture.height);
+            // Vector2Int imageDims = new Vector2Int(imageTexture.width, imageTexture.height);
+            
+            Vector2Int imageDims = new Vector2Int(imageTexture.height, imageTexture.width);
             
             UpdateBBoxDimensions(imageDims);
             UpdateBBoxColors();
@@ -126,14 +128,20 @@ namespace coartec
             bool mirrorScreen = imageDisplay.transform.localScale.z == -1;
 
             // Get the screen dimensions
-            Vector2 screenDims = new Vector2(imageDisplay.transform.localScale.x,
-                imageDisplay.transform.localScale.y);
+            // Vector2 screenDims = new Vector2(imageDisplay.transform.localScale.x,
+            //     imageDisplay.transform.localScale.y);
+            
+            Vector2 screenDims = new Vector2(imageDisplay.transform.localScale.y,
+                imageDisplay.transform.localScale.x);
 
             Vector2Int targetDims = new Vector2Int(yoloDetector.ImageWidth,
                 yoloDetector.ImageHeight);
 
-            var imageDims = new Vector2Int(imageDisplay.material.mainTexture.width,
-                imageDisplay.material.mainTexture.height);
+            // var imageDims = new Vector2Int(imageDisplay.material.mainTexture.width,
+            //     imageDisplay.material.mainTexture.height);
+            
+            var imageDims = new Vector2Int(imageDisplay.material.mainTexture.height,
+                imageDisplay.material.mainTexture.width);
 
             var offset = (imageDims - targetDims) / 2;
 
@@ -165,8 +173,11 @@ namespace coartec
             bool mirrorScreen = imageDisplay.transform.localScale.z == -1;
 
             // Get the screen dimensions
-            Vector2 screenDims = new Vector2(imageDisplay.transform.localScale.x, 
-                imageDisplay.transform.localScale.y);
+            // Vector2 screenDims = new Vector2(imageDisplay.transform.localScale.x, 
+            //     imageDisplay.transform.localScale.y);
+            
+            Vector2 screenDims = new Vector2(imageDisplay.transform.localScale.y, 
+                imageDisplay.transform.localScale.x);
             
             Vector2Int targetDims = new Vector2Int(yoloDetector.ImageWidth, 
                 yoloDetector.ImageHeight);

@@ -370,6 +370,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &561788177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 561788178}
+  m_Layer: 5
+  m_Name: DetectionsRotated
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &561788178
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561788177}
+  m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2043188368}
+  m_Father: {fileID: 1937529762}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: -90}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 750, y: 1334}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &748091415
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,6 +981,7 @@ MonoBehaviour:
   maxFrameRate: 500
   useWebcam: 1
   useDisplayMirror: 1
+  useDisplayRotation: 1
   webcamDims: {x: 750, y: 1334}
   webcamFrameRate: 9
   toggleKey: 32
@@ -1202,7 +1239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ebb764d4a4a4ff6ae884a7d182de96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateRateMultiplier: 100
+  updateRateMultiplier: 50
   detector: {fileID: 1926432462}
 --- !u!4 &1873576646
 Transform:
@@ -1484,7 +1521,7 @@ RectTransform:
   m_Children:
   - {fileID: 1922057981}
   - {fileID: 1443473456}
-  - {fileID: 2043188368}
+  - {fileID: 561788178}
   - {fileID: 256180742}
   m_Father: {fileID: 1926432461}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1586,7 +1623,7 @@ RectTransform:
   m_Children:
   - {fileID: 1110775526}
   - {fileID: 427028060}
-  m_Father: {fileID: 1937529762}
+  m_Father: {fileID: 561788178}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

@@ -9,16 +9,13 @@ using UnityEngine.SceneManagement;
 // https://www.patrykgalach.com/2019/03/18/design-pattern-state-machine/
 
 /// <summary>
-/// State Machine implementation.
-/// Kepps track of the currently active state and coordinates state transitions.
+/// State Machine keeps track of the currently active state and coordinates state transitions across scenes.
+/// This class uses references to UIRoots in respective scenes for activation control.
+/// These components are implemented as singletons in order work across scene boundaries. 
 /// </summary>
 public class StateMachine : MonoBehaviour
 {
-    // Reference to UI root that hold references to all views in a scene.
-    // These singletons can be used to 
-    // This access is only available for views living in the same scene.
-    // Views from other scenes must be accessed through the static interfaces
-    // defined in each individual view.
+    // UIRoot references:
     
     // [SerializeField]
     // private UIRootAssembly uiAssembly;
@@ -28,7 +25,7 @@ public class StateMachine : MonoBehaviour
     // private UIRootStaging uiStaging;
     // public UIRootStaging UIStaging => uiStaging;    
     
-    public static int currentStepID=-1;
+    public static int currentStepID = -1;
 
     // Reference to currently operating state.
     private BaseState _currentState;
@@ -44,7 +41,7 @@ public class StateMachine : MonoBehaviour
     }
 
     /// <summary>
-    /// This allows states to perform frame updates.
+    /// Calls the update function of the current state. This allows also states to perform frame updates.
     /// </summary>
     private void Update()
     {
@@ -57,7 +54,7 @@ public class StateMachine : MonoBehaviour
     }
 
     /// <summary>
-    /// Method used to change state and to (un)load or (de)activate a scene. 
+    /// Public method to change state and to (un)load or (de)activate a scene. 
     /// </summary>
     /// <param name="newState">New state to be switched to. In case newState = null is passed, only
     /// the current state gets destroyed without creating and loading new one.</param>
@@ -155,11 +152,11 @@ public class StateMachine : MonoBehaviour
     }
     
     /// <summary>
-    /// Load with callback and activate the given scene depending on loading state.
+    /// Load scene with callback if not yet loaded.
     /// </summary>
     /// <param name="sceneName">The name of scene to be loaded.</param>
     /// <param name="callback">The function to be called after loading completed.</param>
-    public static void LoadScene(String sceneName, UnityAction<Scene, LoadSceneMode> callback)
+    private static void LoadScene(String sceneName, UnityAction<Scene, LoadSceneMode> callback)
     {
         Scene scene = SceneManager.GetSceneByName(sceneName);
 
