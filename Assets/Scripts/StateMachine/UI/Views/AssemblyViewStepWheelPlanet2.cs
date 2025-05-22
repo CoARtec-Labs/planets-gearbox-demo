@@ -18,6 +18,7 @@ public class AssemblyViewStepWheelPlanet2 : BaseViewSingleton<AssemblyViewStepWh
 
     public void OnEnable()
     {
+        // TODO Add reference-destroyed checks ( == null) here and at other Views.
         planet2.SetActive(true);
     }
 

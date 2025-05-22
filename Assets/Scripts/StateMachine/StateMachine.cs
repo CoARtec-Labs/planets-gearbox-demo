@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// State Machine keeps track of the currently active state and coordinates state transitions across scenes.
 /// This class uses references to UIRoots in respective scenes for activation control.
-/// These components are implemented as singletons in order work across scene boundaries. 
+/// These components are implemented as singletons in order to work across scene boundaries. 
 /// </summary>
 public class StateMachine : MonoBehaviour
 {
@@ -31,13 +31,14 @@ public class StateMachine : MonoBehaviour
     private BaseState _currentState;
     
     /// <summary>
-    /// Load all scenes, activate initial scene and load initial state. This is the entry point to
+    /// Load scenes, activate initial scene and load initial state. This is the entry point to
     /// the StateMachine's states. Scene loading runs in background, everything else runs in callback after
     /// scene loading has completed.
     /// </summary>
     private void Start()
     {
-        StartCoroutine(LoadScenesBlocking("AssemblySteps", "PartsDetection", StartInitialState));
+        // StartCoroutine(LoadMultiScenesBlocking("AssemblySteps", "PartsDetection", StartInitialState));
+        StartCoroutine(LoadSingleSceneBlocking("AssemblySteps", StartInitialState));
     }
 
     /// <summary>
@@ -61,22 +62,22 @@ public class StateMachine : MonoBehaviour
     public void ChangeState(BaseState newState)
     {
         // Only do scene loading and activation if scenes are different
-        bool isSameScene = _currentState?.SceneName == newState?.SceneName;
+        var isSameScene = _currentState?.SceneName == newState?.SceneName;
         
-        // If we currently have state, we need to destroy it!
+        // If we currently have state, we need to destroy it.
         if (_currentState != null)
         {
             _currentState.DestroyState();
             
-            if (!isSameScene) // && !_currentState.KeepSceneLoaded)
+            if (!isSameScene)
             {
                 // deactivate scene 
                 DeactivateScene(_currentState.SceneName);
             
                 // unload scene
-                if (_currentState.SceneName == "AssemblySteps")
+                if (!_currentState.KeepSceneLoaded)
                 {
-                    SceneManager.UnloadSceneAsync("AssemblySteps");
+                    SceneManager.UnloadSceneAsync(_currentState.SceneName);
                 }
             }
         }
@@ -90,10 +91,10 @@ public class StateMachine : MonoBehaviour
             if (!isSameScene)
             {
                 // load corresponding scene
-                if (_currentState.SceneName == "AssemblySteps")
+                if (!IsSceneLoaded(_currentState.SceneName))
                 {
-                    SceneManager.sceneLoaded += SceneLoadedNoUIRootActivation;
-                    SceneManager.LoadScene("AssemblySteps", LoadSceneMode.Additive);
+                    SceneManager.sceneLoaded += SceneLoadedActivation;
+                    SceneManager.LoadScene(_currentState.SceneName, LoadSceneMode.Additive);
                     return;
                 }
                 
@@ -108,17 +109,18 @@ public class StateMachine : MonoBehaviour
 
     private void ActivateScene(String sceneName)
     {
-        if (sceneName == "AssemblySteps")
+        switch (sceneName)
         {
-            UIRootAssembly.Instance.ActivateSceneObjects();
-        }
-        else if (sceneName == "PartsDetection")
-        {
-            UIRootStaging.Instance.ActivateSceneObjects();
-        }
-        else
-        {
-            throw new System.ArgumentException("Unknown Scene");
+            case "AssemblySteps":
+                UIRootAssembly.Instance.ActivateSceneObjects();
+                break;
+
+            case "PartsDetection":
+                UIRootStaging.Instance.ActivateSceneObjects();
+                break;
+
+            default:
+                throw new System.ArgumentException("Unknown Scene");
         }
         
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
@@ -126,73 +128,55 @@ public class StateMachine : MonoBehaviour
     
     private void DeactivateScene(String sceneName)
     {
-        if (sceneName == "AssemblySteps")
+        switch (sceneName)
         {
-            UIRootAssembly.Instance.DeactivateSceneObjects();
-        }
-        else if (sceneName == "PartsDetection")
-        {
-            UIRootStaging.Instance.DeactivateSceneObjects();
-        }
-        else
-        {
-            throw new System.ArgumentException("Unknown Scene");
+            case "AssemblySteps":
+                UIRootAssembly.Instance.DeactivateSceneObjects();
+                break;
+
+            case "PartsDetection":
+                UIRootStaging.Instance.DeactivateSceneObjects();
+                break;
+
+            default:
+                throw new System.ArgumentException("Unknown Scene");
         }
         
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main"));
     }
 
-    private void SceneLoadedNoUIRootActivation(Scene scene, LoadSceneMode mode)
+    private static bool IsSceneLoaded(string sceneName)
     {
-        SceneManager.sceneLoaded -= SceneLoadedNoUIRootActivation;
-        SceneManager.SetActiveScene((Scene)SceneManager.GetSceneByName(scene.name));
+        return SceneManager.GetSceneByName(sceneName).IsValid();
+    }
+    
+    private void SceneLoadedActivation(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= SceneLoadedActivation;
+        
+        ActivateScene(scene.name);
         
         _currentState.PrepareState();
         _currentState.Owner = this;
     }
-    
-    /// <summary>
-    /// Load scene with callback if not yet loaded.
-    /// </summary>
-    /// <param name="sceneName">The name of scene to be loaded.</param>
-    /// <param name="callback">The function to be called after loading completed.</param>
-    private static void LoadScene(String sceneName, UnityAction<Scene, LoadSceneMode> callback)
-    {
-        Scene scene = SceneManager.GetSceneByName(sceneName);
-
-        if (scene.IsValid())
-        {
-            Debug.Log($"[StateMachine.cs] Scene {sceneName} already loaded.");
-
-            callback(scene, LoadSceneMode.Additive); // TODO: parameters not really needed here
-        }
-        else
-        {
-            Debug.Log($"[StateMachine.cs] Loading scene {sceneName}.");
-
-            SceneManager.sceneLoaded += callback;
-            SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
-        }
-    }
 
     private void StartInitialState()
     {
-        // ActivateScene("AssemblySteps");
         ChangeState(new AssemblyStateStepBase());
     }
     
     private delegate void LoadingScenesCompleteCallback();
     
-    private static IEnumerator LoadScenesBlocking (string sceneA, string sceneB, 
+    private static IEnumerator LoadMultiScenesBlocking (string sceneA, string sceneB, 
         LoadingScenesCompleteCallback callback)
     {
         // Do loading sequentially to avoid interference between game objects during loading.
-        // var asyncLoadA = SceneManager.LoadSceneAsync(sceneA, LoadSceneMode.Additive);
-        //
-        // while (!asyncLoadA.isDone)
-        // {
-        //     yield return null;
-        // }
+        var asyncLoadA = SceneManager.LoadSceneAsync(sceneA, LoadSceneMode.Additive);
+        
+        while (!asyncLoadA.isDone)
+        {
+            yield return null;
+        }
         
         var asyncLoadB = SceneManager.LoadSceneAsync(sceneB, LoadSceneMode.Additive);
 
@@ -202,6 +186,20 @@ public class StateMachine : MonoBehaviour
         }
         
         Debug.Log(($"Loading {sceneA}, {sceneB} done."));
+
+        callback();
+    }
+    
+    private static IEnumerator LoadSingleSceneBlocking (string scene, LoadingScenesCompleteCallback callback)
+    {
+        var asyncLoad = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+        
+        Debug.Log(($"Loading {scene} done."));
 
         callback();
     }

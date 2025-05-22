@@ -13,10 +13,6 @@ public class AssemblyViewStepWheelPlanet1 : BaseViewSingleton<AssemblyViewStepWh
     public static UnityAction OnStagingClicked;
 
     // public GameObject InstructionsCanvas;
-
-    /// <summary>
-    /// Method for staging button.
-    /// </summary>
     
     public GameObject planet1;
 
@@ -26,12 +22,14 @@ public class AssemblyViewStepWheelPlanet1 : BaseViewSingleton<AssemblyViewStepWh
 
     public void OnEnable()
     {
-        planet1.SetActive(true);
+        if (planet1 != null)
+            planet1.SetActive(true);
     }
 
     public void OnDisable()
     {
-        planet1.SetActive(false);
+        if (planet1 != null)
+            planet1.SetActive(false);
     }
     
     public void NextClick()

@@ -20,10 +20,6 @@ public class AssemblyViewStepWheelPlanet3 : BaseViewSingleton<AssemblyViewStepWh
     
     public GameObject planet3;
 
-    public void ShowViewWithMesh() 
-    {
-    }
-
     public void OnEnable()
     {
         planet3.SetActive(true);
@@ -33,6 +29,7 @@ public class AssemblyViewStepWheelPlanet3 : BaseViewSingleton<AssemblyViewStepWh
     {
         planet3.SetActive(false);
     }
+    
     public void NextClick()
     {
         OnNextClicked?.Invoke();

@@ -18,12 +18,14 @@ public class AssemblyViewStepGasket : BaseViewSingleton<AssemblyViewStepGasket>
     
     public void OnEnable()
     {
-        gasket.SetActive(true);
+        if (gasket != null)
+            gasket.SetActive(true);
     }
 
     public void OnDisable()
     {
-        gasket.SetActive(false);
+        if (gasket != null)
+            gasket.SetActive(false);
     }
     
     public void NextClick()

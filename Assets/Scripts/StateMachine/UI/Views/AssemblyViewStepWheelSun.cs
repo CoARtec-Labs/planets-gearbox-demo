@@ -22,11 +22,14 @@ public class AssemblyViewStepWheelSun : BaseViewSingleton<AssemblyViewStepWheelS
 
     public void OnEnable()
     {
-        sun.SetActive(true);
+        if (sun != null)
+            sun.SetActive(true);
+        
     }
     public void OnDisable()
     {
-        sun.SetActive(false);
+        if (sun != null)
+            sun.SetActive(false);
     }
     
     public void NextClick()

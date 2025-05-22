@@ -26,12 +26,14 @@ public class AssemblyViewStepCarrier : BaseViewSingleton<AssemblyViewStepCarrier
 
     public void OnEnable()
     {
-        carrier.SetActive(true);
+        if (carrier != null)
+            carrier.SetActive(true);
     }
 
     public void OnDisable()
     {
-        carrier.SetActive(false);
+        if (carrier != null)
+            carrier.SetActive(false);
     }
     
     public void NextClick()

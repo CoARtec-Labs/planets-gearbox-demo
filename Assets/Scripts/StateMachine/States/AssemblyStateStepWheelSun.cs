@@ -56,7 +56,7 @@ public class AssemblyStateStepWheelSun : BaseState
 
     private void StagingClicked()
     {
-        KeepSceneLoaded = true;
+        KeepSceneLoaded = false;
         Owner.ChangeState(new StagingState(PartClassID, States.AssemblyStepWheelSun));
     }
 

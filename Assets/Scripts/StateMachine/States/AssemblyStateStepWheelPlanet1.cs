@@ -53,7 +53,7 @@ public class AssemblyStateStepWheelPlanet1 : BaseState
     
     private void StagingClicked()
     {
-        KeepSceneLoaded = true;
+        KeepSceneLoaded = false;
         Owner.ChangeState(new StagingState(PartClassID, States.AssemblyStepWheelPlanet1));
     }
     

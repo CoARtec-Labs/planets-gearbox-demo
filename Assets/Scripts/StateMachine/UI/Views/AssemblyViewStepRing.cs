@@ -8,7 +8,6 @@ using UnityEngine.Events;
 public class AssemblyViewStepRing : BaseViewSingleton<AssemblyViewStepRing>
 {
     // Events to attach to.
-    // public static UnityAction OnStagingClicked;
     public static UnityAction OnNextClicked;
     public static UnityAction OnBackClicked;
     public static UnityAction OnStagingClicked;
@@ -20,12 +19,14 @@ public class AssemblyViewStepRing : BaseViewSingleton<AssemblyViewStepRing>
     public void OnEnable()
     {
         Debug.Log($"View step ring: OnEnable()");
-        ring.SetActive(true);
+        if (ring != null)
+            ring.SetActive(true);
     }
     public void OnDisable()
     {
         Debug.Log($"View step ring: OnDisable()");
-        ring.SetActive(false);
+        if (ring != null)
+            ring.SetActive(false);
     }
 
     public void NextClick()

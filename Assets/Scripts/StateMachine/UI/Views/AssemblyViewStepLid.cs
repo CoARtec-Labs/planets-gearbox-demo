@@ -25,12 +25,14 @@ public class AssemblyViewStepLid : BaseViewSingleton<AssemblyViewStepLid>
 
     public void OnEnable()
     {
-        lid.SetActive(true);
+        if (lid != null)
+            lid.SetActive(true);
     }
 
     public void OnDisable()
     {
-        lid.SetActive(false);
+        if (lid != null)
+            lid.SetActive(false);
     }
     public void BackClick()
     {

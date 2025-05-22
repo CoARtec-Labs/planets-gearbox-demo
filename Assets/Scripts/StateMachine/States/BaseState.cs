@@ -1,8 +1,9 @@
 ﻿using System;
 
 /// <summary>
-/// This is base state script implementation.
-/// StateMachine uses these virtual methods to call state when it needs to prepare itself for operating, updating or even being destroyed.
+/// This is the base state script implementation. StateMachine uses these
+/// virtual methods to call the state when it needs to prepare itself for
+/// operating, updating or even being destroyed.
 /// </summary>
 public abstract class BaseState
 {

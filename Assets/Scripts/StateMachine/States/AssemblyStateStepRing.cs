@@ -36,10 +36,7 @@ public class AssemblyStateStepRing : BaseState
         
         base.DestroyState();
     }
-
-    /// <summary>
-    /// Function called when staging button was clicked.
-    /// </summary>
+    
     private void NextClicked()
     {
         KeepSceneLoaded = true;
@@ -54,7 +51,7 @@ public class AssemblyStateStepRing : BaseState
     
     private void StagingClicked()
     {
-        KeepSceneLoaded = true;
+        KeepSceneLoaded = false;
         Owner.ChangeState(new StagingState(PartClassID, States.AssemblyStepRing));
     }
 

@@ -54,7 +54,7 @@ public class StagingState : BaseState
     {
         Debug.Log("[StagingState.cs] assembly clicked.");
 
-        KeepSceneLoaded = false;
+        KeepSceneLoaded = true;
         
         if (_returningState == States.NONE)
         {

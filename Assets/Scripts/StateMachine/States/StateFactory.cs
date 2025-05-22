@@ -28,7 +28,7 @@ namespace statemachine
         }
 
         /// <summary>
-        /// Create a new state instance based on given state.
+        /// Create a new state instance based on given state name.
         /// </summary>
         /// <param name="stateName">State name as string.</param>
         /// <returns></returns>
@@ -41,7 +41,7 @@ namespace statemachine
         }
 
         /// <summary>
-        /// Create a new state instance based on given state name.
+        /// Create a new state instance based on given state.
         /// </summary>
         /// <param name="state">State as enum.</param>
         /// <returns></returns>
