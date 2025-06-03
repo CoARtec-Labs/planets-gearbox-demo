@@ -1,9 +1,8 @@
 {
   "dependencies": {
-    "coartec.unity-media-display": "file:../../barracuda-yolo-testbed/Packages/coartec.unity-media-display",
     "coartec.deep-learning-image-preprocessor": "file:../../barracuda-yolo-testbed/Packages/coartec.deep-learning-image-preprocessor",
+    "coartec.unity-media-display": "file:../../barracuda-yolo-testbed/Packages/coartec.unity-media-display",
     "coartec.yolo-interface": "file:../../barracuda-yolo-testbed/Packages/coartec.yolo-interface",
-    "com.cj-mills.bounding-box-2d-toolkit": "https://github.com/cj-mills/bounding-box-2d-toolkit.git",
     "com.unity.barracuda": "3.0.0",
     "com.unity.feature.ar": "1.0.1",
     "com.unity.feature.development": "1.0.1",

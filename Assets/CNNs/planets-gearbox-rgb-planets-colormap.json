@@ -1,0 +1,28 @@
+{
+    "items": [
+        {
+            "label": "planet-red",
+            "color": [
+                0.0,
+                1.0,
+                0.0
+            ]
+        },
+        {
+            "label": "planet-blue",
+            "color": [
+                1.0,
+                0.0,
+                1.0
+            ]
+        },
+        {
+            "label": "planet-green",
+            "color": [
+                0.0,
+                0.5,
+                1.0
+            ]
+        }
+    ]
+}

@@ -82,7 +82,6 @@ namespace statemachine
                 default:
                     SystemException e = new SystemException("Unknown state " + state);
                     return null; // TODO: probably unnecessary here
-                    break;
             }
         }
         

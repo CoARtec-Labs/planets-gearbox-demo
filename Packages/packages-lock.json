@@ -20,15 +20,6 @@
         "com.unity.barracuda": "3.0.0"
       }
     },
-    "com.cj-mills.bounding-box-2d-toolkit": {
-      "version": "https://github.com/cj-mills/bounding-box-2d-toolkit.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.unity.textmeshpro": "3.0.6"
-      },
-      "hash": "439b7d86b068eabbae2a8de3d535f44593c789db"
-    },
     "com.unity.barracuda": {
       "version": "3.0.0",
       "depth": 0,

@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
-using coartec;
+using UnityEngine;
+using UnityEngine.Serialization;
+
+using coartec.detection;
 using coartec.BBox2DToolkit;
 using coartec.MediaDisplay;
-using UnityEngine.Serialization;
 
 namespace coartec 
 {
@@ -40,7 +41,7 @@ namespace coartec
         // List to store label and color pairs for each class
         private List<(string, Color)> _colormapList = new List<(string, Color)>();
         
-        private BoundingBox2DVisualizerMod _bBoxVisualizer;
+        private BBox2DVisualizer _bBoxVisualizer;
         
         private BBox2D[] _bBoxDetections = null;
         private BBox2DInfo[] _bBoxInfoDetections = null;
@@ -49,10 +50,10 @@ namespace coartec
         private void Awake()
         {
             Debug.Log("Set up references to BoundingBox2DVisualizer");
-            _bBoxVisualizer = GetComponent<BoundingBox2DVisualizerMod>();
+            _bBoxVisualizer = GetComponent<BBox2DVisualizer>();
             
             if (_bBoxVisualizer == null)
-                throw new System.ArgumentNullException("BoundingBox2DVisualizer not found.");
+                throw new System.ArgumentNullException("BBox2DVisualizer not found.");
         }
 
         private void Start()
@@ -145,7 +146,7 @@ namespace coartec
 
             var offset = (imageDims - targetDims) / 2;
 
-            BBox2D bbox = BBox2DUtility.ScaleBoundingBox(
+            BBox2D bbox = BBox2DUtility.ScaleAndMirror(
                 new BBox2D(0, 0, 320, 320, -1, 0),
                 imageDims, screenDims, offset, mirrorScreen);
 
@@ -184,14 +185,21 @@ namespace coartec
             
             var offset = (imageDims - targetDims) / 2;
 
-            // offset.x = 0;
-            // offset.y = 0;
-
+            bool rotateLeft = this.imageDisplay.GetComponentInParent<DemoScreenManager>().useDisplayRotation;
+            
             // Scale and position the bounding boxes based on the input and screen dimensions
             for (int i = 0; i < _bBoxInfoDetections.Length; i++)
             {
-                _bBoxInfoDetections[i].bbox = BBox2DUtility.ScaleBoundingBox(
-                    _bBoxInfoDetections[i].bbox, imageDims, screenDims, offset, mirrorScreen);
+                if (rotateLeft)
+                {
+                    _bBoxInfoDetections[i].bbox = BBox2DUtility.ScaleAndMirror(BBox2DUtility.RotateLeft(
+                        _bBoxInfoDetections[i].bbox, targetDims), imageDims, screenDims, offset, mirrorScreen);
+                }
+                else
+                {
+                    _bBoxInfoDetections[i].bbox = BBox2DUtility.ScaleAndMirror(
+                        _bBoxInfoDetections[i].bbox, imageDims, screenDims, offset, mirrorScreen);
+                }
             }
         }
         

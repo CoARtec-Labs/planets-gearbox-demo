@@ -22,10 +22,7 @@ public class DemoScreenManager : BaseScreenManager
 
     private void OnEnable()
     {
-        Debug.Log("[DemoScreenManager.cs] OnEnable()");
-        
         base.OnEnable();
-        
         UpdateDisplay();
     }
     
