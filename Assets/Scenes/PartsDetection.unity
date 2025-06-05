@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &215243135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215243134}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cd6d6b5d438b411884f891b107d90ce, type: 3}
   m_Name: 
@@ -491,7 +491,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1926432461}
     m_Modifications:
     - target: {fileID: 295141784707593429, guid: af9915ec1f1c6493ba96735462204bea,
         type: 3}
@@ -516,17 +516,17 @@ PrefabInstance:
     - target: {fileID: 295141784707593429, guid: af9915ec1f1c6493ba96735462204bea,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 295141784707593429, guid: af9915ec1f1c6493ba96735462204bea,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 295141784707593429, guid: af9915ec1f1c6493ba96735462204bea,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 295141784707593429, guid: af9915ec1f1c6493ba96735462204bea,
         type: 3}
@@ -575,15 +575,15 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 988312129}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988312131}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 263dd6da6112b4987b2e4e8951aab2ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &988312131 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1723711092818191622, guid: af9915ec1f1c6493ba96735462204bea,
+--- !u!4 &988312132 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 295141784707593429, guid: af9915ec1f1c6493ba96735462204bea,
     type: 3}
   m_PrefabInstance: {fileID: 988312129}
   m_PrefabAsset: {fileID: 0}
@@ -686,10 +686,10 @@ MonoBehaviour:
   screenObject: {fileID: 1381660401}
   cameraObject: {fileID: 1836905657}
   testTexture: {fileID: 2800000, guid: 53d757cea65144f7a951ba73e71e625a, type: 3}
-  maxFrameRate: 500
+  maxFrameRate: 60
   useWebcam: 1
-  useDisplayMirror: 0
-  useDisplayLeftRotate: 0
+  useDisplayMirror: 1
+  useDisplayLeftRotate: 1
   webcamDims: {x: 750, y: 1334}
   webcamFrameRate: 9
   toggleKey: 32
@@ -952,7 +952,6 @@ MonoBehaviour:
   - {fileID: 1836905657}
   - {fileID: 964836935}
   - {fileID: 510136977}
-  - {fileID: 988312131}
   - {fileID: 1926432459}
   activateScene: 0
 --- !u!4 &1920721547
@@ -1002,8 +1001,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1937529762}
+  - {fileID: 988312132}
   - {fileID: 1381660405}
+  - {fileID: 1937529762}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1926432464
@@ -1018,6 +1018,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f59016f39fedd4474abd14e78348c5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swapBBoxAxisX: 1
+  swapBBoxAxisY: 1
   imageScreen: {fileID: 1381660403}
   yoloDetector: {fileID: 988312130}
   bBoxVisualizer: {fileID: 1958047213}
@@ -1282,6 +1284,5 @@ SceneRoots:
   - {fileID: 1836905660}
   - {fileID: 964836937}
   - {fileID: 510136980}
-  - {fileID: 988312129}
   - {fileID: 1926432461}
   - {fileID: 1920721547}
