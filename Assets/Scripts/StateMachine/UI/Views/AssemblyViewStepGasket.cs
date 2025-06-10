@@ -16,10 +16,16 @@ public class AssemblyViewStepGasket : BaseViewSingleton<AssemblyViewStepGasket>
     
     public GameObject gasket;
     
+    private const string Title = "Gasket";
+    private const string Description = 
+        "Platzieren Sie die Dichtung (Gasket) auf dem Gehäuseflasch.";
+
     public void OnEnable()
     {
         if (gasket != null)
             gasket.SetActive(true);
+        
+        InitializeMenu(Title, Description);
     }
 
     public void OnDisable()

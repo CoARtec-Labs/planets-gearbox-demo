@@ -16,14 +16,16 @@ public class AssemblyViewStepWheelPlanet1 : BaseViewSingleton<AssemblyViewStepWh
     
     public GameObject planet1;
 
-    public void ShowViewWithMesh() 
-    {
-    }
+    private const string Title = "Planet 1";
+    private const string Description = 
+        "Platzieren Sie das erste Zahnrad auf der rechten oberen Seite der Sun.";
 
     public void OnEnable()
     {
         if (planet1 != null)
             planet1.SetActive(true);
+        
+        InitializeMenu(Title, Description);
     }
 
     public void OnDisable()

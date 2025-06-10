@@ -1,4 +1,6 @@
 ﻿using System;
+using TMPro;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,13 +17,27 @@ public class AssemblyViewStepRing : BaseViewSingleton<AssemblyViewStepRing>
     // public GameObject InstructionsCanvas;
     
     public GameObject ring;
+
+    private const string Title = "Ring";
+    private const string Description = 
+        "Platzieren Sie den Ring auf der Arbeitsstation.";
+    
+    public void Awake()
+    {
+        base.Awake();
+        
+        // transform.GetComponentsInChildren<BaseView>(true);
+    }
     
     public void OnEnable()
     {
         Debug.Log($"View step ring: OnEnable()");
         if (ring != null)
             ring.SetActive(true);
+        
+        InitializeMenu(Title, Description);
     }
+    
     public void OnDisable()
     {
         Debug.Log($"View step ring: OnDisable()");

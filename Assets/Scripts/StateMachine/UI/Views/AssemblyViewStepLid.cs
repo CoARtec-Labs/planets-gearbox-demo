@@ -19,14 +19,16 @@ public class AssemblyViewStepLid : BaseViewSingleton<AssemblyViewStepLid>
     
     public GameObject lid;
 
-    public void ShowViewWithMesh() 
-    {
-    }
+    private const string Title = "Lid";
+    private const string Description = 
+        "Schließen Sie das Gehäuse mit dem Deckel (Lid).";
 
     public void OnEnable()
     {
         if (lid != null)
             lid.SetActive(true);
+        
+        InitializeMenu(Title, Description);
     }
 
     public void OnDisable()

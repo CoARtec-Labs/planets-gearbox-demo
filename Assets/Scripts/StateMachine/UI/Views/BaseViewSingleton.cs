@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 /// <summary>
 /// Template class providing the singleton pattern and (de)activation for UI views.
@@ -21,5 +22,16 @@ public class BaseViewSingleton<T> : BaseView where T : Component
         {
             Destroy(this);
         }
+    }
+
+    protected void InitializeMenu(string titleText, string descriptionText)
+    {
+        Transform title = transform.Find("AssemblyMenu/Canvas/Title");
+        Transform description = transform.Find("AssemblyMenu/Canvas/Description");
+
+        // Transform title = menu.gameObject.GetChildGameObjects("Title");
+
+        title.GetComponent<TMP_Text>().SetText(titleText);
+        description.GetComponent<TMP_Text>().SetText(descriptionText);
     }
 }

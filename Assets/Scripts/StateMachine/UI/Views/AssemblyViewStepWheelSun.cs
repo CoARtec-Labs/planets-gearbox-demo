@@ -16,15 +16,16 @@ public class AssemblyViewStepWheelSun : BaseViewSingleton<AssemblyViewStepWheelS
     
     public GameObject sun;
     
-    public void ShowViewWithMesh() 
-    {
-    }
+    private const string Title = "Sun";
+    private const string Description = 
+        "Platzieren Sie das Zahnrad 'Sun' in der Mitte des Rings.";
 
     public void OnEnable()
     {
         if (sun != null)
             sun.SetActive(true);
         
+        InitializeMenu(Title, Description);
     }
     public void OnDisable()
     {

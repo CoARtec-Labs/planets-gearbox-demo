@@ -20,14 +20,16 @@ public class AssemblyViewStepCarrier : BaseViewSingleton<AssemblyViewStepCarrier
     
     public GameObject carrier;
 
-    public void ShowViewWithMesh() 
-    {
-    }
+    private const string Title = "Carrier";
+    private const string Description = 
+        "Platzieren Sie den Carrier mittig über der Sun, do dass die Stifte in die Zahnräder greifen.";
 
     public void OnEnable()
     {
         if (carrier != null)
             carrier.SetActive(true);
+        
+        InitializeMenu(Title, Description);
     }
 
     public void OnDisable()

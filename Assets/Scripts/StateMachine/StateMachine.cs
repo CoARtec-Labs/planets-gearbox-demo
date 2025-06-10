@@ -38,7 +38,7 @@ public class StateMachine : MonoBehaviour
     private void Start()
     {
         // StartCoroutine(LoadMultiScenesBlocking("AssemblySteps", "PartsDetection", StartInitialState));
-        StartCoroutine(LoadSingleSceneBlocking("AssemblySteps", StartInitialState));
+        StartCoroutine(LoadSingleSceneAsync("AssemblySteps", StartInitialState));
     }
 
     /// <summary>
@@ -167,7 +167,7 @@ public class StateMachine : MonoBehaviour
     
     private delegate void LoadingScenesCompleteCallback();
     
-    private static IEnumerator LoadMultiScenesBlocking (string sceneA, string sceneB, 
+    private static IEnumerator LoadMultiScenesAsync(string sceneA, string sceneB, 
         LoadingScenesCompleteCallback callback)
     {
         // Do loading sequentially to avoid interference between game objects during loading.
@@ -190,7 +190,7 @@ public class StateMachine : MonoBehaviour
         callback();
     }
     
-    private static IEnumerator LoadSingleSceneBlocking (string scene, LoadingScenesCompleteCallback callback)
+    private static IEnumerator LoadSingleSceneAsync (string scene, LoadingScenesCompleteCallback callback)
     {
         var asyncLoad = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
 

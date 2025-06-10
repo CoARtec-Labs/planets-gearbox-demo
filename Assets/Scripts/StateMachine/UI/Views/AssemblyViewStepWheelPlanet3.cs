@@ -20,9 +20,15 @@ public class AssemblyViewStepWheelPlanet3 : BaseViewSingleton<AssemblyViewStepWh
     
     public GameObject planet3;
 
+    private const string Title = "Planet 3";
+    private const string Description = 
+        "Platzieren Sie das dritte Zahnrad in der Mitter unter der Sun.";
+    
     public void OnEnable()
     {
         planet3.SetActive(true);
+        
+        InitializeMenu(Title, Description);
     }
 
     public void OnDisable()

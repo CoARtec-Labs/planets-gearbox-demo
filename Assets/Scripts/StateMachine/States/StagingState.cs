@@ -1,10 +1,11 @@
 ﻿using System;
-
+using System.ComponentModel.Design.Serialization;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 using statemachine;
+using TMPro;
 
 /// <summary>
 /// Staging state: detection and highlighting of assembly parts.
@@ -14,11 +15,13 @@ public class StagingState : BaseState
     // Label of the assembly object to be searched for
     private readonly int _searchObjectClassId;
     private readonly States _returningState;
-
+    
     public StagingState()
     {
+        KeepSceneLoaded = false;
         SceneName = "PartsDetection";
         _returningState = States.NONE;
+        _searchObjectClassId = 0;
     }
 
     public StagingState(int objectClassId) : this()
