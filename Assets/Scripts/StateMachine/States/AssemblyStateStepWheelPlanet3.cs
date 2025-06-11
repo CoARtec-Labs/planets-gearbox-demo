@@ -11,7 +11,7 @@ public class AssemblyStateStepWheelPlanet3 : BaseState
     // Used to set scene loading on or off
     // private bool keepSceneLoaded = false;
     
-    private const int PartClassID = 2;
+    private const int PartClassID = 5; // planet-green
     
     public AssemblyStateStepWheelPlanet3()
     {

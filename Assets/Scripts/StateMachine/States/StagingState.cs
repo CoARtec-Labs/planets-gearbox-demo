@@ -39,16 +39,17 @@ public class StagingState : BaseState
     {
         base.PrepareState();
         
-        StagingView.OnAssemblyClicked += AssemblyClicked;
-        StagingView.Instance.ShowView();
-        
         StagingView.SearchObjectClassId = _searchObjectClassId;
+        StagingView.OnAssemblyClicked += AssemblyClicked;
+        
+        StagingView.Instance.ShowView();
     }
 
     public override void DestroyState()
     {
         StagingView.Instance.HideView();
         StagingView.OnAssemblyClicked -= AssemblyClicked;
+        StagingView.SearchObjectClassId = -1;
 
         base.DestroyState();
     }

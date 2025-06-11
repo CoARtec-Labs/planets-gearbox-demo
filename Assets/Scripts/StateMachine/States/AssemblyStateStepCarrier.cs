@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class AssemblyStateStepCarrier : BaseState
 {
-    private const int PartClassID = -1;
+    private const int PartClassID = 6; // carrier-black 
     
     // Used to set scene loading on or off
     // private bool keepSceneLoaded = false;

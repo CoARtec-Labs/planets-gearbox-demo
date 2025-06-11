@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class AssemblyStateStepWheelPlanet1 : BaseState
 {
-    private const int PartClassID = 1;
+    private const int PartClassID = 1; // planet-white
     
     public AssemblyStateStepWheelPlanet1()
     {

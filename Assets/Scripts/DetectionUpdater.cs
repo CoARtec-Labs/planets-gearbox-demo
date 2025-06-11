@@ -30,6 +30,7 @@ namespace coartec.detection
             if (_timer % updateRateMultiplier == 0)
             {
                 detector.ClassIdx = stagingView.searchObjectClassId;
+                // detector.ClassIdx = -1;
                 detector.LaunchDetection();
 
                 _timer = 0;

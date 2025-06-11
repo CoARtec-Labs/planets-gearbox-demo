@@ -10,7 +10,7 @@ public class AssemblyStateStepGasket : BaseState
 {
     private const String sceneName = "AssemblySteps";
     
-    private const int PartClassID = -1;
+    private const int PartClassID = 7; // gasket-gold 
 
     // Used to set scene loading on or off
     // private bool keepSceneLoaded = false;

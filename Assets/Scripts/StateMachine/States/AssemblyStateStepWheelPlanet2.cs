@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class AssemblyStateStepWheelPlanet2 : BaseState
 {
-    private const int PartClassID = 2;
+    private const int PartClassID = 2; // planet-black
     
     // Used to set scene loading on or off
     // private bool keepSceneLoaded = false;

@@ -11,7 +11,7 @@ public class AssemblyStateStepLid : BaseState
     // Used to set scene loading on or off
     // private bool _keepSceneLoaded = false;
     
-    private const int PartClassID = 3;
+    private const int PartClassID = 0; // lid-grey
 
     public AssemblyStateStepLid()
     {
