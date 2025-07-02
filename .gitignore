@@ -18,3 +18,7 @@
 
 # System files
 .DS_Store
+
+
+# Temporary exclude
+Assets/CNNs
