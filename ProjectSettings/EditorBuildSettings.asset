@@ -21,7 +21,11 @@ EditorBuildSettings:
       type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: de8a8e4f987434338a4b1062feb8d069,
       type: 2}
+    UnityEditor.XR.VisionOS.VisionOSSettings: {fileID: 11400000, guid: fc8832bc7f352461bafef913b30ac615,
+      type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 6230bd1853712455e83ee708c589f389,
+      type: 2}
+    com.unity.polyspatial.xr.xr_settings: {fileID: 11400000, guid: ff1a1ec4e82954fcbafc6e9e1f73c6ab,
       type: 2}
     com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: c2f7b8d7c0bff4d10874cbcf3f24af78,
       type: 2}
@@ -35,3 +39,4 @@ EditorBuildSettings:
       type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 6bb381a8ba31f114d9724357633b4625,
       type: 2}
+  m_UseUCBPForAssetBundles: 0

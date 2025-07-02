@@ -22,3 +22,7 @@
 
 # Temporary exclude
 Assets/CNNs
+TextMesh\ Pro/
+Assets/XR/
+Assets/XRI/
+Assets/XRI.meta
