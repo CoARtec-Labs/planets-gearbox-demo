@@ -37,3 +37,13 @@ MonoBehaviour:
     m_SpecifySize: 1
     m_Name: apriltag_crop
     m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5413071959983394048
+      m_GuidHigh: 10958017382894566584
+    m_SerializedTextureGuid:
+      m_GuidLow: 14124445259137752076
+      m_GuidHigh: 11284403573852534058
+    m_Size: {x: 0.0503937, y: 0.015}
+    m_SpecifySize: 1
+    m_Name: CoARtec-Logo
+    m_Texture: {fileID: 0}
