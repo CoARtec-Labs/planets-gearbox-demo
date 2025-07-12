@@ -17,7 +17,7 @@ public class StagingView : BaseViewSingleton<StagingView>
     public TMP_Text searchTitleBanner;
     
     public static int SearchObjectClassId = -1;
-    public int searchObjectClassId = -1;
+    // public int searchObjectClassId = -1;
     
     [Header("References to files")]
     [SerializeField, Tooltip("JSON file with bounding box color maps")]
@@ -115,7 +115,7 @@ public class StagingView : BaseViewSingleton<StagingView>
             return null;
         }
     }
-        
+    
     // Update the color map list with deserialized data
     private void UpdateColorMap(ColormapList colormapObj)
     {
@@ -131,6 +131,4 @@ public class StagingView : BaseViewSingleton<StagingView>
             _colormapList.Add((colormap.label, color));
         }
     }
-
-    
 }

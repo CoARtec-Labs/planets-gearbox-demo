@@ -21,7 +21,7 @@ public class StagingState : BaseState
         KeepSceneLoaded = false;
         SceneName = "PartsDetection";
         _returningState = States.NONE;
-        _searchObjectClassId = 0;
+        _searchObjectClassId = -1;
     }
 
     public StagingState(int objectClassId) : this()
