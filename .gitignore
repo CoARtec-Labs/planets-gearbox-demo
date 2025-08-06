@@ -17,7 +17,7 @@
 *.DotSettings.user
 
 # System files
-.DS_Store
+*.DS_Store
 
 
 # Temporary exclude
