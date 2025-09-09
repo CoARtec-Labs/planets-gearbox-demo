@@ -5,38 +5,38 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: d73aa2e6479bc41ed8e2cf82fc85ea82
   - enabled: 1
     path: Assets/Scenes/AssemblySteps.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PartsDetection.unity
     guid: f3cd6c694d64d4787bac664e79a4e040
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 744b813df90924c169af73489b8325de,
       type: 2}
-    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: e62b5b5c1ddde46e79bf4c9990889165,
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 56c9fdf97e1f146d7bb79c3f72b8c0fc,
       type: 2}
-    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: bdddd17c92e9a4c49aa0f7d19ad721e2,
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 808845404380b4eeca1351b2de379272,
       type: 2}
-    UnityEditor.XR.VisionOS.VisionOSSettings: {fileID: 11400000, guid: fc8832bc7f352461bafef913b30ac615,
+    UnityEditor.XR.VisionOS.VisionOSSettings: {fileID: 11400000, guid: a5930dccd8c92489cbdc930c9723d1d7,
       type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 6230bd1853712455e83ee708c589f389,
       type: 2}
-    com.unity.polyspatial.xr.xr_settings: {fileID: 11400000, guid: ff1a1ec4e82954fcbafc6e9e1f73c6ab,
+    com.unity.polyspatial.xr.xr_settings: {fileID: 11400000, guid: 2e2ffd4b8da214085a5bc9f9789cb526,
       type: 2}
     com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: c2f7b8d7c0bff4d10874cbcf3f24af78,
       type: 2}
-    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: f921efd49c77b4c3fad6835687ce1ef9,
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 251fab97bfc5a4660b4838532b7e5d83,
       type: 2}
     com.unity.xr.arkit.PlayerSettings: {fileID: 11400000, guid: b27ec7d82a91a48e69fd689ad6808e5e,
       type: 2}
-    com.unity.xr.magicleap.magic_leap_settings: {fileID: 11400000, guid: 826f79987bab64050b1ceb3e8083084f,
+    com.unity.xr.magicleap.magic_leap_settings: {fileID: 11400000, guid: 00dd51f3bdd554f4685dca49a5216110,
       type: 2}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d288135ab4fd046a48a430452bd826c9,
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 42c7bc7b862dd4e96a72d6aa55be5e7e,
       type: 2}
-    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 7131ec1e4640047e28301527b3693db9,
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 24f0e5ef16cbf444f9bcee1c6e225032,
       type: 2}
   m_UseUCBPForAssetBundles: 0

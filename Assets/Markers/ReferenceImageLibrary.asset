@@ -38,16 +38,6 @@ MonoBehaviour:
     m_Name: augmented-images-earth
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
-      m_GuidLow: 5364560327223211893
-      m_GuidHigh: 5111691498716062655
-    m_SerializedTextureGuid:
-      m_GuidLow: 13016235461379030161
-      m_GuidHigh: 10811108534215253243
-    m_Size: {x: 3.5533333, y: 2}
-    m_SpecifySize: 1
-    m_Name: coartec-marker_no-comp
-    m_Texture: {fileID: 0}
-  - m_SerializedGuid:
       m_GuidLow: 5548072422210263081
       m_GuidHigh: 9130024706125581750
     m_SerializedTextureGuid:
