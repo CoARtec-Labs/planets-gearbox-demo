@@ -132,6 +132,7 @@ PlayerSettings:
   switchNVNMaxPublicSamplerIDCount: 0
   switchMaxWorkerMultiple: 8
   switchNVNGraphicsFirmwareMemory: 32
+  switchGraphicsJobsSyncAfterKick: 1
   vulkanNumSwapchainBuffers: 3
   vulkanEnableSetSRGBWrite: 0
   vulkanEnablePreTransform: 0
@@ -245,6 +246,14 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 11400000, guid: 6230bd1853712455e83ee708c589f389, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 826f79987bab64050b1ceb3e8083084f, type: 2}
+  - {fileID: 4800000, guid: e7c77f6eaab324a819efdc13b8125a39, type: 3}
+  - {fileID: 4800000, guid: 6743a50a812740be8c0aa3fccc46fae9, type: 3}
+  - {fileID: 11400000, guid: 997f9b540c0ea4891803c99d0867d128, type: 2}
+  - {fileID: 2626708949324311180, guid: d288135ab4fd046a48a430452bd826c9, type: 2}
+  - {fileID: 87432485073214430, guid: 7131ec1e4640047e28301527b3693db9, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -375,6 +384,9 @@ PlayerSettings:
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
+  androidAppCategory: 3
+  useAndroidAppCategory: 1
+  androidAppCategoryOther: 
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
@@ -614,6 +626,7 @@ PlayerSettings:
     iPhone: 1
     tvOS: 1
   m_BuildTargetGroupLightmapEncodingQuality: []
+  m_BuildTargetGroupHDRCubemapEncodingQuality: []
   m_BuildTargetGroupLightmapSettings: []
   m_BuildTargetGroupLoadStoreDebugModeSettings: []
   m_BuildTargetNormalMapEncoding: []
@@ -877,16 +890,16 @@ PlayerSettings:
   webGLMemoryLinearGrowthStep: 16
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
-  webGLEnableWebGPU: 0
   webGLPowerPreference: 2
   webGLWebAssemblyTable: 0
   webGLWebAssemblyBigInt: 0
   webGLCloseOnQuit: 0
   webWasm2023: 0
+  webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
     Standalone: CJM_YOLOX_UTILS;CJM_UNITY_MEDIA_DISPLAY;CJM_BBOX_2D_TOOLKIT
     VisionOS: CJM_YOLOX_UTILS;CJM_BBOX_2D_TOOLKIT;CJM_UNITY_MEDIA_DISPLAY
-    iPhone: UNITY_XR_ARKIT_LOADER_ENABLED;CJM_YOLOX_UTILS;CJM_BARRACUDA_INFERENCE;CJM_BBOX_2D_TOOLKIT;CJM_UNITY_MEDIA_DISPLAY
+    iPhone: CJM_YOLOX_UTILS;CJM_BARRACUDA_INFERENCE;CJM_BBOX_2D_TOOLKIT;CJM_UNITY_MEDIA_DISPLAY;UNITY_XR_ARKIT_LOADER_ENABLED
   additionalCompilerArguments: {}
   platformArchitecture:
     iPhone: 1
@@ -1015,3 +1028,4 @@ PlayerSettings:
   insecureHttpOption: 0
   androidVulkanDenyFilterList: []
   androidVulkanAllowFilterList: []
+  androidVulkanDeviceFilterListAsset: {fileID: 0}
