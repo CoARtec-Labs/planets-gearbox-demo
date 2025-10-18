@@ -1,0 +1,103 @@
+{
+    "items": [
+        {
+            "name": "lid-grey",
+            "label": "Lid", 
+            "color": [
+                0.54,
+                0.54,
+                0.54
+            ]
+        },
+        {
+            "name": "planet-white",
+            "label": "Planet, weiß",
+            "color": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        {
+            "name": "planet-black",
+            "label": "Planet, schwarz",
+            "color": [
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "name": "planet-red",
+            "label": "Planet, rot",
+            "color": [
+                1.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "name": "planet-blue",
+            "label": "Planet, blau",
+            "color": [
+                0.0,
+                0.0,
+                1.0
+            ]
+        },
+        {
+            "name": "planet-green",
+            "label": "Planet, grün",
+            "color": [
+                0.0,
+                1.0,
+                0.0
+            ]
+        },        
+        {
+            "name": "carrier-black",
+            "label": "Carrier",
+            "color": [
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "name": "gasket-gold",
+            "label": "Gasket",
+            "color": [
+                1.0,
+                0.84,
+                0.0
+            ]
+        },
+        {
+            "name": "ring-grey",
+            "label": "Ring",
+            "color": [
+                0.54,
+                0.54,
+                0.54
+            ]
+        },
+        {
+            "name": "sun-gold",
+            "label": "Sonne, gold",
+            "color": [
+                1.0,
+                0.84,
+                0.0
+            ]
+        },
+        {
+            "name": "sun-grey",
+            "label": "Sonne, grau",
+            "color": [
+                0.54,
+                0.54,
+                0.54
+            ]
+        }
+    ]
+}
