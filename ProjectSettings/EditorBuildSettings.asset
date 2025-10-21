@@ -35,8 +35,8 @@ EditorBuildSettings:
       type: 2}
     com.unity.xr.magicleap.magic_leap_settings: {fileID: 11400000, guid: 826f79987bab64050b1ceb3e8083084f,
       type: 2}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d288135ab4fd046a48a430452bd826c9,
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 42c7bc7b862dd4e96a72d6aa55be5e7e,
       type: 2}
-    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 7131ec1e4640047e28301527b3693db9,
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 24f0e5ef16cbf444f9bcee1c6e225032,
       type: 2}
   m_UseUCBPForAssetBundles: 0

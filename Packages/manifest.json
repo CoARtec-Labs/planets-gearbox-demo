@@ -3,6 +3,7 @@
     "coartec.deep-learning-image-preprocessor": "file:../../barracuda-yolo-testbed/Packages/coartec.deep-learning-image-preprocessor",
     "coartec.unity-media-display": "file:../../barracuda-yolo-testbed/Packages/coartec.unity-media-display",
     "coartec.yolo-interface": "file:../../barracuda-yolo-testbed/Packages/coartec.yolo-interface",
+    "com.unity.2d.sprite": "1.0.0",
     "com.unity.barracuda": "3.0.0",
     "com.unity.feature.ar": "1.0.2",
     "com.unity.feature.development": "1.0.2",
