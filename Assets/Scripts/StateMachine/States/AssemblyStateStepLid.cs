@@ -44,9 +44,9 @@ public class AssemblyStateStepLid : BaseState
 
     private void StagingClicked()
     {
-        Debug.Log("[AssemblyStateStepBase.cs] Staging clicked.");
+        // Debug.Log("[AssemblyStateStepBase.cs] Staging clicked.");
 
-        KeepSceneLoaded = true;
+        KeepSceneLoaded = false;
         Owner.ChangeState(new StagingState(PartClassID, States.AssemblyStepLid));
     }
 }

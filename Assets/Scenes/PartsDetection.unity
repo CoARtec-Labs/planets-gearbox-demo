@@ -992,7 +992,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1836905657}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1836905659
 Camera:
   m_ObjectHideFlags: 0
@@ -1029,7 +1029,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1122,6 +1122,7 @@ GameObject:
   - component: {fileID: 1926432461}
   - component: {fileID: 1926432464}
   - component: {fileID: 1926432465}
+  - component: {fileID: 1926432466}
   m_Layer: 0
   m_Name: PartsDetection
   m_TagString: Untagged
@@ -1178,7 +1179,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stagingView: {fileID: 215243135}
-  updateRateMultiplier: 50
+  detector: {fileID: 1926432464}
+--- !u!114 &1926432466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926432459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed3fc917403e4939b8dccf09f2c6b745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   detector: {fileID: 1926432464}
 --- !u!1 &1937529761
 GameObject:
