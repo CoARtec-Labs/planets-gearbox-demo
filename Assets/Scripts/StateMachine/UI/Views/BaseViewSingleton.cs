@@ -26,8 +26,8 @@ public class BaseViewSingleton<T> : BaseView where T : Component
 
     protected void InitializeMenu(string titleText, string descriptionText)
     {
-        Transform title = transform.Find("AssemblyMenu/Canvas/Title");
-        Transform description = transform.Find("AssemblyMenu/Canvas/Description");
+        Transform title = transform.Find("AssemblyMenu/Canvas/Background/Title");
+        Transform description = transform.Find("AssemblyMenu/Canvas/Background/Description");
 
         // Transform title = menu.gameObject.GetChildGameObjects("Title");
 
