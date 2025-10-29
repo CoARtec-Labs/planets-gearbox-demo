@@ -16,9 +16,9 @@ public class AssemblyViewStepWheelPlanet2 : BaseViewSingleton<AssemblyViewStepWh
     
     public GameObject planet2;
 
-    private const string Title = "Planet 2";
+    private const string Title = "Schritt 4: schwarzes Zahnrad";
     private const string Description = 
-        "Platzieren Sie das zweite Zahnrad auf der linken oberen Seite der Sun.";
+        "Platzieren Sie das schwarze Zahnrad auf der linken oberen Seite des Sonnenrads.";
 
     public void OnEnable()
     {

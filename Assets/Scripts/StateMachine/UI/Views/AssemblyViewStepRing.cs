@@ -18,9 +18,9 @@ public class AssemblyViewStepRing : BaseViewSingleton<AssemblyViewStepRing>
     
     public GameObject ring;
 
-    private const string Title = "Ring";
+    private const string Title = "Schritt 1: Gehäusunterteil";
     private const string Description = 
-        "Platzieren Sie den Ring auf der Arbeitsstation.";
+        "Legen Sie das Gehäuseunterteil mit den Zähnen nach oben in die Montagehalterung.";
     
     public void Awake()
     {
@@ -31,7 +31,7 @@ public class AssemblyViewStepRing : BaseViewSingleton<AssemblyViewStepRing>
     
     public void OnEnable()
     {
-        Debug.Log($"View step ring: OnEnable()");
+        // Debug.Log($"View step ring: OnEnable()");
         if (ring != null)
             ring.SetActive(true);
         
@@ -40,7 +40,7 @@ public class AssemblyViewStepRing : BaseViewSingleton<AssemblyViewStepRing>
     
     public void OnDisable()
     {
-        Debug.Log($"View step ring: OnDisable()");
+        // Debug.Log($"View step ring: OnDisable()");
         if (ring != null)
             ring.SetActive(false);
     }

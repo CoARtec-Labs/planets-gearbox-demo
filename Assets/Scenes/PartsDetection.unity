@@ -293,7 +293,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 349.2539, y: 50}
+  m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &903455259
 MonoBehaviour:
@@ -700,7 +700,6 @@ MonoBehaviour:
   webcamDims: {x: 750, y: 1334}
   webcamFrameRate: 9
   toggleKey: 32
-  webcamTexture: {fileID: 0}
 --- !u!1 &1836905657
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,7 +899,6 @@ MonoBehaviour:
   yoloDetector: {fileID: 988312130}
   bBoxVisualizer: {fileID: 1118001367850986674}
   jsonColormapFile: {fileID: 4900000, guid: f8b640470dbb249c1a03042175569864, type: 3}
-  webcamTexture: {fileID: 0}
 --- !u!114 &1926432465
 MonoBehaviour:
   m_ObjectHideFlags: 0

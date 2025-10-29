@@ -20,9 +20,9 @@ public class AssemblyViewStepWheelPlanet3 : BaseViewSingleton<AssemblyViewStepWh
     
     public GameObject planet3;
 
-    private const string Title = "Planet 3";
+    private const string Title = "Schritt 5: grünes Zahnrad";
     private const string Description = 
-        "Platzieren Sie das dritte Zahnrad in der Mitter unter der Sun.";
+        "Platzieren Sie das grüne Zahnrad in der Mitter unterhalb des Sonnenrads.";
     
     public void OnEnable()
     {

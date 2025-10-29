@@ -19,9 +19,9 @@ public class AssemblyViewStepLid : BaseViewSingleton<AssemblyViewStepLid>
     
     public GameObject lid;
 
-    private const string Title = "Lid";
+    private const string Title = "Schritt 7: Gehäuseoberteil";
     private const string Description = 
-        "Schließen Sie das Gehäuse mit dem Deckel (Lid).";
+        "Setzen Sie das Gehäuseoberteil auf das Gehäuseunterteil.";
 
     public void OnEnable()
     {

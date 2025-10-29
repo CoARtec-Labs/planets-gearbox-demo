@@ -20,9 +20,9 @@ public class AssemblyViewStepCarrier : BaseViewSingleton<AssemblyViewStepCarrier
     
     public GameObject carrier;
 
-    private const string Title = "Carrier";
+    private const string Title = "Schritt 5: Abtriebsrad";
     private const string Description = 
-        "Platzieren Sie den Carrier mittig über der Sun, do dass die Stifte in die Zahnräder greifen.";
+        "Setzen Sie das Abtriebsrad mittig über der Sun ein, do dass die Stifte in alle drei Zahnräder greifen.";
 
     public void OnEnable()
     {

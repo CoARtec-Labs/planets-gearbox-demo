@@ -16,9 +16,9 @@ public class AssemblyViewStepWheelSun : BaseViewSingleton<AssemblyViewStepWheelS
     
     public GameObject sun;
     
-    private const string Title = "Sun";
+    private const string Title = "Schritt 2: Sonnenrad";
     private const string Description = 
-        "Platzieren Sie das Zahnrad 'Sun' in der Mitte des Rings.";
+        "Setzen Sie das Sonnenrad (das größte Rad) mit dem Gewinde nach unten in das zentrale Loch des Gehäuseunterteils ein.";
 
     public void OnEnable()
     {

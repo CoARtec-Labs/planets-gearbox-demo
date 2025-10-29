@@ -16,9 +16,9 @@ public class AssemblyViewStepGasket : BaseViewSingleton<AssemblyViewStepGasket>
     
     public GameObject gasket;
     
-    private const string Title = "Gasket";
+    private const string Title = "Schritt 6: Dichtung";
     private const string Description = 
-        "Platzieren Sie die Dichtung (Gasket) auf dem Gehäuseflasch.";
+        "Setzen Sie die Dichtung vorsichtig auf den Flansch des Gehäuseunterteils.";
 
     public void OnEnable()
     {
