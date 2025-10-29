@@ -11,7 +11,7 @@ using coartec.detection;
 /// </summary>
 public class PartsUpdater : MonoBehaviour
 {
-    [SerializeField] private StagingView stagingView;
+    [FormerlySerializedAs("stagingView")] [SerializeField] private DetectionView detectionView;
     [SerializeField] private DetectionManager detector;
     
     // Start is called before the first frame update
@@ -23,6 +23,6 @@ public class PartsUpdater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        detector.ClassIdx = StagingView.SearchObjectClassId; // from static class
+        detector.ClassIdx = DetectionView.SearchObjectClassId; // from static class
     }
 }

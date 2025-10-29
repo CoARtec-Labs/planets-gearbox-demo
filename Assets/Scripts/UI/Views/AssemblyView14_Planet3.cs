@@ -1,0 +1,54 @@
+using UnityEngine;
+using UnityEngine.Events;
+
+/// <summary>
+/// The view of the assembly state.
+/// </summary>
+public class AssemblyView14_Planet3 : BaseViewSingleton<AssemblyView14_Planet3>
+{
+    // Events to attach to.
+    // public static UnityAction OnStagingClicked;
+    public static UnityAction OnNextClicked;
+    public static UnityAction OnBackClicked;
+    public static UnityAction OnStagingClicked;
+    
+    // public GameObject InstructionsCanvas;
+
+    /// <summary>
+    /// Method for staging button.
+    /// </summary>
+    
+    public GameObject planet3;
+
+    private const string Title = "Schritt 5: grünes Zahnrad";
+    private const string Description = 
+        "Platzieren Sie das grüne Zahnrad in der Mitter unterhalb des Sonnenrads.";
+    
+    public void OnEnable()
+    {
+        planet3.SetActive(true);
+        
+        InitializeMenu(Title, Description);
+    }
+
+    public void OnDisable()
+    {
+        planet3.SetActive(false);
+    }
+    
+    public void NextClick()
+    {
+        OnNextClicked?.Invoke();
+    }
+
+    public void BackClick()
+    {
+        OnBackClicked?.Invoke();
+    }
+    
+    public void StagingClick()
+    {
+        OnStagingClicked?.Invoke();
+    }
+
+}
