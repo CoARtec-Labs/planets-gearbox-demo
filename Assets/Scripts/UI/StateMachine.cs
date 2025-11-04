@@ -25,8 +25,6 @@ public class StateMachine : MonoBehaviour
     // private UIRootStaging uiStaging;
     // public UIRootStaging UIStaging => uiStaging;    
     
-    public static int currentStepID = -1;
-
     // Reference to currently operating state.
     private BaseState _currentState;
     
@@ -37,8 +35,8 @@ public class StateMachine : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        // StartCoroutine(LoadMultiScenesBlocking("Assembly", "Detection", StartInitialState));
-        StartCoroutine(LoadSingleSceneAsync("Assembly", StartInitialState));
+        StartCoroutine(LoadMultiScenesAsync("Assembly", "Detection", StartInitialState));
+        //StartCoroutine(LoadSingleSceneAsync("Assembly", StartInitialState));
     }
 
     /// <summary>
@@ -126,7 +124,7 @@ public class StateMachine : MonoBehaviour
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
     }
     
-    private void DeactivateScene(String sceneName)
+    private static void DeactivateScene(String sceneName)
     {
         switch (sceneName)
         {
@@ -170,22 +168,33 @@ public class StateMachine : MonoBehaviour
     private static IEnumerator LoadMultiScenesAsync(string sceneA, string sceneB, 
         LoadingScenesCompleteCallback callback)
     {
-        // Do loading sequentially to avoid interference between game objects during loading.
-        var asyncLoadA = SceneManager.LoadSceneAsync(sceneA, LoadSceneMode.Additive);
-        
-        while (!asyncLoadA.isDone)
-        {
-            yield return null;
-        }
-        
-        var asyncLoadB = SceneManager.LoadSceneAsync(sceneB, LoadSceneMode.Additive);
 
-        while (!asyncLoadB.isDone)
+        if (!IsSceneLoaded(sceneA))
         {
-            yield return null;
+            // Do loading sequentially to avoid interference between game objects during loading.
+            var asyncLoadA = SceneManager.LoadSceneAsync(sceneA, LoadSceneMode.Additive);
+
+            while (!asyncLoadA.isDone)
+            {
+                yield return null;
+            }
         }
+
+        DeactivateScene(sceneA);
+
+        if (!IsSceneLoaded(sceneB))
+        {
+            var asyncLoadB = SceneManager.LoadSceneAsync(sceneB, LoadSceneMode.Additive);
+
+            while (!asyncLoadB.isDone)
+            {
+                yield return null;
+            }
+        }
+
+        DeactivateScene(sceneB);
         
-        Debug.Log(($"Loading {sceneA}, {sceneB} done."));
+        Debug.Log(($"[StateMachine.cs] Loading scenes {sceneA}, {sceneB} done."));
 
         callback();
     }
@@ -199,7 +208,7 @@ public class StateMachine : MonoBehaviour
             yield return null;
         }
         
-        Debug.Log(($"Loading {scene} done."));
+        Debug.Log(($"[StateMachine.cs] Loading scene {scene} done."));
 
         callback();
     }

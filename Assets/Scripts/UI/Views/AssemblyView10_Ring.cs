@@ -22,12 +22,12 @@ public class AssemblyView10_Ring : BaseViewSingleton<AssemblyView10_Ring>
     private const string Description = 
         "Legen Sie das Gehäuseunterteil mit den Zähnen nach oben in die Montagehalterung.";
     
-    public void Awake()
-    {
-        base.Awake();
-        
-        // transform.GetComponentsInChildren<BaseView>(true);
-    }
+    // public void Awake()
+    // {
+    //     base.Awake();
+    //     
+    //     // transform.GetComponentsInChildren<BaseView>(true);
+    // }
     
     public void OnEnable()
     {

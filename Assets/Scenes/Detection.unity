@@ -571,6 +571,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5022602860645237092, guid: 485828fa24e944770bf319d6569e1ec5,
         type: 3}
+    - target: {fileID: 8803652954608844257, guid: af9915ec1f1c6493ba96735462204bea,
+        type: 3}
+      propertyPath: inferenceStepsPerFrame
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -821,7 +826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc0296f123aab42f9a5df61a278e35d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stagingView: {fileID: 215243135}
+  detectionView: {fileID: 215243135}
   sceneObjects:
   - {fileID: 1836905657}
   - {fileID: 964836935}
@@ -911,7 +916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba098a37faa4453be7adb469fa7441d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stagingView: {fileID: 215243135}
+  detectionView: {fileID: 215243135}
   detector: {fileID: 1926432464}
 --- !u!114 &1926432466
 MonoBehaviour:

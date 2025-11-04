@@ -22,7 +22,7 @@ public class AssemblyView15_Carrier : BaseViewSingleton<AssemblyView15_Carrier>
 
     private const string Title = "Schritt 5: Abtriebsrad";
     private const string Description = 
-        "Setzen Sie das Abtriebsrad mittig über der Sun ein, do dass die Stifte in alle drei Zahnräder greifen.";
+        "Setzen Sie das Abtriebsrad mittig über dem Sonnenrad ein, do dass die Stifte in alle drei Zahnräder greifen.";
 
     public void OnEnable()
     {

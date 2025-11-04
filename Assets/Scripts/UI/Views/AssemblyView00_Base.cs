@@ -13,12 +13,12 @@ public class AssemblyView00_Base : BaseViewSingleton<AssemblyView00_Base>
 
     // public GameObject InstructionsCanvas;
 
-    private void Awake()
-    {
-        base.Awake();
-        
-        Debug.Log("[AssemblyViewStepBase.cs] Awake");
-    }
+    // private void Awake()
+    // {
+    //     base.Awake();
+    //     
+    //     Debug.Log("[AssemblyViewStepBase.cs] Awake");
+    // }
     
     /// <summary>
     /// Method for staging button.
