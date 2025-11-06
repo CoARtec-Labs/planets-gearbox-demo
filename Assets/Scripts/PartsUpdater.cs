@@ -11,7 +11,7 @@ using coartec.detection;
 /// </summary>
 public class PartsUpdater : MonoBehaviour
 {
-    [FormerlySerializedAs("stagingView")] [SerializeField] private DetectionView detectionView;
+    [SerializeField] private DetectionView detectionView;
     [SerializeField] private DetectionManager detector;
     
     // Start is called before the first frame update
