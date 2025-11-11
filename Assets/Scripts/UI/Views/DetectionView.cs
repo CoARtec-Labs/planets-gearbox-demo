@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 /// <summary>
 /// The StagingView class.
-/// This classe is used to (de)activate the staging UI.
+/// This class is used to (de)activate the staging UI.
 /// </summary>
 public class DetectionView : BaseViewSingleton<DetectionView>
 {
@@ -15,6 +15,8 @@ public class DetectionView : BaseViewSingleton<DetectionView>
     public static UnityAction OnAssemblyClicked;
 
     public TMP_Text searchTitleBanner;
+    public GameObject PartsDetection;
+    public ARActivationController arController;
     
     public static int SearchObjectClassId = -1;
     // public int searchObjectClassId = -1;
@@ -55,19 +57,28 @@ public class DetectionView : BaseViewSingleton<DetectionView>
         // Transform description = transform.Find("AssemblyMenu/Canvas/Description");
 
         // Transform title = menu.gameObject.GetChildGameObjects("Title");
-
-        string name;
+        
+        arController.PauseAR();
+        PartsDetection.SetActive(true);
+        
+        string objectName;
         
         if (SearchObjectClassId == -1)
         {
-            name = "example";
+            objectName = "example";
         }
         else
         {
-            name = _colormapList[SearchObjectClassId].Item1;
+            objectName = _colormapList[SearchObjectClassId].Item1;
         }
         
-        searchTitleBanner.GetComponent<TMP_Text>().SetText($"Suche: {name}");
+        searchTitleBanner.GetComponent<TMP_Text>().SetText($"Suche: {objectName}");
+    }
+
+    private void OnDisable()
+    {
+        arController.ResumeAR();
+        PartsDetection.SetActive(false);
     }
 
     private void Update()

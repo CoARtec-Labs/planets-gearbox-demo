@@ -40,7 +40,7 @@ public class UIRootAssembly : UIRootSingleton<UIRootAssembly>
         
         sceneObjects.ForEach(item => item.gameObject.SetActive(true));
         
-        arController.ResumeDetection();
+        arController.ResumeAR();
     }
     
     public void DeactivateSceneObjects()
@@ -49,7 +49,7 @@ public class UIRootAssembly : UIRootSingleton<UIRootAssembly>
         
         sceneObjects.ForEach(item => item.gameObject.SetActive(false));
         
-        arController.PauseDetection();
+        arController.PauseAR();
     }
     
     private new void Awake()

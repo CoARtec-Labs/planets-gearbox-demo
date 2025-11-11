@@ -18,8 +18,8 @@ public class DetectionState : BaseState
     
     public DetectionState()
     {
-        KeepSceneLoaded = false;
-        SceneName = "Detection";
+        KeepSceneLoaded = true;
+        SceneName = "Assembly";
         _returningState = States.NONE;
         _searchObjectClassId = -1;
     }

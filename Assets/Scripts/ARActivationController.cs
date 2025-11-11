@@ -16,7 +16,7 @@ public class ARActivationController : MonoBehaviour
     // [SerializeField] private ARAnchorManager anchorManager;
     //[SerializeField] private ARSession; // keep this ENABLED
 
-    public void PauseDetection()
+    public void PauseAR()
     {
         // arCamera.enabled = false;
         
@@ -30,7 +30,7 @@ public class ARActivationController : MonoBehaviour
         // arSession stays enabled, so camera tracking continues.
     }
 
-    public void ResumeDetection()
+    public void ResumeAR()
     {
         
         // arCamera.enabled = true;
