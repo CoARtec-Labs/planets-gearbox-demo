@@ -17,12 +17,12 @@
       "depth": 0,
       "source": "local",
       "dependencies": {
-        "com.unity.barracuda": "3.0.0"
+        "com.unity.barracuda": "3.0.2"
       }
     },
     "com.unity.barracuda": {
-      "version": "3.0.0",
-      "depth": 0,
+      "version": "3.0.2",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.burst": "1.6.0",
