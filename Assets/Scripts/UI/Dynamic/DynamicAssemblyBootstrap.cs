@@ -15,7 +15,6 @@ namespace CoARtec.UI.Dynamic
         [SerializeField] private AssemblyProcedureApiClient apiClient;
 
         [Header("API configuration")]
-        [Tooltip("Example: http://localhost:30000 (Editor same machine). On mobile use http://<PC_IP>:30000")]
         [SerializeField] private string baseUrl = "http://localhost:30000";
 
         [Tooltip("Example: gearbox_v1")]
