@@ -254,12 +254,6 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 11400000, guid: fbaf552642ec2405ab9f130824e053d4, type: 2}
-  - {fileID: 4397144475082120103, guid: 62da964c06aca4008a6ec49ca9b9842c, type: 2}
-  - {fileID: 11400000, guid: c3e58115d5b564a37a0ba086bc9397c2, type: 2}
-  - {fileID: 2458231501519800153, guid: a2bd712d5f95b46d7b6e8e1684d17fba, type: 2}
-  - {fileID: 4800000, guid: e7c77f6eaab324a819efdc13b8125a39, type: 3}
-  - {fileID: 4800000, guid: 6743a50a812740be8c0aa3fccc46fae9, type: 3}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -280,7 +274,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.DefaultCompany.com.unity.template.ar
+    Standalone: com.CoARtec.PlanetsGearboxDemo
     iPhone: com.CoARtec.PlanetsGearboxDemo
   buildNumber:
     Standalone: 0
