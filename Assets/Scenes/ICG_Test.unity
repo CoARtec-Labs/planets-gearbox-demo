@@ -534,8 +534,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d37a0a27f5e48f59443d1e8a91206e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  metaDirectory: /Users/derya.keskin-kurt/workspace/icg-tracker/meta/lid
-  sequenceDirectory: /Users/derya.keskin-kurt/workspace/icg-tracker/sequence-jp
+  metaDirectory: /home/askurt/workspace/icg-tracker/meta/lid
+  sequenceDirectory: realsense
   bodyName: lid
   startOnPlay: 1
   targetTransform: {fileID: 810987666}
@@ -927,7 +927,7 @@ Transform:
   m_GameObject: {fileID: 1272751805}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -279.25, y: -5, z: 0.75}
+  m_LocalPosition: {x: -289.25, y: -6, z: 130.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1017,7 +1017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1331e4df708040c69c64d497d036b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraOffsetMm: {x: 140, y: 6, z: -120}
+  extraOffsetMm: {x: 150, y: 7, z: -250}
 --- !u!1 &1282234301
 GameObject:
   m_ObjectHideFlags: 0
