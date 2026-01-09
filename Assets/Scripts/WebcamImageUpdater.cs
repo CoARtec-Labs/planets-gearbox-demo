@@ -1,10 +1,11 @@
 using System;
-using coartec;
 using UnityEditor;
 using UnityEngine;
 
+using coartec;
+
 /// <summary>
-/// Image Updater passing on the image currently on the screen.
+/// Implementation of an image updater receiving the webcam image currently on screen.
 /// </summary>
 public class WebcamImageUpdater : AbstractImageUpdater
 {

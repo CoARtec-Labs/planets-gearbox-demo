@@ -14,9 +14,9 @@ public class DetectionView : BaseViewSingleton<DetectionView>
     // Events to attach to.
     public static UnityAction OnAssemblyClicked;
 
-    public TMP_Text searchTitleBanner;
-    public GameObject PartsDetection;
-    public ARActivationController arController;
+    [SerializeField] private TMP_Text searchTitleBanner;
+    [SerializeField] private ARActivationController arController;
+    [SerializeField] private GameObject partsDetector;
     
     public static int SearchObjectClassId = -1;
     // public int searchObjectClassId = -1;
@@ -51,15 +51,8 @@ public class DetectionView : BaseViewSingleton<DetectionView>
 
     private void OnEnable()
     {
-        // Transform button = this.transform.root.gameObject.transform.Find("Detection/Canvas/SearchTitle");
-        
-        // Transform title = transform.Find("AssemblyMenu/Canvas/Title");
-        // Transform description = transform.Find("AssemblyMenu/Canvas/Description");
-
-        // Transform title = menu.gameObject.GetChildGameObjects("Title");
-        
         arController.PauseAR();
-        PartsDetection.SetActive(true);
+        partsDetector.SetActive(true);
         
         string objectName;
         
@@ -78,7 +71,7 @@ public class DetectionView : BaseViewSingleton<DetectionView>
     private void OnDisable()
     {
         arController.ResumeAR();
-        PartsDetection.SetActive(false);
+        partsDetector.SetActive(false);
     }
 
     private void Update()
@@ -95,6 +88,7 @@ public class DetectionView : BaseViewSingleton<DetectionView>
     }
     
     // Load the color map list from the JSON file
+    // TODO remove code redundancy with detection manager
     private void LoadColorMapList()
     {
         if (IsColorMapListJsonNullOrEmpty())
@@ -108,12 +102,14 @@ public class DetectionView : BaseViewSingleton<DetectionView>
     }
     
     // Check if the color map JSON file is null or empty
+    // TODO remove code redundancy with detection manager
     private bool IsColorMapListJsonNullOrEmpty()
     {
         return jsonColormapFile == null || string.IsNullOrWhiteSpace(jsonColormapFile.text);
     }
 
     // Deserialize the color map list from the JSON string
+    // TODO remove code redundancy with detection manager
     private ColormapList DeserializeColorMapList(string json)
     {
         try
@@ -128,6 +124,7 @@ public class DetectionView : BaseViewSingleton<DetectionView>
     }
     
     // Update the color map list with deserialized data
+    // TODO remove code redundancy with detection manager
     private void UpdateColorMap(ColormapList colormapObj)
     {
         if (colormapObj == null)

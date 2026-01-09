@@ -7,22 +7,22 @@ using UnityEngine.Serialization;
 using coartec.detection;
 
 /// <summary>
-/// This script is responsible for updating the detector with current part ID.
+/// This script is responsible for updating the detector filter with current part ID.
 /// </summary>
-public class PartsUpdater : MonoBehaviour
+public class PartIdUpdater : MonoBehaviour
 {
-    [SerializeField] private DetectionView detectionView;
+    //[SerializeField] private DetectionView detectionView;
     [SerializeField] private DetectionManager detector;
     
     // Start is called before the first frame update
     void Start()
     {
-        detector.ClassIdx = -1;
+        detector.ClassIdx = -1; // default = do not filter
     }
 
     // Update is called once per frame
     void Update()
     {
-        detector.ClassIdx = DetectionView.SearchObjectClassId; // from static class
+        detector.ClassIdx = DetectionView.SearchObjectClassId; // from static class!
     }
 }

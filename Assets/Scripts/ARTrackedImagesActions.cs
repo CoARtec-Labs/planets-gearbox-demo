@@ -7,54 +7,36 @@ using UnityEngine.XR.ARFoundation;
 
 namespace Instructions
 {
-    public class ARTrackedImagesActions:MonoBehaviour
+    /// <summary>
+    /// Script to handle events of the AR image detector and tracker like adding, updating and removing. 
+    /// </summary>
+    public class ARTrackedImagesActions : MonoBehaviour
     {
-        public ARTrackedImageManager arTrackedImageManagerRef;
-        public GameObject assemblyRef;
+        [SerializeField] private ARTrackedImageManager imageTracker;
+        [SerializeField] private GameObject partsAssembly;
 
         private void Start()
         {
-
-            /*
-            var mARSessionOrigin = GameObject.Find("ARSessionOrigin");
-            var managers = mARSessionOrigin.GetComponentsInChildren<ARTrackedImageManager>();
-
-            if (managers.Length > 1)
-            {
-                throw new Exception("received more than one ARTrackedImageManager");
-            }
-            else
-            {
-                arTrackedImageManagerRef = managers[0];
-            }
-            */
-            
             // void OnEnable() => arTrackedImageManagerRef.trackedImagesChanged += OnChanged;
             //
             // void OnDisable() => arTrackedImageManagerRef.trackedImagesChanged -= OnChanged;
 
             // Enable handling of on-change events of tracked images
-            arTrackedImageManagerRef.trackedImagesChanged += OnChanged;
-            
+            imageTracker.trackedImagesChanged += OnChanged;
         }
 
         void OnChanged(ARTrackedImagesChangedEventArgs eventArgs)
         {
+            // New iamges
             foreach (var newImage in eventArgs.added)
             {
                 // Handle added event
-                Debug.Log("Added new image");
-                
-                foreach (var trackedImage in arTrackedImageManagerRef.trackables)
+                foreach (var trackedImage in imageTracker.trackables)
                 {
-                    Debug.Log($"Image: {trackedImage.referenceImage.name} is at " +
+                    Debug.Log($"New tracked image: {trackedImage.referenceImage.name} at " +
                               $"{trackedImage.transform.position} with ID " +
                               $"{trackedImage.trackableId}");
                 }
-                
-                // // Spawn new GameObject
-                // GameObject newSpawn = Instantiate(spawnObject);
-                
                 
                 // Stick assembly to tracked image
                 // assemblyRef.transform.parent = newImage.transform;
@@ -65,10 +47,11 @@ namespace Instructions
                 // assemblyRef.transform.position = newImage.transform.position;
                 // assemblyRef.transform.rotation = newImage.transform.rotation;
                 
-                Instantiate(assemblyRef, newImage.transform);
+                Instantiate(partsAssembly, newImage.transform);
                 
             }
 
+            // Updated images
             foreach (var updatedImage in eventArgs.updated)
             {
                 // // Handle updated event
@@ -82,11 +65,12 @@ namespace Instructions
                 // }
                 
                 // Copy image global position
-                assemblyRef.transform.position = updatedImage.transform.position;
-                assemblyRef.transform.rotation = updatedImage.transform.rotation;
+                partsAssembly.transform.position = updatedImage.transform.position;
+                partsAssembly.transform.rotation = updatedImage.transform.rotation;
                 
             }
 
+            // Removed image
             foreach (var removedImage in eventArgs.removed)
             {
                 // Handle removed event

@@ -1275,7 +1275,7 @@ GameObject:
   - component: {fileID: 393995469}
   - component: {fileID: 393995468}
   m_Layer: 5
-  m_Name: Raw Image
+  m_Name: TestImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1478,10 +1478,10 @@ GameObject:
   m_Component:
   - component: {fileID: 486282572}
   - component: {fileID: 486282571}
-  - component: {fileID: 486282570}
   - component: {fileID: 486282569}
+  - component: {fileID: 486282570}
   m_Layer: 0
-  m_Name: PartsDetection
+  m_Name: PartsDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1512,7 +1512,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba098a37faa4453be7adb469fa7441d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionView: {fileID: 0}
   detector: {fileID: 486282571}
 --- !u!114 &486282571
 MonoBehaviour:
@@ -1529,10 +1528,9 @@ MonoBehaviour:
   rotateBBoxLeft: 1
   swapBBoxAxisX: 0
   swapBBoxAxisY: 0
-  imageScreen: {fileID: 0}
+  imageScreen: {fileID: 35597712}
   yoloDetector: {fileID: 1841321808}
   bBoxVisualizer: {fileID: 2002615385}
-  imageUpdater: {fileID: 19293938}
   jsonColormapFile: {fileID: 4900000, guid: f8b640470dbb249c1a03042175569864, type: 3}
 --- !u!4 &486282572
 Transform:
@@ -1549,8 +1547,7 @@ Transform:
   m_Children:
   - {fileID: 1841321809}
   - {fileID: 1534445653}
-  - {fileID: 1164073447}
-  - {fileID: 1362806620}
+  - {fileID: 535556738}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &507433313
@@ -1583,8 +1580,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fec4be7700a4b9c8c60dbecfac49c2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arTrackedImageManagerRef: {fileID: 339661790}
-  assemblyRef: {fileID: 672650094}
+  imageTracker: {fileID: 339661790}
+  partsAssembly: {fileID: 672650094}
 --- !u!4 &507433315
 Transform:
   m_ObjectHideFlags: 0
@@ -1613,8 +1610,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraBackground: {fileID: 264921648}
-  arCamera: {fileID: 264921651}
-  trackedImageManager: {fileID: 339661790}
+  playerCamera: {fileID: 264921651}
+  imageTracker: {fileID: 339661790}
 --- !u!1 &511856260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,6 +1723,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 525258523}
   m_CullTransparentMesh: 1
+--- !u!1 &535556737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 535556738}
+  - component: {fileID: 535556739}
+  m_Layer: 0
+  m_Name: ImageUpdater
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &535556738
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535556737}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1362806620}
+  - {fileID: 1164073447}
+  m_Father: {fileID: 486282572}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &535556739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535556737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f3d13724b8ef44e8a6d6c33dd86fbd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraUpdater: {fileID: 19293938}
+  webcamUpdater: {fileID: 20460768}
+  detectionManager: {fileID: 486282571}
 --- !u!1 &627789159
 GameObject:
   m_ObjectHideFlags: 0
@@ -2014,7 +2060,7 @@ GameObject:
   - component: {fileID: 877989888}
   - component: {fileID: 877989887}
   m_Layer: 5
-  m_Name: Image Text
+  m_Name: TextField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2605,7 +2651,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1164073447
 Transform:
   m_ObjectHideFlags: 0
@@ -2620,7 +2666,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 19293937}
-  m_Father: {fileID: 486282572}
+  m_Father: {fileID: 535556738}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1281426381
 GameObject:
@@ -2879,7 +2925,7 @@ Transform:
   m_Children:
   - {fileID: 20460769}
   - {fileID: 35597715}
-  m_Father: {fileID: 486282572}
+  m_Father: {fileID: 535556738}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1386212023
 GameObject:
@@ -3060,8 +3106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   searchTitleBanner: {fileID: 1675935868}
-  PartsDetection: {fileID: 486282568}
   arController: {fileID: 507433316}
+  partsDetector: {fileID: 486282568}
   jsonColormapFile: {fileID: 4900000, guid: f8b640470dbb249c1a03042175569864, type: 3}
 --- !u!1 &1528865418
 GameObject:

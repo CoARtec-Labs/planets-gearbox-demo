@@ -13,58 +13,33 @@ using coartec;
 using coartec.MediaDisplay;
 using UnityEngine.Serialization;
 
+/// <summary>
+/// Implementation of an image updater receiving images from the AR camera object. 
+/// </summary>
 public class CameraImageUpdater : AbstractImageUpdater
 {
-    // Scene components and settings
-    [Header("Scene")]
-    //[Tooltip("Screen object in the scene")]
-    //[SerializeField] protected GameObject screenObject;
-
-    [SerializeField] [Tooltip("Camera object in the scene")]
+    [SerializeField] [Tooltip("AR Camera object in the scene.")]
     protected ARCameraManager cameraManager;
-    [SerializeField] 
+    [SerializeField] [Tooltip("Text field to display some properties of the image.")]
     private Text imageInfo;
     
     private Texture2D _cameraTexture;
-    private RawImage _rawImage;
-    private WebCamTexture _webcam;
-    
-    XRCpuImage.Transformation transformation = XRCpuImage.Transformation.MirrorY;
 
+    private const XRCpuImage.Transformation TrafoMirrorY = XRCpuImage.Transformation.MirrorY;
     private const TextureFormat ImFormat = UnityEngine.TextureFormat.RGBA32;
-
-    // Called when the script instance is being loaded.
-    private void Awake()
-    {
-        Debug.Log("[CameraScreenManager.cs] Awake()");
-    }
-
-    private void Start()
-    {
-    }
-    
-    // Update user choice for image source: webcam or image file
-    private void Update()
-    {
-    }
 
     public override Texture2D GetUpdatedImage()
     {
         return CameraTexture;
     }
     
-    public void OnClickUpdateScreen()
-    {
-        UpdateScreen();
-    }
-    
-    unsafe void UpdateCameraImage()
+    private unsafe void UpdateCameraImage()
     {
         // Attempt to get the latest camera image. If this method succeeds,
         // it acquires a native resource that must be disposed (see below).
         if (!cameraManager.TryAcquireLatestCpuImage(out XRCpuImage image))
         {
-            Debug.Log("[CameraScreenManager.cs] Failed to acquire image");
+            Debug.Log("[CameraImageUpdater.cs] Failed to acquire image");
             return;
         }
 
@@ -90,15 +65,16 @@ public class CameraImageUpdater : AbstractImageUpdater
 
         // Convert the image to format, flipping the image across the Y axis.
         // We can also get a sub rectangle, but we'll get the full image here.
-        var conversionParams = new XRCpuImage.ConversionParams(image, format, transformation);
+        var conversionParams = new XRCpuImage.ConversionParams(image, format, TrafoMirrorY);
 
         // Texture2D allows us write directly to the raw texture data
         // This allows us to do the conversion in-place without making any copies.
         var rawTextureData = _cameraTexture.GetRawTextureData<byte>();
+        
         try
         {
             image.Convert(conversionParams, new IntPtr(rawTextureData.GetUnsafePtr()), rawTextureData.Length);
-        }
+        } 
         finally
         {
             // We must dispose of the XRCpuImage after we're finished
@@ -109,22 +85,12 @@ public class CameraImageUpdater : AbstractImageUpdater
         // Apply the updated texture data to our texture
         _cameraTexture.Apply();
     }
-    
-    // Updates the screen with the current texture
-    private void UpdateScreen()
-    {
-        UpdateCameraImage();
-        
-        // Set the RawImage's texture so we can visualize it.
-        _rawImage.texture = _cameraTexture;
-    }
 
-    public Texture2D CameraTexture
+    private Texture2D CameraTexture
     {
         get
         {
             UpdateCameraImage(); 
-            
             return _cameraTexture;
         }
     }
