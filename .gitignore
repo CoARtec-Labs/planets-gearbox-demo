@@ -27,3 +27,6 @@ Assets/XR
 Assets/XRI*
 Assets/TextMesh\ Pro
 
+
+# build files generated for deploy
+build/
