@@ -6,20 +6,15 @@ using UnityEngine.Events;
 /// </summary>
 public class AssemblyView17_Lid : BaseViewSingleton<AssemblyView17_Lid>
 {
-    // Events to attach to.
+    // Events to attach to:
     // public static UnityAction OnStagingClicked;
     public static UnityAction OnBackClicked;
     public static UnityAction OnStagingClicked;
-
-    // public GameObject InstructionsCanvas;
-
-    /// <summary>
-    /// Method for staging button.
-    /// </summary>
     
     public GameObject lid;
 
-    private const string Title = "Schritt 7: Gehäuseoberteil";
+    private const string Title = 
+        "Schritt 8: Gehäuseoberteil";
     private const string Description = 
         "Setzen Sie das Gehäuseoberteil auf das Gehäuseunterteil.";
 

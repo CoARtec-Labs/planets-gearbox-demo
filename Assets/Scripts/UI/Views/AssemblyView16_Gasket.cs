@@ -16,7 +16,8 @@ public class AssemblyView16_Gasket : BaseViewSingleton<AssemblyView16_Gasket>
     
     public GameObject gasket;
     
-    private const string Title = "Schritt 6: Dichtung";
+    private const string Title = 
+        "Schritt 7: Dichtung";
     private const string Description = 
         "Setzen Sie die Dichtung vorsichtig auf den Flansch des Gehäuseunterteils.";
 

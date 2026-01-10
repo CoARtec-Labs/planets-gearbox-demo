@@ -16,7 +16,8 @@ public class AssemblyView11_Sun : BaseViewSingleton<AssemblyView11_Sun>
     
     public GameObject sun;
     
-    private const string Title = "Schritt 2: Sonnenrad";
+    private const string Title = 
+        "Schritt 2: Sonnenrad";
     private const string Description = 
         "Setzen Sie das Sonnenrad (das größte Rad) mit dem Gewinde nach unten in das zentrale Loch des Gehäuseunterteils ein.";
 

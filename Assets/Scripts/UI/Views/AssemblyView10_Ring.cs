@@ -18,7 +18,8 @@ public class AssemblyView10_Ring : BaseViewSingleton<AssemblyView10_Ring>
     
     public GameObject ring;
 
-    private const string Title = "Schritt 1: Gehäusunterteil";
+    private const string Title = 
+        "Schritt 1: Gehäusunterteil";
     private const string Description = 
         "Legen Sie das Gehäuseunterteil mit den Zähnen nach oben in die Montagehalterung.";
     

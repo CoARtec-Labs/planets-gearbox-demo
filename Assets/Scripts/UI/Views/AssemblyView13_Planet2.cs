@@ -16,7 +16,8 @@ public class AssemblyView13_Planet2 : BaseViewSingleton<AssemblyView13_Planet2>
     
     public GameObject planet2;
 
-    private const string Title = "Schritt 4: schwarzes Zahnrad";
+    private const string Title = 
+        "Schritt 4: schwarzes Zahnrad";
     private const string Description = 
         "Platzieren Sie das schwarze Zahnrad auf der linken oberen Seite des Sonnenrads.";
 

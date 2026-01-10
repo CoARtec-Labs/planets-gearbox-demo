@@ -3,6 +3,7 @@ using UnityEngine;
 
 /// <summary>
 /// Template class providing the singleton pattern and (de)activation for UI views.
+/// TODO Remove Singleton pattern from views; not necessary anymore.
 /// </summary>
 public class BaseViewSingleton<T> : BaseView where T : Component
 {

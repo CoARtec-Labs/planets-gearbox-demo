@@ -1,6 +1,6 @@
 using System;
 
-namespace statemachine
+namespace UI.States
 {
     public enum States
     {
@@ -14,6 +14,16 @@ namespace statemachine
         Assembly15Carrier,
         Assembly16Gasket,
         Assembly17Lid,
+        Instructor00Base,
+        InstructorRing,
+        Instructor10Ring,
+        Instructor11Sun,
+        Instructor12Planet1,
+        Instructor13Planet2,
+        Instructor14Planet3,
+        Instructor15Carrier,
+        Instructor16Gasket,
+        Instructor17Lid,
         DetectionParts,
     }
     
@@ -50,34 +60,58 @@ namespace statemachine
             switch (state)
             {
                 case States.Assembly00Base:
-                    return new AssemblyState00_Base();
+                    return new Assembly.AssemblyState00_Base();
                 
                 case States.Assembly10Ring:
-                    return new AssemblyState10_Ring();
+                    return new Assembly.AssemblyState10_Ring();
 
                 case States.Assembly11Sun:
-                    return new AssemblyState11_Sun();
+                    return new Assembly.AssemblyState11_Sun();
                 
                 case States.Assembly12Planet1:
-                    return new AssemblyState12_Planet1();
+                    return new Assembly.AssemblyState12_Planet1();
                 
                 case States.Assembly13Planet2:
-                    return new AssemblyState13_Planet2();
+                    return new Assembly.AssemblyState13_Planet2();
                 
                 case States.Assembly14Planet3:
-                    return new AssemblyState14_Planet3();
+                    return new Assembly.AssemblyState14_Planet3();
                 
                 case States.Assembly15Carrier:
-                    return new AssemblyState15_Carrier();
+                    return new Assembly.AssemblyState15_Carrier();
                 
                 case States.Assembly16Gasket:
-                    return new AssemblyState16_Gasket();
+                    return new Assembly.AssemblyState16_Gasket();
                 
                 case States.Assembly17Lid:
-                    return new AssemblyState17_Lid();
+                    return new Assembly.AssemblyState17_Lid();
                 
-                case States.DetectionParts:
-                    return new DetectionState();
+                case States.Instructor00Base:
+                    return new Instructor.AssemblyState00_Base();
+                
+                case States.Instructor10Ring:
+                    return new Instructor.AssemblyState10_Ring();
+
+                case States.Instructor11Sun:
+                    return new Instructor.AssemblyState11_Sun();
+                
+                case States.Instructor12Planet1:
+                    return new Instructor.AssemblyState12_Planet1();
+                
+                case States.Instructor13Planet2:
+                    return new Instructor.AssemblyState13_Planet2();
+                
+                case States.Instructor14Planet3:
+                    return new Instructor.AssemblyState14_Planet3();
+                
+                case States.Instructor15Carrier:
+                    return new Instructor.AssemblyState15_Carrier();
+                
+                case States.Instructor16Gasket:
+                    return new Instructor.AssemblyState16_Gasket();
+                
+                case States.Instructor17Lid:
+                    return new Instructor.AssemblyState17_Lid();
                 
                 default:
                     SystemException e = new SystemException("Unknown state " + state);

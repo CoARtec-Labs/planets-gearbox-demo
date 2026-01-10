@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections;
-
+using System.Collections.Generic;
+using UI.States;
+using UI.Views.Assembly;
+using UI.Views.Detection;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 // This state machine pattern is derived from this blog: 
 // https://www.patrykgalach.com/2019/03/18/design-pattern-state-machine/
@@ -25,6 +29,11 @@ public class StateMachine : MonoBehaviour
     // private UIRootStaging uiStaging;
     // public UIRootStaging UIStaging => uiStaging;    
     
+    [SerializeField, Tooltip("Scenes to be loaded at state-machine start.")]
+    private List<string> scenesToLoad = new List<string>();
+    [SerializeField, Tooltip("Initial state of the application.")]
+    private States initialState = States.NONE;
+    
     // Reference to currently operating state.
     private BaseState _currentState;
     
@@ -35,8 +44,9 @@ public class StateMachine : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        StartCoroutine(LoadMultiScenesAsync("Assembly", "Detection", StartInitialState));
-        //StartCoroutine(LoadSingleSceneAsync("Assembly", StartInitialState));
+        StartCoroutine(LoadMultiScenesAsync(scenesToLoad, StartInitialState));
+        // StartCoroutine(LoadMultiScenesAsync("Assembly", "Detection", StartInitialState));
+        // StartCoroutine(LoadSingleSceneAsync("Assembly", StartInitialState));
     }
 
     /// <summary>
@@ -117,6 +127,10 @@ public class StateMachine : MonoBehaviour
                 UIRootDetection.Instance.ActivateSceneObjects();
                 break;
 
+            case "Instructor":
+                // nothing to do
+                break;
+            
             default:
                 throw new System.ArgumentException("Unknown Scene");
         }
@@ -134,6 +148,10 @@ public class StateMachine : MonoBehaviour
 
             case "Detection":
                 UIRootDetection.Instance.DeactivateSceneObjects();
+                break;
+            
+            case "Instructor":
+                // nothing to do
                 break;
 
             default:
@@ -160,15 +178,40 @@ public class StateMachine : MonoBehaviour
 
     private void StartInitialState()
     {
-        ChangeState(new AssemblyState00_Base());
+        ChangeState(StateFactory.CreateState(States.Instructor00Base));
     }
     
     private delegate void LoadingScenesCompleteCallback();
+
+    private static IEnumerator LoadMultiScenesAsync(List<string> sceneNames,
+        LoadingScenesCompleteCallback loadingCompleteCallback)
+    {
+        if (sceneNames.Count == 0)
+            yield break;
+        
+        foreach (var scene in sceneNames)
+        {
+            if (!IsSceneLoaded(scene))
+            {
+                // Do loading sequentially to avoid interference between game objects during loading.
+                var asyncLoadScene = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
+
+                while (!asyncLoadScene.isDone)
+                {
+                    yield return null;
+                }
+            }
+            DeactivateScene(scene);
+            
+            Debug.Log(($"[StateMachine.cs] Loading scene {scene} done."));
+        }
+        loadingCompleteCallback?.Invoke();
+    }
     
     private static IEnumerator LoadMultiScenesAsync(string sceneA, string sceneB, 
         LoadingScenesCompleteCallback callback)
     {
-
+        
         if (!IsSceneLoaded(sceneA))
         {
             // Do loading sequentially to avoid interference between game objects during loading.

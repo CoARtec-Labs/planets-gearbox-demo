@@ -20,7 +20,8 @@ public class AssemblyView14_Planet3 : BaseViewSingleton<AssemblyView14_Planet3>
     
     public GameObject planet3;
 
-    private const string Title = "Schritt 5: grünes Zahnrad";
+    private const string Title = 
+        "Schritt 5: grünes Zahnrad";
     private const string Description = 
         "Platzieren Sie das grüne Zahnrad in der Mitter unterhalb des Sonnenrads.";
     

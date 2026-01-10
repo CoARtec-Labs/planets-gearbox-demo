@@ -20,7 +20,8 @@ public class AssemblyView15_Carrier : BaseViewSingleton<AssemblyView15_Carrier>
     
     public GameObject carrier;
 
-    private const string Title = "Schritt 5: Abtriebsrad";
+    private const string Title = 
+        "Schritt 6: Abtriebsrad";
     private const string Description = 
         "Setzen Sie das Abtriebsrad mittig über dem Sonnenrad ein, do dass die Stifte in alle drei Zahnräder greifen.";
 

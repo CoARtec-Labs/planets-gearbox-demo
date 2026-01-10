@@ -5,14 +5,15 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 using coartec.detection;
+using UI.Views;
 
 /// <summary>
 /// This script is responsible for updating the detector filter with current part ID.
 /// </summary>
 public class PartIdUpdater : MonoBehaviour
 {
-    //[SerializeField] private DetectionView detectionView;
     [SerializeField] private DetectionManager detector;
+    // [SerializeField] private UIRootBase uiRoot;
     
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,6 @@ public class PartIdUpdater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        detector.ClassIdx = DetectionView.SearchObjectClassId; // from static class!
+        detector.ClassIdx = UIRootBase.SearchObjectClassId;
     }
 }

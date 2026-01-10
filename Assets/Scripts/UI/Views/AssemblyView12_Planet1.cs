@@ -17,7 +17,8 @@ public class AssemblyView12_Planet1 : BaseViewSingleton<AssemblyView12_Planet1>
     
     [SerializeField] private GameObject planet1;
 
-    private const string Title = "Schritt 3: weißes Zahnrad";
+    private const string Title = 
+        "Schritt 3: weißes Zahnrad";
     private const string Description = 
         "Platzieren Sie das weiße Zahnrad auf der rechten oberen Seite des Sonnenrads.";
 

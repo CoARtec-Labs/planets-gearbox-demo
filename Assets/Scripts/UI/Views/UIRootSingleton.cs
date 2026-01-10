@@ -1,25 +1,28 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Template class providing the singleton pattern and (de)activation for UI views.
-/// </summary>
-public class UIRootSingleton<T> : MonoBehaviour where T : Component
+namespace UI.Views
 {
-    public static T Instance {get; private set;}
-
-    protected virtual void Awake()
+    /// <summary>
+    /// Template class providing the singleton pattern and (de)activation for UI views.
+    /// </summary>
+    public class UIRootSingleton<T> : UIRootBase where T : Component
     {
-        if (Instance == null)
-        {
-            Instance = this as T;
+        public static T Instance {get; private set;}
 
-            // This one only works on root GameObjects. It is not
-            // really necessary for our View objects anyways.
-            //DontDestroyOnLoad(this);
-        }
-        else
+        protected virtual void Awake()
         {
-            Destroy(this);
+            if (Instance == null)
+            {
+                Instance = this as T;
+
+                // This one only works on root GameObjects. It is not
+                // really necessary for our View objects anyways.
+                //DontDestroyOnLoad(this);
+            }
+            else
+            {
+                Destroy(this);
+            }
         }
     }
 }
