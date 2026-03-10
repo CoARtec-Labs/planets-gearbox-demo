@@ -9,7 +9,7 @@ using UnityEngine.UI;
 namespace coartec.detection
 {
     /// <summary>
-    /// Script for activation of camera or webcam updater depending on untity run enverionment.
+    /// Script for activation of camera or webcam updater depending on unity run environment.
     /// </summary>
     public class ImageUpdaterManager : MonoBehaviour
     {
@@ -27,9 +27,9 @@ namespace coartec.detection
             cameraUpdater.gameObject.transform.parent.gameObject.SetActive(false);
             webcamUpdater.gameObject.transform.parent.gameObject.SetActive(true);
 #else
-            // Device mode uses camera onject of the AR engine (AR camera manager)
-            cameraUpdater.gameObject.transform.parent.gameObject.SetActive(false);
-            webcamUpdater.gameObject.transform.parent.gameObject.SetActive(true);
+            // Device mode uses camera object of the AR engine (AR camera manager)
+            cameraUpdater.gameObject.transform.parent.gameObject.SetActive(true);
+            webcamUpdater.gameObject.transform.parent.gameObject.SetActive(false);
 #endif
         }
 
@@ -41,7 +41,7 @@ namespace coartec.detection
             detectionManager.SetImageUpdater(webcamUpdater);
 #else 
             // Device mode
-            detectionManager.setImageUpdater(cameraUpdater);
+            detectionManager.SetImageUpdater(cameraUpdater);
 #endif            
         }
     }

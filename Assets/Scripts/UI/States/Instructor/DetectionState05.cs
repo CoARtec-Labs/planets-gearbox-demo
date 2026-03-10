@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+using UI.Views;
 using UI.Views.Instructor;
 
 namespace UI.States.Instructor
@@ -42,6 +43,8 @@ namespace UI.States.Instructor
         {
             base.PrepareState();
 
+            UIRootBase.SearchObjectClassId = _searchObjectClassId;
+            
             DetectionView05.SearchObjectClassId = _searchObjectClassId;
             DetectionView05.OnAssemblyClicked += AssemblyClicked;
 
