@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "coartec.apriltag-interface": {
+      "version": "file:../../cv2cg/CV2CG-Unity-Files/Packages/coartec.apriltag-interface",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "coartec.deep-learning-image-preprocessor": {
       "version": "file:../../barracuda-yolo-testbed/Packages/coartec.deep-learning-image-preprocessor",
       "depth": 0,

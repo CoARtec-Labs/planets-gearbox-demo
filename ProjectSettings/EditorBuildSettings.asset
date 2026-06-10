@@ -17,9 +17,9 @@ EditorBuildSettings:
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 744b813df90924c169af73489b8325de,
       type: 2}
-    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 5ee1d92dfd1cb4fdf86bfa5474d35651,
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 03f45d15cd76d6649a966d841823f268,
       type: 2}
-    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: b7e45f54a10014a52b53de80c82404f8,
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: b38fef72c8e307f4884098934a57812e,
       type: 2}
     UnityEditor.XR.VisionOS.VisionOSSettings: {fileID: 11400000, guid: fc8832bc7f352461bafef913b30ac615,
       type: 2}
@@ -29,7 +29,7 @@ EditorBuildSettings:
       type: 2}
     com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: c2f7b8d7c0bff4d10874cbcf3f24af78,
       type: 2}
-    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: c3e58115d5b564a37a0ba086bc9397c2,
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 4d2f346bbfecc8b42968a5489136699e,
       type: 2}
     com.unity.xr.arkit.PlayerSettings: {fileID: 11400000, guid: b27ec7d82a91a48e69fd689ad6808e5e,
       type: 2}
@@ -37,5 +37,5 @@ EditorBuildSettings:
       type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d288135ab4fd046a48a430452bd826c9,
       type: 2}
-    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 7131ec1e4640047e28301527b3693db9,
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 1bf12ebc305d66b498d0266dfa1b7f73,
       type: 2}
