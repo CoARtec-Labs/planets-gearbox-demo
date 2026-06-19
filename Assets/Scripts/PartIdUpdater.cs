@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-using coartec.detection;
+using Coartec.Detection;
+
 using UI.Views;
 
 /// <summary>
