@@ -538,6 +538,12 @@ MonoBehaviour:
   sequenceDirectory: realsense
   bodyName: lid
   startOnPlay: 1
+  scanBudgetMs: 6
+  scanGridStepPx: 40
+  scanYawSteps: 18
+  hideOverlayWhenNoPose: 1
+  overlayRenderers: []
+  logStateChanges: 0
   targetTransform: {fileID: 810987666}
   positionScale: {x: 1, y: 1, z: 1}
   positionOffset: {x: 0, y: 0, z: 0}
