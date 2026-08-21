@@ -36,7 +36,7 @@ public class ImageUpdaterManager : MonoBehaviour
         detectionManager.ImageUpdater = webcamUpdater;
 #else
         // Device mode
-        detectionManager.SetImageUpdater(cameraUpdater);
+        detectionManager.ImageUpdater = cameraUpdater;
 #endif
     }
 }
