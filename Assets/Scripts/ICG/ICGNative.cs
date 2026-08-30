@@ -8,6 +8,13 @@ namespace ICG
     {
         private const string DllName = "icg_unity_bridge";
 
+        public enum TrackingState
+        {
+            Idle = 0,
+            Scanning = 1,
+            Tracking = 2,
+        }
+
         // ---------- Public API wrappers ----------
         public static void SetSequenceDirectory(string path)
         {
@@ -28,6 +35,23 @@ namespace ICG
         }
 
         public static int Start() => UnityTracker_Start();
+
+        /// <summary>
+        /// Puts the native tracker into SCANNING state (auto-initialization).
+        /// Pose will stay invalid until a good pose is found and native switches to TRACKING.
+        /// </summary>
+        public static int StartTracking() => UnityTracker_StartTracking();
+
+        /// <summary>
+        /// Puts the native tracker into IDLE state (no pose).
+        /// </summary>
+        public static void StopTracking() => UnityTracker_StopTracking();
+
+        public static TrackingState GetTrackingState() => (TrackingState)UnityTracker_GetTrackingState();
+
+        public static void SetScanBudgetMs(int budgetMs) => UnityTracker_SetScanBudgetMs(budgetMs);
+        public static void SetScanGridStepPx(int stepPx) => UnityTracker_SetScanGridStepPx(stepPx);
+        public static void SetScanYawSteps(int steps) => UnityTracker_SetScanYawSteps(steps);
 
         public static void Stop() => UnityTracker_Stop();
 
@@ -79,6 +103,24 @@ namespace ICG
         [DllImport(DllName, EntryPoint = "UnityTracker_Stop")]
         private static extern void UnityTracker_Stop();
 
+        [DllImport(DllName, EntryPoint = "UnityTracker_StartTracking")]
+        private static extern int UnityTracker_StartTracking();
+
+        [DllImport(DllName, EntryPoint = "UnityTracker_StopTracking")]
+        private static extern void UnityTracker_StopTracking();
+
+        [DllImport(DllName, EntryPoint = "UnityTracker_GetTrackingState")]
+        private static extern int UnityTracker_GetTrackingState();
+
+        [DllImport(DllName, EntryPoint = "UnityTracker_SetScanBudgetMs")]
+        private static extern void UnityTracker_SetScanBudgetMs(int budgetMs);
+
+        [DllImport(DllName, EntryPoint = "UnityTracker_SetScanGridStepPx")]
+        private static extern void UnityTracker_SetScanGridStepPx(int stepPx);
+
+        [DllImport(DllName, EntryPoint = "UnityTracker_SetScanYawSteps")]
+        private static extern void UnityTracker_SetScanYawSteps(int steps);
+
         [DllImport(DllName, EntryPoint = "UnityTracker_Destroy")]
         private static extern void UnityTracker_Destroy();
         
@@ -86,7 +128,7 @@ namespace ICG
         private static extern int UnityTracker_GetColorFrameInfo(out int width, out int height, out int channels, out double timestamp);
 
         [DllImport(DllName, EntryPoint = "UnityTracker_GetColorIntrinsics")]
-                private static extern int UnityTracker_GetColorIntrinsics(out float fx, out float fy, out float cx, out float cy, out int width, out int height);
+        private static extern int UnityTracker_GetColorIntrinsics(out float fx, out float fy, out float cx, out float cy, out int width, out int height);
 
         [DllImport(DllName, EntryPoint = "UnityTracker_CopyColorFrameRGB")]
         private static extern int UnityTracker_CopyColorFrameRGB([Out] byte[] dst, int dstSize);
@@ -95,7 +137,6 @@ namespace ICG
         private static extern IntPtr UnityTracker_GetLastError();
 
         [DllImport(DllName, EntryPoint = "UnityTracker_GetPose")]
-
         private static extern int UnityTracker_GetPose(
             IntPtr bodyName,
             [Out] float[] translation_xyz,

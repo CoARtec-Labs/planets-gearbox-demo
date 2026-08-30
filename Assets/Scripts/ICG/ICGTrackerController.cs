@@ -12,7 +12,25 @@ namespace ICG
         public string bodyName = "lid";  // anpassen an dein Body-Name
         public bool startOnPlay = true;
 
+        [Header("Auto-Scan (Native)")]
+        [Tooltip("Max. CPU-Budget pro Frame in der SCANNING-Phase (ms).")]
+        public int scanBudgetMs = 6;
+        [Tooltip("Raster-Schrittweite im Depth-Bild (Pixel). Größer = schneller, aber weniger robust.")]
+        public int scanGridStepPx = 40;
+        [Tooltip("Anzahl Yaw-Rotationen (0..360°) pro Rasterpunkt.")]
+        public int scanYawSteps = 18;
+
+        [Header("Overlay Visibility")]
+        [Tooltip("Wenn keine Pose verfügbar (IDLE/SCANNING), wird das Overlay ausgeblendet.")]
+        public bool hideOverlayWhenNoPose = true;
+        [Tooltip("Optional: Renderers, die zum Overlay gehören. Wenn leer, werden sie automatisch unter targetTransform gesucht.")]
+        public Renderer[] overlayRenderers;
+
+        [Header("Debug")]
+        public bool logStateChanges = false;
+
         private bool _started;
+        private ICGNative.TrackingState _lastState = (ICGNative.TrackingState)(-1);
 
         [Header("Apply Pose")]
         public Transform targetTransform;
@@ -63,16 +81,49 @@ namespace ICG
             _started = true;
             Debug.Log("[ICG] Started OK.");
 
+            // Apply scan tuning (optional)
+            if (scanBudgetMs > 0) ICGNative.SetScanBudgetMs(scanBudgetMs);
+            if (scanGridStepPx > 0) ICGNative.SetScanGridStepPx(scanGridStepPx);
+            if (scanYawSteps > 0) ICGNative.SetScanYawSteps(scanYawSteps);
+
+            // Start auto-initialization (SCANNING). Pose stays invalid until native finds a good pose.
+            int okTrack = ICGNative.StartTracking();
+            if (okTrack == 0)
+            {
+                Debug.LogError("[ICG] StartTracking failed: " + ICGNative.GetLastError());
+            }
+
             if (targetTransform == null)
                 targetTransform = this.transform; // fallback
+
+            // Setup overlay renderers
+            if (overlayRenderers == null || overlayRenderers.Length == 0)
+            {
+                overlayRenderers = targetTransform.GetComponentsInChildren<Renderer>(true);
+            }
+
+            // Start hidden until we have a valid pose
+            if (hideOverlayWhenNoPose)
+                SetOverlayVisible(false);
 
         }
         void Update()
         {
             if (!_started) return;
 
+            var state = ICGNative.GetTrackingState();
+            if (state != _lastState)
+            {
+                _lastState = state;
+                if (logStateChanges)
+                    Debug.Log($"[ICG] State = {state}");
+            }
+
             if (ICGNative.TryGetPose(bodyName, out var t, out var q, out var ts))
             {
+                if (hideOverlayWhenNoPose)
+                    SetOverlayVisible(true);
+
                 if (Time.frameCount % 30 == 0)
                 {
                     Debug.Log($"[ICG] pose t=({t[0]:F3},{t[1]:F3},{t[2]:F3}) q=({q[0]:F3},{q[1]:F3},{q[2]:F3},{q[3]:F3}) ts={ts:F3}");
@@ -110,12 +161,30 @@ namespace ICG
                     if (applyRotation) targetTransform.localRotation = rot;
                 }
             }
+            else
+            {
+                if (hideOverlayWhenNoPose)
+                    SetOverlayVisible(false);
+            }
+        }
+
+        private void SetOverlayVisible(bool visible)
+        {
+            if (overlayRenderers == null) return;
+            for (int i = 0; i < overlayRenderers.Length; i++)
+            {
+                var r = overlayRenderers[i];
+                if (r == null) continue;
+                r.enabled = visible;
+            }
         }
 
         void OnDestroy()
         {
             if (_started)
             {
+                // Optional: stop tracking state machine first
+                ICGNative.StopTracking();
                 ICGNative.Stop();
                 _started = false;
             }
