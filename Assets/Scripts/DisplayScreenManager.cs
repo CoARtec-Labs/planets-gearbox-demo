@@ -5,7 +5,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-using coartec.MediaDisplay;
+using Coartec.MediaDisplay;
 
 public class DisplayScreenManager : BaseScreenManager
 {

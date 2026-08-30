@@ -9,9 +9,7 @@ using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
-using coartec;
-using coartec.MediaDisplay;
-using UnityEngine.Serialization;
+using Coartec.ImageUpdate;
 
 /// <summary>
 /// Implementation of an image updater receiving images from the AR camera object. 

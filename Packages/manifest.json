@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "coartec.deep-learning-image-preprocessor": "file:../../barracuda-yolo-testbed/Packages/coartec.deep-learning-image-preprocessor",
+    "coartec.dl-image-preprocessor": "file:../../barracuda-yolo-testbed/Packages/coartec.dl-image-preprocessor",
     "coartec.unity-media-display": "file:../../barracuda-yolo-testbed/Packages/coartec.unity-media-display",
     "coartec.yolo-interface": "file:../../barracuda-yolo-testbed/Packages/coartec.yolo-interface",
     "com.unity.barracuda": "3.0.0",

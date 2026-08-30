@@ -2,7 +2,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-using coartec;
+using Coartec.ImageUpdate;
 
 /// <summary>
 /// Implementation of an image updater receiving the webcam image currently on screen.

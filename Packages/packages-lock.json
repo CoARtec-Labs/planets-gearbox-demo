@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "coartec.deep-learning-image-preprocessor": {
-      "version": "file:../../barracuda-yolo-testbed/Packages/coartec.deep-learning-image-preprocessor",
+    "coartec.dl-image-preprocessor": {
+      "version": "file:../../barracuda-yolo-testbed/Packages/coartec.dl-image-preprocessor",
       "depth": 0,
       "source": "local",
       "dependencies": {}
